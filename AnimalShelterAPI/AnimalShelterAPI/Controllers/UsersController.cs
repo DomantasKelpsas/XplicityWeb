@@ -14,7 +14,7 @@ namespace AnimalShelterAPI.Controllers
 {
     [ApiController]
     [Route("api/[controller]/[action]")]
-    public class UsersController : ControllerBase
+    public class UsersController : ApiControllerBase
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
@@ -47,6 +47,26 @@ namespace AnimalShelterAPI.Controllers
                 })
             });
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(UserDTO userDTO)
+        {
+            var user = await _userManager.FindByEmailAsync(userDTO.Email);
+            if (user == null)
+                return BadRequest("User does not exist");
+
+            var res = await _signInManager.PasswordSignInAsync(user, userDTO.Password, false, false);
+            if (!res.Succeeded)
+                return BadRequest("Invalid password");
+
+            return Ok(new
+            {
+                token = GenerateJWTToken(new UserDTO()
+                {
+                    Email = userDTO.Email
+                })
+            });
         }
 
         string GenerateJWTToken(UserDTO userInfo)
