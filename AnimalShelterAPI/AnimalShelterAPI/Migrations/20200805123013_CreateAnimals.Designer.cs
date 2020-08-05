@@ -3,14 +3,16 @@ using System;
 using AnimalShelterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalShelterAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20200805123013_CreateAnimals")]
+    partial class CreateAnimals
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,19 +48,19 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<string>("HealthCondition")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("MicrochipIntegrationDate")
+                    b.Property<DateTime>("MicrochipIntegrationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SpecialTags")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("StatusDate")
+                    b.Property<DateTime>("StatusDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("StatusID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("VaccinationDate")
+                    b.Property<DateTime>("VaccinationDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");
