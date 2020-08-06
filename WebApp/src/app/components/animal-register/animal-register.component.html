@@ -1,0 +1,101 @@
+
+<mat-card id="card" style="text-align: center;">
+
+  <mat-card-title>
+    Gyvuno Registracija
+  </mat-card-title>
+
+<mat-card-content>
+<form #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
+<div class="row justify-content-center">
+      <mat-form-field appearance="outline" class="col-4">
+        <mat-label>Gyvuno ID</mat-label >
+        <input matInput [(ngModel)]="animal.animalID" type="text" name="animalID" placeholder="" required #idInput="ngModel" >
+        <mat-hint>Min 5 chars</mat-hint>
+        <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
+          <p *ngIf="idInput.errors.required">Gyvono ID laukas negali buti tuscias</p>
+        </mat-error>
+      </mat-form-field>
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="fill" class="col-4">
+  <mat-label>Priemimo data</mat-label>
+  <input matInput [matDatepicker]="picker1">
+  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+  <mat-datepicker #picker1></mat-datepicker>
+</mat-form-field>
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="fill" class="col-4">
+    <mat-label>Mikro iterpimo data</mat-label>
+    <input matInput [matDatepicker]="picker2">
+    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+    <mat-datepicker #picker2></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="fill" class="col-4">
+    <mat-label>Skiepo data</mat-label>
+    <input matInput [matDatepicker]="picker3">
+    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+    <mat-datepicker #picker3></mat-datepicker>
+  </mat-form-field>
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Gyvuno Rusis</mat-label >
+    <mat-select  [(ngModel)]="animal.type" type="text" name="type" placeholder="" required #typeInput="ngModel">
+
+      <mat-option value="Suo">Suo</mat-option>
+      <mat-option value="Kate">Kate</mat-option>
+      <mat-option value="kita">Kita</mat-option>
+    </mat-select>
+    <mat-error *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error">
+      <p *ngIf="typeInput.errors.required">Gyvuno rusis turi buti pasirinkta</p>
+    </mat-error>
+  </mat-form-field>
+  {{selectedValue}}
+</div>
+
+<div class="row justify-content-center">
+<mat-form-field appearance="outline" class="col-4">
+  <mat-label>Gyvuno Lytis</mat-label >
+ <mat-select>
+
+   <mat-option value="vyriska">Vyriska</mat-option>
+   <mat-option value="moteriska">Moteriska</mat-option>
+   <mat-option value="Nenustatoma">Nenustatoma</mat-option>
+ </mat-select>
+</mat-form-field>
+  {{selectedValue}}
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="outline" class="col-2">
+    <mat-label>Metai</mat-label >
+    <input type="number" matInput required >
+    <mat-hint>Min 5 chars</mat-hint>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="col-2">
+    <mat-label>Menesiai</mat-label >
+    <input matInput type="number" required >
+    <mat-hint>Min 5 chars</mat-hint>
+  </mat-form-field>
+</div>
+
+<div class="row justify-content-center">
+  <mat-form-field appearance="outline" class="col-4">
+    <mat-label>Kailio spalva</mat-label >
+    <input matInput required >
+    <mat-hint>Min 5 chars</mat-hint>
+  </mat-form-field>
+</div>
+
+  <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Add</button>
+</form>
+  </mat-card-content>
