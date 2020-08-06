@@ -21,7 +21,9 @@ namespace AnimalShelterAPI.Database
                     }
                 );
 
-            if(!context.Genders.Any())
+            context.SaveChanges();
+
+            if (!context.Genders.Any())
                 context.Genders.AddRange(
                     new Gender
                     {
@@ -36,6 +38,8 @@ namespace AnimalShelterAPI.Database
                         Type = "Nenustatoma"
                     }
                 );
+
+            context.SaveChanges();
 
             if (!context.Furs.Any())
                 context.Furs.AddRange(
@@ -61,6 +65,8 @@ namespace AnimalShelterAPI.Database
                     }
                 );
 
+            context.SaveChanges();
+
             if (!context.Statuses.Any())
                 context.Statuses.AddRange(
                     new Status
@@ -76,6 +82,8 @@ namespace AnimalShelterAPI.Database
                         Name = "Gyvena prieglaudoje"
                     }
                 );
+
+            context.SaveChanges();
 
             if (!context.Animals.Any())
                 context.Animals.AddRange(
