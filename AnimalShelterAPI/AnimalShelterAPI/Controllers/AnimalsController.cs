@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnimalShelterAPI.Models;
+using AnimalShelterAPI.Models.DTO;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,16 +17,21 @@ namespace AnimalShelterAPI.Controllers
     public class AnimalsController : ControllerBase
     {
         private readonly ApiContext context;
+        private readonly IMapper mapper;
 
-        public AnimalsController(ApiContext _context)
+        public AnimalsController(ApiContext _context, IMapper _mapper)
         {
             context = _context;
+            mapper = _mapper;
         }
 
         // GET: api/Animals
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> Get()
         {
+            var tm = await context.Animals.Include(F => F.Fur).ToListAsync();
+            var tmp = tm[0].Fur.Name;
+            var mapped = mapper.Map<AnimalDto[]>(tm);
             return await context.Animals.ToListAsync();
         }
 
