@@ -135,7 +135,7 @@ namespace AnimalShelterAPI.Database
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Vilijampolė",
                         AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
                         Fur = context.Furs.SingleOrDefault(a => a.Name == "Ilgaplaukis"),
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
                         SpecialTags = "Chubby, sweet",
@@ -154,9 +154,89 @@ namespace AnimalShelterAPI.Database
                         Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
                         Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
+                        SpecialTags = "Goofy, big",
+                        HealthCondition = "Sveikas",
+                        AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        StatusDate = null
+                    },
+                    new Animal
+                    {
+                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
+                        VaccinationDate = null,
+                        AdmissionCity = "Vilnius",
+                        AdmissionRegion = "Žirmūnai",
+                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
+                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Trumpakailis"),
+                        Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
+                        SpecialTags = "Fluffy, loud",
+                        HealthCondition = "Sveika",
+                        AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        StatusDate = DateTime.Parse("2020-08-05")
+                    },
+                    new Animal
+                    {
+                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
+                        VaccinationDate = null,
+                        AdmissionCity = "Kaunas",
+                        AdmissionRegion = "Šančiai",
+                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
+                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
+                        Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Overall just great",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        StatusDate = null
+                    }, 
+                    new Animal
+                    {
+                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
+                        VaccinationDate = null,
+                        AdmissionCity = "Vilnius",
+                        AdmissionRegion = "Žirmūnai",
+                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
+                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Trumpakailis"),
+                        Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
+                        SpecialTags = "Cute, small",
+                        HealthCondition = "Sveikas",
+                        AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        StatusDate = null
+                    }, 
+                    new Animal
+                    {
+                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
+                        VaccinationDate = null,
+                        AdmissionCity = "Kaunas",
+                        AdmissionRegion = "Šančiai",
+                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
+                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
+                        Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
+                        SpecialTags = "Goofy, big",
+                        HealthCondition = "Sveika",
+                        AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        StatusDate = DateTime.Parse("2020-08-05")
+                    },
+                    new Animal
+                    {
+                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
+                        VaccinationDate = null,
+                        AdmissionCity = "Vilnius",
+                        AdmissionRegion = "Žirmūnai",
+                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
+                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
+                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Vidutinio ilgio"),
+                        Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
+                        SpecialTags = "Cute, small",
+                        HealthCondition = "Sveikas",
+                        AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
                         StatusDate = null
                     }
                 );

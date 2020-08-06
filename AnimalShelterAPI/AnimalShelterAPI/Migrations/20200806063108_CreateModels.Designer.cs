@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnimalShelterAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20200805123013_CreateAnimals")]
-    partial class CreateAnimals
+    [Migration("20200806063108_CreateModels")]
+    partial class CreateModels
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,19 +48,19 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<string>("HealthCondition")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("MicrochipIntegrationDate")
+                    b.Property<DateTime?>("MicrochipIntegrationDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SpecialTags")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("StatusDate")
+                    b.Property<DateTime?>("StatusDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("StatusID")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("VaccinationDate")
+                    b.Property<DateTime?>("VaccinationDate")
                         .HasColumnType("TEXT");
 
                     b.HasKey("ID");

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace AnimalShelterAPI.Migrations
 {
-    public partial class CreateAnimals : Migration
+    public partial class CreateModels : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -67,8 +67,8 @@ namespace AnimalShelterAPI.Migrations
                     ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     AdmissionDate = table.Column<DateTime>(nullable: false),
-                    MicrochipIntegrationDate = table.Column<DateTime>(nullable: false),
-                    VaccinationDate = table.Column<DateTime>(nullable: false),
+                    MicrochipIntegrationDate = table.Column<DateTime>(nullable: true),
+                    VaccinationDate = table.Column<DateTime>(nullable: true),
                     AdmissionCity = table.Column<string>(nullable: true),
                     AdmissionRegion = table.Column<string>(nullable: true),
                     AnimalTypeID = table.Column<int>(nullable: true),
@@ -78,7 +78,7 @@ namespace AnimalShelterAPI.Migrations
                     HealthCondition = table.Column<string>(nullable: true),
                     AdmissionOrganisationContacts = table.Column<string>(nullable: true),
                     StatusID = table.Column<int>(nullable: true),
-                    StatusDate = table.Column<DateTime>(nullable: false)
+                    StatusDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
                 {
