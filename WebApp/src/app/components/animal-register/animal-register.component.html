@@ -7,8 +7,8 @@
 
 <mat-card-content>
 <form #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
-<div class="row justify-content-center">
-      <mat-form-field appearance="outline" class="col-4">
+<div >
+      <mat-form-field appearance="outline" >
         <mat-label>Gyvuno ID</mat-label >
         <input matInput [(ngModel)]="animal.animalID" type="text" name="animalID" placeholder="" required #idInput="ngModel" >
         <mat-hint>Min 5 chars</mat-hint>
@@ -18,35 +18,35 @@
       </mat-form-field>
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="fill" class="col-4">
+<div >
+  <mat-form-field appearance="fill" >
   <mat-label>Priemimo data</mat-label>
-  <input matInput [matDatepicker]="picker1">
+  <input matInput [(ngModel)]="animal.dateAccepted" name="dateAccepted" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker1">
   <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
   <mat-datepicker #picker1></mat-datepicker>
 </mat-form-field>
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="fill" class="col-4">
+<div >
+  <mat-form-field appearance="fill" >
     <mat-label>Mikro iterpimo data</mat-label>
-    <input matInput [matDatepicker]="picker2">
+    <input matInput [(ngModel)]="animal.dateChiped" name="dateChiped" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker2">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2></mat-datepicker>
   </mat-form-field>
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="fill" class="col-4">
+<div >
+  <mat-form-field appearance="fill" >
     <mat-label>Skiepo data</mat-label>
-    <input matInput [matDatepicker]="picker3">
+    <input matInput  [(ngModel)]="animal.dateVaccine"  name="dateVaccine" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker3">
     <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
     <mat-datepicker #picker3></mat-datepicker>
   </mat-form-field>
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="outline" class="col-4">
+<div >
+  <mat-form-field appearance="outline" >
     <mat-label>Gyvuno Rusis</mat-label >
     <mat-select  [(ngModel)]="animal.type" type="text" name="type" placeholder="" required #typeInput="ngModel">
 
@@ -61,10 +61,10 @@
   {{selectedValue}}
 </div>
 
-<div class="row justify-content-center">
-<mat-form-field appearance="outline" class="col-4">
+<div>
+<mat-form-field appearance="outline">
   <mat-label>Gyvuno Lytis</mat-label >
- <mat-select>
+ <mat-select [(ngModel)]="animal.gender" type="text" name="gender" placeholder="" required #typeInput="ngModel">
 
    <mat-option value="vyriska">Vyriska</mat-option>
    <mat-option value="moteriska">Moteriska</mat-option>
@@ -74,24 +74,24 @@
   {{selectedValue}}
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="outline" class="col-2">
+<div>
+  <mat-form-field appearance="outline" >
     <mat-label>Metai</mat-label >
-    <input type="number" matInput required >
+    <input matInput [(ngModel)]="animal.ageYear" type="number" name="ageYear" placeholder="" required #typeInput="ngModel" required >
     <mat-hint>Min 5 chars</mat-hint>
   </mat-form-field>
 
-  <mat-form-field appearance="outline" class="col-2">
+  <mat-form-field appearance="outline">
     <mat-label>Menesiai</mat-label >
-    <input matInput type="number" required >
+    <input matInput  [(ngModel)]="animal.ageMonth" type="number" name="ageMonth" placeholder="" required #typeInput="ngModel" required >
     <mat-hint>Min 5 chars</mat-hint>
   </mat-form-field>
 </div>
 
-<div class="row justify-content-center">
-  <mat-form-field appearance="outline" class="col-4">
+<div>
+  <mat-form-field appearance="outline" >
     <mat-label>Kailio spalva</mat-label >
-    <input matInput required >
+    <input matInput [(ngModel)]="animal.fur" type="text" name="fur" placeholder="" #typeInput="ngModel" required >
     <mat-hint>Min 5 chars</mat-hint>
   </mat-form-field>
 </div>
@@ -99,3 +99,4 @@
   <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Add</button>
 </form>
   </mat-card-content>
+</mat-card>

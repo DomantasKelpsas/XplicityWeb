@@ -18,12 +18,14 @@ import {MatCardModule} from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AnimalListComponent } from './components/animal-list/animal-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AnimalRegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AnimalListComponent
   ],
   imports: [
     BrowserModule,
