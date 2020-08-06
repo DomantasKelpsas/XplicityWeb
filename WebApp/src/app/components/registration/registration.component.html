@@ -18,9 +18,10 @@
       </div>
       <div class="form-group">
         <label>El. paštas</label>
-        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+        <input type="email" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
         <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
           <div *ngIf="f.email.errors.required" class="error">Įveskite el. paštą</div>
+          <div *ngIf="f.email.errors.email" class="error">Įveskite tinkamą el. paštą</div>
         </div>
       </div>
       <div class="form-group">
