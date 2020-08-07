@@ -50,7 +50,8 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
     MatToolbarModule,
     FormsModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
