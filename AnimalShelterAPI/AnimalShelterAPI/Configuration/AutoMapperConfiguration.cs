@@ -1,10 +1,6 @@
-﻿using System;
-using AnimalShelterAPI.Models;
+﻿using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Models.DTO;
 using AutoMapper;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AnimalShelterAPI.Configuration
 {
@@ -17,9 +13,7 @@ namespace AnimalShelterAPI.Configuration
 
         protected AutoMapperConfiguration(string name): base(name)
         {
-            CreateMap<Animal, AnimalDto>();
-            CreateMap<AnimalDto, Animal>();
-            CreateMap<Animal, AnimalListItemDto>();
+
         }
     }
 }
