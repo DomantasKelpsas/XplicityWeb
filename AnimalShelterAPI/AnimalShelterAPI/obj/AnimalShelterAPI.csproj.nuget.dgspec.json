@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj": {}
+    "E:\\Git\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj": {}
   },
   "projects": {
-    "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj": {
+    "E:\\Git\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj",
+        "projectUniqueName": "E:\\Git\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj",
         "projectName": "AnimalShelterAPI",
-        "projectPath": "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj",
-        "packagesPath": "C:\\Users\\jradk\\.nuget\\packages\\",
-        "outputPath": "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\obj\\",
+        "projectPath": "E:\\Git\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\AnimalShelterAPI.csproj",
+        "packagesPath": "C:\\Users\\Gabriel\\.nuget\\packages\\",
+        "outputPath": "E:\\Git\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\jradk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,6 +49,10 @@
               "target": "Package",
               "version": "[3.1.6, )"
             },
+            "Microsoft.AspNetCore.JsonPatch": {
+              "target": "Package",
+              "version": "[3.1.6, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.6, )"
@@ -68,6 +72,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[3.1.6, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[6.7.1, )"
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
@@ -96,7 +104,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
         }
       }
     }
