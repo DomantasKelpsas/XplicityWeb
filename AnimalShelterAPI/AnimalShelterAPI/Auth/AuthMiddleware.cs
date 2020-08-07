@@ -45,7 +45,7 @@ namespace AnimalShelterAPI.Auth
             }
             catch(Exception e)
             {
-                Console.Error.WriteLine($"Error adding user data: {e.Message}");
+                //Console.Error.WriteLine($"Error adding user data: {e.Message}");
             }
         }
 
