@@ -81,6 +81,7 @@ namespace AnimalShelterAPI
             });
 
             services.SetUpAutoMapper();
+            services.AddAllDependencies();
 
             services.AddControllers();
         }
