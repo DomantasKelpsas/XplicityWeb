@@ -26,13 +26,9 @@ export class LoginComponent implements OnInit {
     // connect with back-end, validate and re-route?
     this.userService.loginUser(this.user).subscribe(
       res => {
-        console.log("Logged in!");
-      },
-      error =>
-      {
-        console.log(error)
-        this.errorMessage = error.title ?? error.details ?? error.message ?? "";
-      });
+        console.log('Logged in!');
+      }
+     );
   }
 
   ngOnInit(): void {
