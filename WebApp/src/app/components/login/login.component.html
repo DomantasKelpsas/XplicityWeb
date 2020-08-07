@@ -4,17 +4,19 @@
       <div class="login-form-container">
         <mat-card-title>Prisijungimas</mat-card-title>
         <mat-form-field appearance="legacy">
-          <input matInput [(ngModel)]="user.email" type="email" placeholder="El. paštas" required #emailInput="ngModel">
+          <input matInput [(ngModel)]="user.email" name="email" type="email" placeholder="El. paštas" required #emailInput="ngModel">
           <mat-error *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)" class="error">
             <p *ngIf="emailInput.errors.required">Neįvestas elektroninis paštas.</p></mat-error>
         </mat-form-field>
         <br/>
         <mat-form-field appearance="legacy">
-          <input matInput [(ngModel)]="user.password" type="password" placeholder="Slaptažodis" required
+          <input matInput [(ngModel)]="user.password" name="password" type="password" placeholder="Slaptažodis" required
                  #passInput="ngModel">
         </mat-form-field>
         <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
           <p *ngIf="passInput.errors.required">Neįvestas slaptažodis.</p></mat-error>
+
+        <mat-error *ngIf="errorMessage != null"><p>Neteisingas slaptažodis arba elektroninis paštas.</p></mat-error>
       </div>
       <div>
         <button mat-raised-button (click)="onLoginButtonClick()">Prisijungti</button>

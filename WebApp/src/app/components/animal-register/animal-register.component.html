@@ -1,102 +1,154 @@
-
 <mat-card id="card" style="text-align: center;">
 
   <mat-card-title>
     Gyvuno Registracija
   </mat-card-title>
 
-<mat-card-content>
-<form #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
-<div >
-      <mat-form-field appearance="outline" >
-        <mat-label>Gyvuno ID</mat-label >
-        <input matInput [(ngModel)]="animal.animalID" type="text" name="animalID" placeholder="" required #idInput="ngModel" >
-        <mat-hint>Min 5 chars</mat-hint>
-        <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
-          <p *ngIf="idInput.errors.required">Gyvono ID laukas negali buti tuscias</p>
-        </mat-error>
-      </mat-form-field>
-</div>
+  <mat-card-content>
+    <form #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
+      <div class="container">
+        <mat-form-field appearance="outline">
+          <mat-label>Gyvuno ID</mat-label>
+          <input matInput [(ngModel)]="animal.animalID" type="text" name="animalID" placeholder="" required
+                 #idInput="ngModel">
+          <mat-hint>Min 5 chars</mat-hint>
+          <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
+            <p *ngIf="idInput.errors.required">Gyvono ID laukas negali buti tuscias</p>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-<div >
-  <mat-form-field appearance="fill" >
-  <mat-label>Priemimo data</mat-label>
-  <input matInput [(ngModel)]="animal.dateAccepted" name="dateAccepted" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker1">
-  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-  <mat-datepicker #picker1></mat-datepicker>
-</mat-form-field>
-</div>
+      <div class="container">
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Miestas</mat-label>
+          <mat-select [(ngModel)]="animal.city" type="text" name="city" placeholder="" required #cityInput="ngModel">
+          </mat-select>
+        </mat-form-field>
 
-<div >
-  <mat-form-field appearance="fill" >
-    <mat-label>Mikro iterpimo data</mat-label>
-    <input matInput [(ngModel)]="animal.dateChiped" name="dateChiped" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker2">
-    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-    <mat-datepicker #picker2></mat-datepicker>
-  </mat-form-field>
-</div>
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Rajonas</mat-label>
+          <mat-select [(ngModel)]="animal.region" type="text" name="region" placeholder="" required
+                      #regionInput="ngModel">
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-<div >
-  <mat-form-field appearance="fill" >
-    <mat-label>Skiepo data</mat-label>
-    <input matInput  [(ngModel)]="animal.dateVaccine"  name="dateVaccine" placeholder="" required #typeInput="ngModel" [matDatepicker]="picker3">
-    <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
-    <mat-datepicker #picker3></mat-datepicker>
-  </mat-form-field>
-</div>
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Priemimo data</mat-label>
+          <input matInput [(ngModel)]="animal.dateAccepted" name="dateAccepted" placeholder="" required
+                 #dateAcceptedInput="ngModel" [matDatepicker]="picker1">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-<div >
-  <mat-form-field appearance="outline" >
-    <mat-label>Gyvuno Rusis</mat-label >
-    <mat-select  [(ngModel)]="animal.type" type="text" name="type" placeholder="" required #typeInput="ngModel">
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Mikro iterpimo data</mat-label>
+          <input matInput [(ngModel)]="animal.dateChiped" name="dateChiped" placeholder="" required
+                 #dateChipedInput="ngModel" [matDatepicker]="picker2">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-      <mat-option value="Suo">Suo</mat-option>
-      <mat-option value="Kate">Kate</mat-option>
-      <mat-option value="kita">Kita</mat-option>
-    </mat-select>
-    <mat-error *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error">
-      <p *ngIf="typeInput.errors.required">Gyvuno rusis turi buti pasirinkta</p>
-    </mat-error>
-  </mat-form-field>
-  {{selectedValue}}
-</div>
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Skiepo data</mat-label>
+          <input matInput [(ngModel)]="animal.dateVaccine" name="dateVaccine" placeholder="" required
+                 #dateVaccineInput="ngModel" [matDatepicker]="picker3">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-<div>
-<mat-form-field appearance="outline">
-  <mat-label>Gyvuno Lytis</mat-label >
- <mat-select [(ngModel)]="animal.gender" type="text" name="gender" placeholder="" required #typeInput="ngModel">
+      <div class="container">
+        <mat-form-field appearance="outline">
+          <mat-label>Gyvuno Rusis</mat-label>
+          <mat-select [(ngModel)]="animal.type" type="text" name="type" placeholder="" required #typeInput="ngModel">
 
-   <mat-option value="vyriska">Vyriska</mat-option>
-   <mat-option value="moteriska">Moteriska</mat-option>
-   <mat-option value="Nenustatoma">Nenustatoma</mat-option>
- </mat-select>
-</mat-form-field>
-  {{selectedValue}}
-</div>
+            <mat-option value="Suo">Suo</mat-option>
+            <mat-option value="Kate">Kate</mat-option>
+            <mat-option value="kita">Kita</mat-option>
+          </mat-select>
+          <mat-error *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error">
+            <p *ngIf="typeInput.errors.required">Gyvuno rusis turi buti pasirinkta</p>
+          </mat-error>
+        </mat-form-field>
+      </div>
 
-<div>
-  <mat-form-field appearance="outline" >
-    <mat-label>Metai</mat-label >
-    <input matInput [(ngModel)]="animal.ageYear" type="number" name="ageYear" placeholder="" required #typeInput="ngModel" required >
-    <mat-hint>Min 5 chars</mat-hint>
-  </mat-form-field>
+      <div class="container">
+        <mat-form-field appearance="outline">
+          <mat-label>Gyvuno Lytis</mat-label>
+          <mat-select [(ngModel)]="animal.gender" type="text" name="gender" placeholder="" required
+                      #genderInput="ngModel">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Menesiai</mat-label >
-    <input matInput  [(ngModel)]="animal.ageMonth" type="number" name="ageMonth" placeholder="" required #typeInput="ngModel" required >
-    <mat-hint>Min 5 chars</mat-hint>
-  </mat-form-field>
-</div>
+            <mat-option value="vyriska">Vyriska</mat-option>
+            <mat-option value="moteriska">Moteriska</mat-option>
+            <mat-option value="Nenustatoma">Nenustatoma</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
 
-<div>
-  <mat-form-field appearance="outline" >
-    <mat-label>Kailio spalva</mat-label >
-    <input matInput [(ngModel)]="animal.fur" type="text" name="fur" placeholder="" #typeInput="ngModel" required >
-    <mat-hint>Min 5 chars</mat-hint>
-  </mat-form-field>
-</div>
+      <div class="container">
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Metai</mat-label>
+          <input matInput [(ngModel)]="animal.ageYear" type="number" name="ageYear" placeholder="" required
+                 #ageYearInput="ngModel" required>
+          <mat-hint>Min 5 chars</mat-hint>
+        </mat-form-field>
 
-  <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Add</button>
-</form>
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Menesiai</mat-label>
+          <input matInput [(ngModel)]="animal.ageMonth" type="number" name="ageMonth" placeholder="" required
+                 #ageMonthInput="ngModel" required>
+          <mat-hint>Min 5 chars</mat-hint>
+        </mat-form-field>
+      </div>
+
+      <div class="container">
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Kailio ilgis</mat-label>
+          <mat-select [(ngModel)]="animal.furLength" type="text" name="furLength" placeholder="" required
+                      #furLengthInput="ngModel">
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Kailio spalva</mat-label>
+          <input matInput [(ngModel)]="animal.furColor" type="text" name="furColor" placeholder=""
+                 #furColorInput="ngModel" required>
+          <mat-hint>Min 5 chars</mat-hint>
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Ypatingos zymes</mat-label>
+          <textarea matInput [(ngModel)]="animal.specialMarks" type="text" name="furColor" placeholder=""
+                    #specialMarksInput="ngModel"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Sveikatos bukle</mat-label>
+          <textarea matInput [(ngModel)]="animal.health" type="text" name="furColor" placeholder=""
+                    #healthInput="ngModel"></textarea>
+        </mat-form-field>
+      </div>
+
+      <div class="container">
+        <mat-form-field appearance="fill">
+          <mat-label>Kontaktiniai duomenys</mat-label>
+          <textarea matInput [(ngModel)]="animal.contactInfo" type="text" name="furColor" placeholder=""
+                    #contactInput="ngModel"></textarea>
+        </mat-form-field>
+      </div>
+
+
+      <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Add
+      </button>
+    </form>
   </mat-card-content>
 </mat-card>

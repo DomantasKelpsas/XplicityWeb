@@ -4,12 +4,14 @@ export class NewAnimal {
   dateChiped: Date;
   dateVaccine: Date;
   city: string;
+  region: string;
   type: string;
   gender: string;
   ageYear: number;
   ageMonth: number;
-  fur: string;
-  SpecialMarks: string;
+  furColor: string;
+  furLength: string;
+  specialMarks: string;
   health: string;
   contactInfo: string;
   status: number;
