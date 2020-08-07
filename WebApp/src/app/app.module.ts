@@ -6,11 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnimalRegisterComponent } from './components/animal-register/animal-register.component';
 import {MatFormField, MatFormFieldModule} from '@angular/material/form-field';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { LoginComponent } from './components/login/login.component';
 import {MatInputModule} from '@angular/material/input';
 import {MatNativeDateModule, MatOption} from '@angular/material/core';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepicker, MatDatepickerModule} from '@angular/material/datepicker';
-import { LoginComponent } from './components/login/login.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTableModule} from '@angular/material/table';
 import {MatIconModule} from '@angular/material/icon';
@@ -20,10 +21,12 @@ import {MatChipsModule} from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimalListComponent } from './components/animal-list/animal-list.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     AnimalRegisterComponent,
+    RegistrationComponent,
     LoginComponent,
     AnimalListComponent
   ],
@@ -45,7 +48,9 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
     MatChipsModule,
     MatSelectModule,
     MatToolbarModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
