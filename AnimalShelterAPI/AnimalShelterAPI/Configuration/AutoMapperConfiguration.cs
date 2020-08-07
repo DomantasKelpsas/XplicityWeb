@@ -13,7 +13,9 @@ namespace AnimalShelterAPI.Configuration
 
         protected AutoMapperConfiguration(string name): base(name)
         {
-
+            CreateMap<Animal, AnimalDto>();
+            CreateMap<AnimalDto, Animal>();
+            CreateMap<Animal, AnimalListItemDto>();
         }
     }
 }
