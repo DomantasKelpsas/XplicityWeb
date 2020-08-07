@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AnimalShelterAPI.Models;
+using AnimalShelterAPI.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -34,6 +34,14 @@ namespace AnimalShelterAPI
             services.AddDbContext<ApiContext>(options =>
                 options.UseSqlite(strCon));
 
+            //adding automapping service
+            var config = new AutoMapper.MapperConfiguration(cfg =>
+            {
+                cfg.AddProfile(new AutoMapperConfiguration());
+            });
+            var mapper = config.CreateMapper();
+            services.AddSingleton(mapper);
+
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<ApiContext>()
                 .AddDefaultTokenProviders();
@@ -57,6 +65,7 @@ namespace AnimalShelterAPI
                 options.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 options.User.RequireUniqueEmail = true;
+
             });
 
             services.ConfigureApplicationCookie(options =>
