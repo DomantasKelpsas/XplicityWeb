@@ -24,8 +24,9 @@ export class RegistrationComponent implements OnInit {
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', [Validators.required, Validators.minLength(6)]]
-    });
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      confirmPassword: ['', Validators.minLength(6)]
+    }, {validator: this.checkIfMatchingPasswords('password', 'confirmPassword')});
   }
 
   // convenience getter for easy access to form fields
@@ -45,5 +46,19 @@ export class RegistrationComponent implements OnInit {
     this.loading = true;
     // communicate with the api to register the user
     console.log('Api doing work in here ;)');
+    console.log(this.f.firstName.value);
   }
+  checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
+    return (group: FormGroup) => {
+      const passwordInput = group.controls[passwordKey];
+      const  passwordConfirmationInput = group.controls[passwordConfirmationKey];
+      if (passwordInput.value !== passwordConfirmationInput.value) {
+        return passwordConfirmationInput.setErrors({notEquivalent: true});
+      }
+      else {
+        return passwordConfirmationInput.setErrors(null);
+      }
+    };
+  }
+
 }
