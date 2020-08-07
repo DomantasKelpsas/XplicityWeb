@@ -30,9 +30,8 @@ namespace AnimalShelterAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            string strCon = Configuration["ConnectionString"];
-            services.AddDbContext<ApiContext>(options =>
-                options.UseSqlite(strCon));
+            string strCon = Configuration["Database:ConnectionString"];
+            services.AddDbContext<ApiContext>(options => options.UseSqlServer(strCon));
 
             //adding automapping service
             var config = new AutoMapper.MapperConfiguration(cfg =>

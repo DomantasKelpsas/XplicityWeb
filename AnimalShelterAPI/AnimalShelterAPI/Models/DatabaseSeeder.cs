@@ -9,64 +9,6 @@ namespace AnimalShelterAPI.Database
     {
         public static void Initialize(ApiContext context)
         {
-            if (!context.AnimalTypes.Any())
-                context.AnimalTypes.AddRange(
-                    new AnimalType
-                    {
-                        Name = "Šuo"
-                    },
-                    new AnimalType
-                    {
-                        Name = "Katė"
-                    }
-                );
-
-            context.SaveChanges();
-
-            if (!context.Genders.Any())
-                context.Genders.AddRange(
-                    new Gender
-                    {
-                        Type = "Vyriška"
-                    },
-                    new Gender
-                    {
-                        Type = "Moteriška"
-                    },
-                    new Gender
-                    {
-                        Type = "Nenustatoma"
-                    }
-                );
-
-            context.SaveChanges();
-
-            if (!context.Furs.Any())
-                context.Furs.AddRange(
-                    new Fur 
-                    {
-                        Name = "Trumpakailis",
-                        Color = "Juodas"
-                    },
-                    new Fur 
-                    {
-                        Name = "Šiurkšičplaukis",
-                        Color = "Balta"
-                    },
-                    new Fur
-                    {
-                        Name = "Vidutinio ilgio",
-                        Color = "Ruda"
-                    },
-                    new Fur
-                    {
-                        Name = "Ilgaplaukis",
-                        Color = "Pilka"
-                    }
-                );
-
-            context.SaveChanges();
-
             if (!context.Statuses.Any())
                 context.Statuses.AddRange(
                     new Status
@@ -94,9 +36,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Šilainiai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Vidutinio ilgio"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Vidutinio_ilgio,
+                        FurColor = "Juodas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",
@@ -110,9 +53,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         AdmissionCity = "Vilnius",
                         AdmissionRegion = "Naujamiestis",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Ilgaplaukis"),
+                        AnimalType = AnimalType.Katė,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Ilgaplaukis,
+                        FurColor = "Pilkas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Fluffy, loud",
                         HealthCondition = "Sveika",
@@ -126,9 +70,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         AdmissionCity = "Vilnius",
                         AdmissionRegion = "Žirmūnai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Trumpakailis"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Moteriška,
+                        FurType = FurType.Trumpakailis,
+                        FurColor = "Baltas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveikas",
@@ -142,9 +87,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Vilijampolė",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Ilgaplaukis"),
+                        AnimalType = AnimalType.Katė,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Ilgaplaukis,
+                        FurColor = "Rudas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
                         SpecialTags = "Chubby, sweet",
                         HealthCondition = "Sveika",
@@ -158,9 +104,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Šančiai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Šiurkšičplaukis,
+                        FurColor = "Juodas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveikas",
@@ -174,9 +121,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Vilnius",
                         AdmissionRegion = "Žirmūnai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Trumpakailis"),
+                        AnimalType = AnimalType.Katė,
+                        Gender = Gender.Moteriška,
+                        FurType = FurType.Trumpakailis,
+                        FurColor = "Pilkas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
                         SpecialTags = "Fluffy, loud",
                         HealthCondition = "Sveika",
@@ -190,9 +138,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Šančiai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Moteriška,
+                        FurType = FurType.Šiurkšičplaukis,
+                        FurColor = "Rudas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Overall just great",
                         HealthCondition = "Sveikas",
@@ -206,9 +155,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Vilnius",
                         AdmissionRegion = "Žirmūnai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Trumpakailis"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Trumpakailis,
+                        FurColor = "Juodas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",
@@ -222,9 +172,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Kaunas",
                         AdmissionRegion = "Šančiai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Katė"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Moteriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Šiurkšičplaukis"),
+                        AnimalType = AnimalType.Katė,
+                        Gender = Gender.Moteriška,
+                        FurType = FurType.Šiurkšičplaukis,
+                        FurColor = "Rudas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Atiduotas"),
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveika",
@@ -238,9 +189,10 @@ namespace AnimalShelterAPI.Database
                         VaccinationDate = null,
                         AdmissionCity = "Vilnius",
                         AdmissionRegion = "Žirmūnai",
-                        AnimalType = context.AnimalTypes.SingleOrDefault(a => a.Name == "Šuo"),
-                        Gender = context.Genders.SingleOrDefault(a => a.Type == "Vyriška"),
-                        Fur = context.Furs.SingleOrDefault(a => a.Name == "Vidutinio ilgio"),
+                        AnimalType = AnimalType.Šuo,
+                        Gender = Gender.Vyriška,
+                        FurType = FurType.Vidutinio_ilgio,
+                        FurColor = "Rudas",
                         Status = context.Statuses.SingleOrDefault(a => a.Name == "Gyvena prieglaudoje"),
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",

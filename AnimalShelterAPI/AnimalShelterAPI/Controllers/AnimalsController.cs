@@ -29,8 +29,8 @@ namespace AnimalShelterAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Animal>>> Get()
         {
-            var tm = await context.Animals.Include(F => F.Fur).ToListAsync();
-            var tmp = tm[0].Fur.Name;
+            var tm = await context.Animals.ToListAsync();
+            var tmp = tm[0].FurType;
             var mapped = mapper.Map<AnimalDto[]>(tm);
             return await context.Animals.ToListAsync();
         }

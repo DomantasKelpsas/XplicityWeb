@@ -14,8 +14,9 @@ namespace AnimalShelterAPI.Models
         public string AdmissionCity { get; set; }
         public string AdmissionRegion { get; set; }
         public AnimalType AnimalType { get; set; }
-        public Gender Gender { get; set; } 
-        public Fur Fur { get; set; }
+        public Gender Gender { get; set; }
+        public FurType FurType { get; set; }
+        public string FurColor { get; set; }
         public string SpecialTags { get; set; }
         public string HealthCondition { get; set; }
         public string AdmissionOrganisationContacts { get; set; }
