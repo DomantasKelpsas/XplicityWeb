@@ -16,6 +16,123 @@ namespace AnimalShelterAPI.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.6");
 
+            modelBuilder.Entity("AnimalShelterAPI.Models.Animal", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("AdmissionCity")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("AdmissionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AdmissionOrganisationContacts")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("AdmissionRegion")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("AnimalTypeID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("FurID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int?>("GenderID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("HealthCondition")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("MicrochipIntegrationDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SpecialTags")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("StatusDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int?>("StatusID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("VaccinationDate")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("AnimalTypeID");
+
+                    b.HasIndex("FurID");
+
+                    b.HasIndex("GenderID");
+
+                    b.HasIndex("StatusID");
+
+                    b.ToTable("Animals");
+                });
+
+            modelBuilder.Entity("AnimalShelterAPI.Models.AnimalType", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("AnimalTypes");
+                });
+
+            modelBuilder.Entity("AnimalShelterAPI.Models.Fur", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Furs");
+                });
+
+            modelBuilder.Entity("AnimalShelterAPI.Models.Gender", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Type")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Genders");
+                });
+
+            modelBuilder.Entity("AnimalShelterAPI.Models.Status", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("Statuses");
+                });
+
             modelBuilder.Entity("AnimalShelterAPI.Models.User", b =>
                 {
                     b.Property<string>("Id")
@@ -206,6 +323,25 @@ namespace AnimalShelterAPI.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("AnimalShelterAPI.Models.Animal", b =>
+                {
+                    b.HasOne("AnimalShelterAPI.Models.AnimalType", "AnimalType")
+                        .WithMany()
+                        .HasForeignKey("AnimalTypeID");
+
+                    b.HasOne("AnimalShelterAPI.Models.Fur", "Fur")
+                        .WithMany()
+                        .HasForeignKey("FurID");
+
+                    b.HasOne("AnimalShelterAPI.Models.Gender", "Gender")
+                        .WithMany()
+                        .HasForeignKey("GenderID");
+
+                    b.HasOne("AnimalShelterAPI.Models.Status", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusID");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
