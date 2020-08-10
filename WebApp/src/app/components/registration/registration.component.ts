@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import {UserService} from '@app/services/user.service';
+import {User} from '@app/models/user';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -14,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   submitted = false;
 
   constructor(
+    private userService: UserService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router) {
@@ -44,7 +47,16 @@ export class RegistrationComponent implements OnInit {
       return;
     }
     this.loading = true;
+
     // communicate with the api to register the user
+    this.userService.registerUser(new User(this.f.email.value, this.f.password.value)).subscribe(
+      res => {
+        console.log('Register works!');
+      },
+      error =>
+      {
+        console.log(error);
+      });
     console.log('Api doing work in here ;)');
     console.log(this.f.firstName.value);
   }
