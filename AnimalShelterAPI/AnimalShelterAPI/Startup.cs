@@ -82,6 +82,7 @@ namespace AnimalShelterAPI
             services.AddAllDependencies();
 
             services.AddControllers();
+			services.AddCors();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -97,6 +98,11 @@ namespace AnimalShelterAPI
             app.UseRouting();
 
             app.UseMiddleware<AuthMiddleware>();
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200")
+                .AllowAnyHeader()
+                .AllowAnyMethod()
+                .AllowCredentials() // essential for SignalR!!!
+            );
 
             app.UseEndpoints(endpoints =>
             {
