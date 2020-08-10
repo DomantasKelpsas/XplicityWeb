@@ -1,7 +1,21 @@
 table {
   width: 100%;
+
 }
 
-mat-form-field{
-  width: 100%;
+.filter{
+  margin-left: 20px;
+  width: 50%;
+}
+
+.filter-bar{
+  margin: 20px;
+}
+
+.right{
+  text-align: right;
+}
+.container{
+  display: flex;
+  justify-content: space-around;
 }

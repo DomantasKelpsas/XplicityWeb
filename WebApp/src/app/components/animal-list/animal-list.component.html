@@ -1,43 +1,49 @@
-<mat-form-field>
+<div class="filter-bar">
+  <button mat-raised-button color="primary">Prideti</button>
+<mat-form-field class="filter">
+
   <mat-label></mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Filtruoti.." #input>
 </mat-form-field>
+</div>
 
-
-<mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort matSortActive="admissionCity" matSortDisableClear matSortDirection="desc">
+<table mat-table [dataSource]="dataSource" matSort>
   <!-- Position Column -->
   <ng-container matColumnDef="admissionDate">
-    <mat-header-cell *matHeaderCellDef> Priemimo data </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Priemimo data</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.admissionDate}} </mat-cell>
   </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="admissionCity">
-    <mat-header-cell *matHeaderCellDef > Miestas </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Miestas</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.admissionCity}} </mat-cell>
   </ng-container>
 
   <!-- Weight Column -->
   <ng-container matColumnDef="animalType">
-    <mat-header-cell *matHeaderCellDef> Tipas </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Tipas</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.animalType}} </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="gender">
-    <mat-header-cell *matHeaderCellDef> Lytis </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> Lytis</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
   </ng-container>
   <!-- Symbol Column -->
   <ng-container matColumnDef="status">
-    <mat-header-cell *matHeaderCellDef> status </mat-header-cell>
+    <mat-header-cell *matHeaderCellDef> status</mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
-  <mat-row  *matNoDataRow>
-    <mat-cell colspan="4">No data matching the filter "{{input.value}}"</mat-cell>
-  </mat-row>
+  <!--  <mat-row  *matNoDataRow>-->
+  <!--    <mat-cell colspan="4">No data matching the filter "{{input.value}}"</mat-cell>-->
+  <!--  </mat-row>-->
 
-</mat-table>
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>

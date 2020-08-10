@@ -1,5 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
+import {MatSort} from '@angular/material/sort';
 
 export interface PeriodicElement {
   admissionDate: string;
@@ -10,10 +11,34 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {admissionDate: new Date(2017, 4, 4).toLocaleDateString(), admissionCity: 'Kaunas', animalType: 'Kate', gender: 'Vyriska', status: 'Gyvas'},
-  {admissionDate: new Date(2017, 4, 4).toLocaleDateString(), admissionCity: 'Vilnius', animalType: 'Kate', gender: 'Vyriska', status: 'Gyvas'},
-  {admissionDate: new Date(2018, 4, 4).toLocaleDateString(), admissionCity: 'Kaunas', animalType: 'Kate', gender: 'Vyriska', status: 'Gyvas'},
-  {admissionDate: new Date(2017, 4, 4).toLocaleDateString(), admissionCity: 'Kaunas', animalType: 'Kate', gender: 'Vyriska', status: 'Gyvas'}
+  {
+    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+    admissionCity: 'Kaunas',
+    animalType: 'Kate',
+    gender: 'Vyriska',
+    status: 'Gyvas'
+  },
+  {
+    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+    admissionCity: 'Vilnius',
+    animalType: 'Kate',
+    gender: 'Vyriska',
+    status: 'Gyvas'
+  },
+  {
+    admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
+    admissionCity: 'Kaunas',
+    animalType: 'Kate',
+    gender: 'Vyriska',
+    status: 'Gyvas'
+  },
+  {
+    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+    admissionCity: 'Kaunas',
+    animalType: 'Kate',
+    gender: 'Vyriska',
+    status: 'Gyvas'
+  }
 
 ];
 
@@ -30,7 +55,11 @@ export class AnimalListComponent implements OnInit {
   constructor() {
   }
 
+  @ViewChild(MatSort) sort: MatSort;
+
+
   ngOnInit(): void {
+    this.dataSource.sort = this.sort;
   }
 
   applyFilter(event: Event) {
