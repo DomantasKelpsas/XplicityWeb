@@ -1,0 +1,11 @@
+
+<mat-toolbar>
+  <div class="right">
+    <ul class="main-nav">
+      <li *ngIf="userService.isLoggedIn()"><a routerLink="/register-animal">Registruoti gyvūną</a></li>
+      <li *ngIf="userService.isLoggedIn()"><a routerLink="/animal-list">Gyvūnų sąrašas</a></li>
+      <li *ngIf="userService.isLoggedIn()"><a (click)="onLogout()" routerLink="/">Atsijungti</a></li>
+      <li><a href="https://lese.lt/">LESĖ</a></li>
+    </ul>
+  </div>
+</mat-toolbar>
