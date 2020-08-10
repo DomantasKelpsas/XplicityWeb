@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {User} from '../../model/user';
+import {User} from '../../models/user';
 import {NgForm} from '@angular/forms';
-import { UserService } from '@app/services/user.service';
+import {UserService} from '../../services/user.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -15,11 +17,11 @@ export class LoginComponent implements OnInit {
 
   errorMessage: string;
   user = new User();
-
   constructor(private userService: UserService) { }
 
   onLoginButtonClick(): void {
     this.loginButtonClick.emit(this.user);
+    this.userService.isLoggedIn();
   }
 
   onSubmit(form: NgForm): void {
@@ -27,11 +29,14 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user).subscribe(
       res => {
         console.log('Logged in!');
-      }
-     );
+      },
+      error =>
+      {
+        console.log(error);
+        this.errorMessage = error.title ?? error.details ?? error.message ?? '';
+      });
   }
 
   ngOnInit(): void {
   }
-
 }
