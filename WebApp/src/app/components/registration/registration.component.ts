@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   form: FormGroup;
   loading = false;
   submitted = false;
-
+  user: User = new User('', '');
   constructor(
     private userService: UserService,
     private formBuilder: FormBuilder,
@@ -47,9 +47,9 @@ export class RegistrationComponent implements OnInit {
       return;
     }
     this.loading = true;
-
+    this.user = new User(this.f.email.value, this.f.password.value);
     // communicate with the api to register the user
-    this.userService.registerUser(new User(this.f.email.value, this.f.password.value)).subscribe(
+    this.userService.registerUser(this.user).subscribe(
       res => {
         console.log('Register works!');
       },
