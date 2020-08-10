@@ -3,6 +3,7 @@ import {HttpHeaders, HttpClient} from '@angular/common/http';
 import {Token} from '../models/token';
 import {Observable} from 'rxjs';
 import {User} from '../models/user';
+import { share } from 'rxjs/operators';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -20,7 +21,7 @@ export class UserService {
   }
 
   registerUser(user: User): Observable<Token> {
-    let token = this.http.post<Token>(this.registerUrl, user, {headers});
+    let token = this.http.post<Token>(this.registerUrl, user, {headers}).pipe(share());
     token.subscribe(res => {
       localStorage.setItem('token', res.token);
     });
@@ -28,7 +29,7 @@ export class UserService {
   }
 
   loginUser(user: User): Observable<Token> {
-    let token = this.http.post<Token>(this.loginUrl, user, {headers});
+    let token = this.http.post<Token>(this.loginUrl, user, {headers}).pipe(share());
     token.subscribe(res => {
       localStorage.setItem('token', res.token);
     });
