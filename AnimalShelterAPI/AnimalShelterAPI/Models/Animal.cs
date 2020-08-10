@@ -5,8 +5,6 @@ namespace AnimalShelterAPI.Models
 {
     public class Animal : BaseEntity
     {
-        [Key]
-        public int ID { get; set; }
         public DateTime AdmissionDate { get; set; }
         public DateTime? MicrochipIntegrationDate { get; set; }
         public DateTime? VaccinationDate { get; set; }
