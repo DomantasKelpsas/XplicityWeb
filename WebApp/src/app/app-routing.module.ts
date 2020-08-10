@@ -6,9 +6,9 @@ import {LoginComponent} from './components/login/login.component';
 import {AnimalListComponent} from './components/animal-list/animal-list.component';
 
 const routes: Routes = [
-  {path: 'animal-register', component: AnimalRegisterComponent},
+  {path: 'animal/register', component: AnimalRegisterComponent},
   {path: 'login', component: LoginComponent},
-  {path: 'animal-list', component: AnimalListComponent},
+  {path: 'animal/list', component: AnimalListComponent},
   {path: 'register', component: RegistrationComponent}
 ];
 
