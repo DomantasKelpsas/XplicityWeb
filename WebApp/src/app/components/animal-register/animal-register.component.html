@@ -152,7 +152,7 @@
       </div>
       <div class="container">
         <mat-form-field appearance="fill">
-          <mat-label>Ypatingos zymes</mat-label>
+          <mat-label>Ypatingos žymės</mat-label>
           <textarea matInput [(ngModel)]="animal.specialMarks" type="text" name="specialMarks" placeholder=""
                     #specialMarksInput="ngModel"></textarea>
           <mat-error *ngIf="specialMarksInput.invalid && (specialMarksInput.dirty || specialMarksInput.touched)" class="error">
@@ -163,7 +163,7 @@
 
       <div class="container">
         <mat-form-field appearance="fill">
-          <mat-label>Sveikatos bukle</mat-label>
+          <mat-label>Sveikatos būklė</mat-label>
           <textarea matInput [(ngModel)]="animal.health" type="text" name="health" placeholder=""
                     #healthInput="ngModel" required></textarea>
           <mat-error *ngIf="healthInput.invalid && (healthInput.dirty || healthInput.touched)" class="error">
