@@ -1,7 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {User} from '../../model/user';
+import {User} from '../../models/user';
 import {NgForm} from '@angular/forms';
-import { UserService } from '@app/services/user.service';
+import {UserService} from '../../services/user.service';
+
+
 
 @Component({
   selector: 'app-login',
@@ -26,12 +28,12 @@ export class LoginComponent implements OnInit {
     // connect with back-end, validate and re-route?
     this.userService.loginUser(this.user).subscribe(
       res => {
-        console.log("Logged in!");
+        console.log('Logged in!');
       },
       error =>
       {
-        console.log(error)
-        this.errorMessage = error.title ?? error.details ?? error.message ?? "";
+        console.log(error);
+        this.errorMessage = error.title ?? error.details ?? error.message ?? '';
       });
   }
 
