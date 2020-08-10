@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using AnimalShelterAPI.Auth;
+using AnimalShelterAPI.Configurations;
 
 namespace AnimalShelterAPI
 {
@@ -78,6 +79,9 @@ namespace AnimalShelterAPI
                 options.AccessDeniedPath = "/Identity/Account/AccessDenied";
                 options.SlidingExpiration = true;
             });
+
+            services.SetUpAutoMapper();
+            services.AddAllDependencies();
 
             services.AddControllers();
         }
