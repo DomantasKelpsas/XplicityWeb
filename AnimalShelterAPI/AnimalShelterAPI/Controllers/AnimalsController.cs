@@ -1,4 +1,8 @@
 using System;
+using System.IO;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using AnimalShelterAPI.Constants;
 using AnimalShelterAPI.Models;
@@ -17,10 +21,12 @@ namespace AnimalShelterAPI.Controllers
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
+        private readonly IReportService _reportService;
 
-        public AnimalsController(IAnimalService animalService)
+        public AnimalsController(IAnimalService animalService, IReportService reportService)
         {
             _animalService = animalService;
+            _reportService = reportService;
         }
 
         // GET: api/Animals
@@ -85,6 +91,13 @@ namespace AnimalShelterAPI.Controllers
             await _animalService.Delete(id);
 
             return NoContent();
+        }
+
+        [HttpGet("Report/{id}")]
+        public async Task<HttpResponseMessage> GetAdmissionAct(int id)
+        {
+            var response = await _reportService.GenerateAdmissionAct(id);
+            return response;
         }
     }
 }
