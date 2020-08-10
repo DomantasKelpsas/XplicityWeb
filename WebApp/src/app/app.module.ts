@@ -52,7 +52,7 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
