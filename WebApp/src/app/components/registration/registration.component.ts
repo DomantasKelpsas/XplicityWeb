@@ -39,9 +39,6 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     this.submitted = true;
-
-    // would need to clear alerts in here
-
     // stop here if form is invalid
     if (this.form.invalid) {
       return;
@@ -57,8 +54,6 @@ export class RegistrationComponent implements OnInit {
       {
         console.log(error);
       });
-    console.log('Api doing work in here ;)');
-    console.log(this.f.firstName.value);
   }
   checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {
