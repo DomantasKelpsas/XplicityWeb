@@ -42,6 +42,11 @@ namespace AnimalShelterAPI.Services
                 string docText = wordDoc.MainDocumentPart.Document.InnerXml;
 
                 docText = new Regex("{priemimo_data}").Replace(docText, animal.AdmissionDate.ToShortDateString());
+                docText = new Regex("{miestas}").Replace(docText, animal.AdmissionCity);
+                docText = new Regex("{rajonas}").Replace(docText, animal.AdmissionRegion);
+                docText = new Regex("{tipas}").Replace(docText, animal.AnimalType.ToString());
+                docText = new Regex("{lytis}").Replace(docText, animal.Gender.ToString());
+                //docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : (DateTime.Today - animal.Birthday.Value)..ToString());
                 docText = new Regex("{skiepo_data}").Replace(docText, animal.VaccinationDate == null ? "-" : animal.VaccinationDate.ToString().Substring(0, 10));
                 docText = new Regex("{mikroschemos_data}").Replace(docText, animal.MicrochipIntegrationDate == null ? "-" : animal.MicrochipIntegrationDate.ToString().Substring(0, 10));
                 docText = new Regex("{priimta_is}").Replace(docText, animal.AdmissionRegion + ", " + animal.AdmissionCity);
