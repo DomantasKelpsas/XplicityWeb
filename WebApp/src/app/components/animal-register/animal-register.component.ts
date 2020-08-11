@@ -15,14 +15,15 @@ export class AnimalRegisterComponent implements OnInit {
 
   @Output()
   addButtonClick = new EventEmitter<Animal>();
-  animal = new Animal();
+
 
   selectedValue: string;
 
   form: FormGroup;
   loading = false;
   submitted = false;
-  user: User = new User('', '');
+  animal: Animal = new Animal('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
+
   constructor(
     private animalService: AnimalService,
     private formBuilder: FormBuilder,
@@ -57,14 +58,13 @@ export class AnimalRegisterComponent implements OnInit {
       return;
     }
     this.loading = true;
-    this.user = new User(this.f.email.value, this.f.password.value);
+    this.animal = new Animal(form.value.animalID,);
     // communicate with the api to register the user
     this.animalService.addAnimal(this.animal).subscribe(
       res => {
         console.log('Register works!');
       },
-      error =>
-      {
+      error => {
         console.log(error);
       });
     console.log(form.value);
