@@ -18,6 +18,6 @@ export class ErrorInterceptorService implements HttpInterceptor {
 
             const error = err.error.message || err.statusText;
             return throwError(error);
-        }))
+        }));
     }
 }

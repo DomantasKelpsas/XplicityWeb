@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace AnimalShelterAPI.Models
 {
     public class Fur
     {
         public int ID { get; set; }
-        public string Name { get; set; }
+        public FurType FurType { get; set; }
         public string Color { get; set; }
+        public ICollection<Animal> Animals { get; set; }
     }
 }

@@ -1,0 +1,45 @@
+<div class="filter-bar">
+  <button mat-raised-button color="primary">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
+  </button>
+  <mat-form-field class="filter" floatLabel="never">
+
+    <input matInput (keyup)="applyFilter($event)" placeholder="Filtruoti.." #input>
+  </mat-form-field>
+</div>
+
+<table mat-table [dataSource]="dataSource" matSort>
+  <!-- Position Column -->
+  <ng-container matColumnDef="admissionDate">
+    <mat-header-cell *matHeaderCellDef> Priėmimo data</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.admissionDate}} </mat-cell>
+  </ng-container>
+
+  <!-- Name Column -->
+  <ng-container matColumnDef="admissionCity">
+    <mat-header-cell *matHeaderCellDef mat-sort-header=""> Miestas</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.admissionCity}} </mat-cell>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="animalType">
+    <mat-header-cell *matHeaderCellDef> Tipas</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.animalType}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="gender">
+    <mat-header-cell *matHeaderCellDef> Lytis</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.gender}} </mat-cell>
+  </ng-container>
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> statusas</mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+
+  <tr class="mat-row" *matNoDataRow>
+    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+  </tr>
+</table>
