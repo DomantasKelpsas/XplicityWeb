@@ -8,11 +8,11 @@ namespace AnimalShelterAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [AuthorizeAttr]
-    public class ReportController : ControllerBase
+    public class ReportsController : ControllerBase
     {
         private readonly IReportRepository _reportRepository;
 
-        public ReportController(IReportRepository reportRepository)
+        public ReportsController(IReportRepository reportRepository)
         {
             _reportRepository = reportRepository;
         }
