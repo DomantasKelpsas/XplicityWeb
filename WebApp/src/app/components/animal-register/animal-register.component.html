@@ -5,7 +5,7 @@
   </mat-card-title>
 
   <mat-card-content>
-    <form #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
+    <form [formGroup]="form" #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
       <div class="container">
         <mat-form-field appearance="outline">
           <mat-label>Gyvūno ID</mat-label>
@@ -83,9 +83,9 @@
           <mat-label>Gyvūno rūšis</mat-label>
           <mat-select [(ngModel)]="animal.type" type="text" name="type" placeholder="" required #typeInput="ngModel">
 
-            <mat-option value="Suo">Suo</mat-option>
-            <mat-option value="Kate">Kate</mat-option>
-            <mat-option value="kita">Kita</mat-option>
+            <mat-option [value]="0">Šuo</mat-option>
+            <mat-option [value]="1">Katė</mat-option>
+            <mat-option [value]="2">Kita</mat-option>
           </mat-select>
           <mat-error *ngIf="typeInput.invalid && (typeInput.dirty || typeInput.touched)" class="error">
             <p *ngIf="typeInput.errors.required">Gyvūno rūšis turi buti pasirinkta</p>
@@ -99,9 +99,9 @@
           <mat-select [(ngModel)]="animal.gender" type="text" name="gender" placeholder="" required
                       #genderInput="ngModel">
 
-            <mat-option value="vyriska">Vyriska</mat-option>
-            <mat-option value="moteriska">Moteriska</mat-option>
-            <mat-option value="Nenustatoma">Nenustatoma</mat-option>
+            <mat-option [value]="0">Vyriška</mat-option>
+            <mat-option [value]="1">Moteriška</mat-option>
+            <mat-option [value]="2">Nenustatoma</mat-option>
           </mat-select>
           <mat-error *ngIf="genderInput.invalid && (genderInput.dirty || genderInput.touched)" class="error">
             <p *ngIf="genderInput.errors.required">Gyvūno Lytis turi buti pasirinkta</p>
