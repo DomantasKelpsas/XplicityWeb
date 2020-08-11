@@ -1,51 +1,57 @@
-<mat-card id="registrationForm">
-  <mat-card-title>Registracija</mat-card-title>
-  <mat-card-content>
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="legacy">
-        <input matInput type="text" pattern="[A-Za-zĄČĘĖĮŠŲŪŽąčęėįšųūž]*" placeholder="Vardas" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-          <div *ngIf="f.firstName.errors" class="error">Įveskite tinkamą vardą</div>
-        </div>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <input matInput type="text" pattern="[A-Za-zĄČĘĖĮŠŲŪŽąčęėįšųūž]*" placeholder="Pavardė" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-          <div *ngIf="f.lastName.errors" class="error">Įveskite tinkamą pavardę</div>
-        </div>
-      </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <input matInput type="email" placeholder="El. paštas" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-          <div *ngIf="f.email.errors.required" class="error">Įveskite el. paštą</div>
-          <div *ngIf="f.email.errors.email" class="error">Įveskite tinkamą el. paštą</div>
-        </div>
+
+<div class="signin-content">
+  <mat-card>
+    <mat-card-title>Registracija</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width-input" appearance="legacy">
+          <input matInput type="text" placeholder="Vardas" formControlName="firstName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
+          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+            <div *ngIf="f.firstName.errors.required" class="error">Įveskite vardą</div>
+          </div>
         </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <input matInput type="password" placeholder="Slaptažodis" formControlName="password" class="form-control" pattern="^(?=.*[ąčęėįšųūža-z])(?=.*[ĄČĘĖĮŠŲŪŽA-Z])(?=.*\d).{6,}$" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-          <div *ngIf="f.password.errors.required" class="error">Įveskite slaptažodį</div>
-          <div *ngIf="f.password.errors.minlength" class="error">Slaptažodį turi sudaryti bent 6 simboliai</div>
-          <div *ngIf="f.password.invalid" class="error">Slaptažodį turi sudaryti bent viena mažoji ir didžiosos raidės, skaičius</div>
+        <br>
+        <mat-form-field class="full-width-input" appearance="legacy">
+          <input matInput type="text" placeholder="Pavardė" formControlName="lastName" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
+          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+            <div *ngIf="f.lastName.errors.required" class="error">Įveskite pavardę</div>
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input" appearance="legacy">
+          <input matInput type="email" placeholder="El. paštas" formControlName="email" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required" class="error">Įveskite el. paštą</div>
+            <div *ngIf="f.email.errors.email" class="error">Įveskite tinkamą el. paštą</div>
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input" appearance="legacy">
+          <input matInput type="password" placeholder="Slaptažodis" formControlName="password" class="form-control"
+                 [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
+          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+            <div *ngIf="f.password.errors.required" class="error">Įveskite slaptažodį</div>
+            <div *ngIf="f.password.errors.minlength" class="error">Slaptažodį turi sudaryti bent 6 simboliai</div>
+          </div>
+        </mat-form-field>
+        <br>
+        <mat-form-field class="full-width-input" appearance="legacy">
+          <input matInput type="password" placeholder="Pakartokite slaptąžodį" formControlName="confirmPassword"
+                 class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
+          <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
+            <div *ngIf="f.confirmPassword.errors" class="error">Slaptažodžiai turi sutapti</div>
+          </div>
+        </mat-form-field>
+        <div>
+          <button mat-raised-button color="primary" [disabled]="loading" class="btn btn-primary">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
+            Registruotis
+          </button>
         </div>
-          </mat-form-field>
-      <br>
-      <mat-form-field appearance="legacy">
-        <input matInput type="password" placeholder="Pakartokite slaptąžodį" formControlName="confirmPassword" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }" />
-        <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">
-          <div *ngIf="f.confirmPassword.errors" class="error">Slaptažodžiai turi sutapti</div>
-        </div>
-      </mat-form-field>
-      <div>
-        <button mat-raised-button color="primary" [disabled]="loading" class="btn btn-primary">
-          <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>
-          Registruotis
-        </button>
-      </div>
-      <br>
-    </form>
-  </mat-card-content>
-</mat-card>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
