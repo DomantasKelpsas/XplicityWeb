@@ -21,7 +21,7 @@ namespace AnimalShelterAPI.Migrations
 
             modelBuilder.Entity("AnimalShelterAPI.Models.Animal", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -56,6 +56,9 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<DateTime?>("MicrochipIntegrationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SpecialID")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SpecialTags")
                         .HasColumnType("nvarchar(max)");
 
@@ -68,7 +71,7 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<DateTime?>("VaccinationDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("StatusID");
 
