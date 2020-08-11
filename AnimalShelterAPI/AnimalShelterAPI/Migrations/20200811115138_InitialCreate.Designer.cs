@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnimalShelterAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20200807115753_InitialCreate")]
+    [Migration("20200811115138_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace AnimalShelterAPI.Migrations
 
             modelBuilder.Entity("AnimalShelterAPI.Models.Animal", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -58,6 +58,9 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<DateTime?>("MicrochipIntegrationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SpecialID")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SpecialTags")
                         .HasColumnType("nvarchar(max)");
 
@@ -70,7 +73,7 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<DateTime?>("VaccinationDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("StatusID");
 
