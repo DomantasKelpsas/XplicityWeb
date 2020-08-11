@@ -46,16 +46,15 @@ namespace AnimalShelterAPI.Services
                 docText = new Regex("{rajonas}").Replace(docText, animal.AdmissionRegion);
                 docText = new Regex("{tipas}").Replace(docText, animal.AnimalType.ToString());
                 docText = new Regex("{lytis}").Replace(docText, animal.Gender.ToString());
-                //docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : (DateTime.Today - animal.Birthday.Value)..ToString());
-                docText = new Regex("{skiepo_data}").Replace(docText, animal.VaccinationDate == null ? "-" : animal.VaccinationDate.ToString().Substring(0, 10));
-                docText = new Regex("{mikroschemos_data}").Replace(docText, animal.MicrochipIntegrationDate == null ? "-" : animal.MicrochipIntegrationDate.ToString().Substring(0, 10));
-                docText = new Regex("{priimta_is}").Replace(docText, animal.AdmissionRegion + ", " + animal.AdmissionCity);
-                docText = new Regex("{lytis}").Replace(docText, "vyriška");
-                docText = new Regex("{amzius}").Replace(docText, "1 metas, 6 mėn.");
-                docText = new Regex("{kailis}").Replace(docText, "Ilgas");
+                docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : (DateTime.Today - animal.Birthday.Value).ToString());
+                docText = new Regex("{kailis}").Replace(docText, animal.FurType.ToString());
                 docText = new Regex("{zyme}").Replace(docText, animal.SpecialTags);
                 docText = new Regex("{sveikata}").Replace(docText, animal.HealthCondition);
-                docText = new Regex("{kontaktai}").Replace(docText, animal.AdmissionOrganisationContacts);
+                //docText = new Regex("{specialID}").Replace(docText, animal.);
+                docText = new Regex("{mikroschemos_data}").Replace(docText, animal.MicrochipIntegrationDate == null ? "-" : animal.MicrochipIntegrationDate.ToString().Substring(0, 10));
+                docText = new Regex("{skiepo_data}").Replace(docText, animal.VaccinationDate == null ? "-" : animal.VaccinationDate.ToString().Substring(0, 10));
+                docText = new Regex("{priimancioKontaktai}").Replace(docText, animal.AdmissionOrganisationContacts);
+                docText = new Regex("{perduodancioKontaktai}").Replace(docText, animal.TransferOrganisationContacts);
 
                 wordDoc.MainDocumentPart.Document.InnerXml = docText;
                 wordDoc.MainDocumentPart.Document.Save();
