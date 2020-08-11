@@ -1,8 +1,30 @@
-.error{
-  color: red;
-}
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  box-sizing: border-box;
+}
+body { margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
+.footer {
+  background-color: darkmagenta;
+  text-align: center;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+.content {
+  min-height: 90%;
+
+}
+
+.list{
+  list-style-type:none;
+}
+#footer-title{
+  color: hotpink;
+  font-family: "Helvetica Neue", cursive;
+  font-size: 20px;
+  padding-top: 20px;
+}
