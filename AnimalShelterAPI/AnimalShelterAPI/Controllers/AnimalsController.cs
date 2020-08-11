@@ -1,15 +1,12 @@
-using System;
-using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
 using AnimalShelterAPI.Constants;
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Models.DTO;
 using AnimalShelterAPI.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -17,7 +14,7 @@ namespace AnimalShelterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[AuthorizeAttr]
+    [AuthorizeAttr]
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
@@ -104,15 +101,15 @@ namespace AnimalShelterAPI.Controllers
             return File(act, "application/octet-stream", "generated_act.docx");
         }
 
-        //[HttpGet("Report/{id}")]
-        //public async Task<IActionResult> GetAnimalReport(int AnimalType, int Year)
-        //{
-        //    Stream report = await _reportService.GenerateYearReport(AnimalType, Year);
+        [HttpGet("Report")]
+        public async Task<IActionResult> GetAnimalReport([FromBody] ReportRequestDto request)
+        {
+            Stream report = await _reportService.GenerateYearReport(request.AnimalType, request.Year);
 
-        //    if (report == null)
-        //        return NotFound();
+            if (report == null)
+                return NotFound();
 
-        //    return File(report, "application/octet-stream", "generated_report.docx");
-        //}
+            return File(report, "application/octet-stream", "generated_report.docx");
+        }
     }
 }

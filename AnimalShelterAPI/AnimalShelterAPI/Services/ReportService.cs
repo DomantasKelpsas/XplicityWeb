@@ -2,14 +2,9 @@
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Services.Interfaces;
 using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
@@ -18,22 +13,23 @@ namespace AnimalShelterAPI.Services
     public class ReportService : IReportService
     {
         private readonly IRepository<Animal> _repository;
-        //private readonly IReportRepository<Animal> _reportRepository;
+        private readonly IReportRepository _reportRepository;
 
-        private Dictionary<int, string> TypeToSpelling = new Dictionary<int, string>()
+        private readonly Dictionary<int, string> TypeToSpelling = new Dictionary<int, string>()
         {
             { 0, "šunų"},
             { 1, "kačių"}
         };
 
-        public ReportService(IRepository<Animal> repository)
+        public ReportService(IRepository<Animal> repository, IReportRepository reportRepository)
         {
             _repository = repository;
+            _reportRepository = reportRepository;
         }
 
         public async Task<MemoryStream> GenerateAdmissionAct(int id)
         {
-            string templateFile = "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\Report_templates\\gyvuno_priimimo_aktas.docx";
+            var templateFile = Directory.GetCurrentDirectory() + "\\Report_templates\\gyvuno_priimimo_aktas.docx";
             var animal = await _repository.GetById(id);
 
             MemoryStream stream = new MemoryStream();
@@ -66,8 +62,8 @@ namespace AnimalShelterAPI.Services
 
         public async Task<MemoryStream> GenerateYearReport(int AnimalType, int Year)
         {
-            string templateFile = "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\Report_templates\\metine_ataskaita.docx";
-            //var report = await _repository.GetById(id);
+            var templateFile = Directory.GetCurrentDirectory() + "\\Report_templates\\metine_ataskaita.docx";
+            var report = await _reportRepository.GetAnimalReport(AnimalType, Year);
 
             MemoryStream stream = new MemoryStream();
             byte[] fileBytesArray = File.ReadAllBytes(templateFile);
@@ -81,10 +77,10 @@ namespace AnimalShelterAPI.Services
                 docText = new Regex("{metai}").Replace(docText, Year.ToString());
                 docText = new Regex("{gyvuno_tipas}").Replace(docText, TypeToSpelling[AnimalType]);
                 docText = new Regex("{data}").Replace(docText, DateTime.Now.ToShortDateString());
-                //docText = new Regex("{priimta}").Replace(docText, );
-                //docText = new Regex("{padovanota}").Replace(docText, );
-                //docText = new Regex("{mirciu}").Replace(docText, );
-                //docText = new Regex("{gyvena}").Replace(docText, );
+                docText = new Regex("{priimta}").Replace(docText, report.AdmittedCount.ToString());
+                docText = new Regex("{padovanota}").Replace(docText, report.GiftedCount.ToString());
+                docText = new Regex("{mirciu}").Replace(docText, report.DeadCount.ToString());
+                docText = new Regex("{gyvena}").Replace(docText, report.LivingNowCount.ToString());
 
                 wordDoc.MainDocumentPart.Document.InnerXml = docText;
                 wordDoc.MainDocumentPart.Document.Save();
