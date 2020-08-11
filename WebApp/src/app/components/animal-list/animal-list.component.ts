@@ -5,46 +5,47 @@ import {UserService} from '@app/services/user.service';
 import {User} from '@app/models/user';
 import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
+import {NgForm} from '@angular/forms';
 
-export interface PeriodicElement {
-  admissionDate: string;
-  admissionCity: string;
-  animalType: string;
-  gender: string;
-  status: string;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-    admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
-    status: 'Gyvas'
-  },
-  {
-    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-    admissionCity: 'Vilnius',
-    animalType: 'Kate',
-    gender: 'Vyriska',
-    status: 'Gyvas'
-  },
-  {
-    admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
-    admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
-    status: 'Gyvas'
-  },
-  {
-    admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-    admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
-    status: 'Gyvas'
-  }
-
-];
+// export interface PeriodicElement {
+//   admissionDate: string;
+//   admissionCity: string;
+//   animalType: string;
+//   gender: string;
+//   status: string;
+// }
+//
+// const ELEMENT_DATA: PeriodicElement[] = [
+//   {
+//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+//     admissionCity: 'Kaunas',
+//     animalType: 'Kate',
+//     gender: 'Vyriska',
+//     status: 'Gyvas'
+//   },
+//   {
+//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+//     admissionCity: 'Vilnius',
+//     animalType: 'Kate',
+//     gender: 'Vyriska',
+//     status: 'Gyvas'
+//   },
+//   {
+//     admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
+//     admissionCity: 'Kaunas',
+//     animalType: 'Kate',
+//     gender: 'Vyriska',
+//     status: 'Gyvas'
+//   },
+//   {
+//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
+//     admissionCity: 'Kaunas',
+//     animalType: 'Kate',
+//     gender: 'Vyriska',
+//     status: 'Gyvas'
+//   }
+//
+// ];
 
 
 @Component({
@@ -65,13 +66,13 @@ export class AnimalListComponent implements OnInit {
   displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
   @ViewChild(MatSort) sort: MatSort;
-
-  dataSource = new MatTableDataSource(this.animals);
+  dataSource: MatTableDataSource<Animal>;
 
 
   ngOnInit(): void {
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
+      this.dataSource = new MatTableDataSource(this.animals);
       console.log(animals);
     }, error => this.err = error);
 
@@ -81,5 +82,10 @@ export class AnimalListComponent implements OnInit {
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  onSubmit(form: NgForm) {
+    // form.resetForm();
+    console.log(form.value);
   }
 }

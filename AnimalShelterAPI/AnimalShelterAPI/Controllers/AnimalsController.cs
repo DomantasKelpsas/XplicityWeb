@@ -13,7 +13,7 @@ namespace AnimalShelterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizeAttr]
+    // [AuthorizeAttr]
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
