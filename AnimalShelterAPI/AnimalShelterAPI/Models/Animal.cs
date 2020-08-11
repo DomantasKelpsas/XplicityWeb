@@ -8,6 +8,7 @@ namespace AnimalShelterAPI.Models
         public DateTime AdmissionDate { get; set; }
         public DateTime? MicrochipIntegrationDate { get; set; }
         public DateTime? VaccinationDate { get; set; }
+        public string SpecialID { get; set; }
         public string AdmissionCity { get; set; }
         public string AdmissionRegion { get; set; }
         public AnimalType AnimalType { get; set; }
