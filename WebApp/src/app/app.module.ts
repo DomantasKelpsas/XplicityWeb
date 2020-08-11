@@ -54,7 +54,7 @@ import { ErrorInterceptorService } from '@app/services/error-interceptor.service
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
