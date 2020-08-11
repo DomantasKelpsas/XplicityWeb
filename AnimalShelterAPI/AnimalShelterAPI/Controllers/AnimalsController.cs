@@ -17,7 +17,7 @@ namespace AnimalShelterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [AuthorizeAttr]
+    //[AuthorizeAttr]
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
@@ -93,18 +93,26 @@ namespace AnimalShelterAPI.Controllers
             return NoContent();
         }
 
-        //[HttpGet("Act/{id}")]
-        //public async Task<HttpResponseMessage> GetAdmissionAct(int id)
-        //{
-        //    var response = await _reportService.GenerateAdmissionAct(id);
-        //    return response;
-        //}
+        [HttpGet("Act/{id}")]
+        public async Task<IActionResult> GetAdmissionAct(int id)
+        {
+            Stream act = await _reportService.GenerateAdmissionAct(id);
+
+            if (act == null)
+                return NotFound();
+
+            return File(act, "application/octet-stream", "generated_act.docx");
+        }
 
         //[HttpGet("Report/{id}")]
-        //public async Task<HttpResponseMessage> GetAnimalReport(int AnimalType, int Year)
+        //public async Task<IActionResult> GetAnimalReport(int AnimalType, int Year)
         //{
-        //    var response = await _reportService.GenerateYearReport(AnimalType, Year);
-        //    return response;
+        //    Stream report = await _reportService.GenerateYearReport(AnimalType, Year);
+
+        //    if (report == null)
+        //        return NotFound();
+
+        //    return File(report, "application/octet-stream", "generated_report.docx");
         //}
     }
 }

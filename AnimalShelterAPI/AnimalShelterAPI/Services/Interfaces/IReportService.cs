@@ -7,7 +7,7 @@ namespace AnimalShelterAPI.Services.Interfaces
 {
     public interface IReportService
     {
-        Task<HttpResponseMessage> GenerateAdmissionAct(int id);
-        Task<HttpResponseMessage> GenerateYearReport(int AnimalType, int Year);
+        Task<MemoryStream> GenerateAdmissionAct(int id);
+        Task<MemoryStream> GenerateYearReport(int AnimalType, int Year);
     }
 }
