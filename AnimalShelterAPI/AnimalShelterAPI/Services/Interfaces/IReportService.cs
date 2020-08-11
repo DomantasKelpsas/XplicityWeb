@@ -8,6 +8,6 @@ namespace AnimalShelterAPI.Services.Interfaces
     public interface IReportService
     {
         Task<HttpResponseMessage> GenerateAdmissionAct(int id);
-        //FileResult GenerateYearReport(string AnimalType);
+        Task<HttpResponseMessage> GenerateYearReport(int AnimalType, int Year);
     }
 }

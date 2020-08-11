@@ -2,8 +2,10 @@
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Services.Interfaces;
 using DocumentFormat.OpenXml.Packaging;
+using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -16,6 +18,13 @@ namespace AnimalShelterAPI.Services
     public class ReportService : IReportService
     {
         private readonly IRepository<Animal> _repository;
+        //private readonly IReportRepository<Animal> _reportRepository;
+
+        private Dictionary<int, string> TypeToSpelling = new Dictionary<int, string>()
+        {
+            { 0, "šunų"},
+            { 1, "kačių"}
+        };
 
         public ReportService(IRepository<Animal> repository)
         {
@@ -125,9 +134,48 @@ namespace AnimalShelterAPI.Services
             return result;
         }
 
-        //public async FileResult GenerateYearReport(string AnimalType)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<HttpResponseMessage> GenerateYearReport(int AnimalType, int Year)
+        {
+            string templateFile = "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\Report_templates\\metine_ataskaita.docx";
+            //var report = await _repository.GetById(id);
+            byte[] fileBytesArray = File.ReadAllBytes(templateFile);
+            var result = new HttpResponseMessage(HttpStatusCode.OK);
+
+            using (MemoryStream stream = new MemoryStream())
+            {
+                stream.Write(fileBytesArray, 0, (int)fileBytesArray.Length);
+
+                using (WordprocessingDocument wordDoc = WordprocessingDocument.Open(stream, true))
+                {
+                    string docText = wordDoc.MainDocumentPart.Document.InnerXml;
+
+                    docText = new Regex("{metai}").Replace(docText, Year.ToString());
+                    docText = new Regex("{gyvuno_tipas}").Replace(docText, TypeToSpelling[AnimalType]);
+                    docText = new Regex("{data}").Replace(docText, DateTime.Now.ToShortDateString());
+                    //docText = new Regex("{priimta}").Replace(docText, );
+                    //docText = new Regex("{padovanota}").Replace(docText, );
+                    //docText = new Regex("{mirciu}").Replace(docText, );
+                    //docText = new Regex("{gyvena}").Replace(docText, );
+
+                    wordDoc.MainDocumentPart.Document.InnerXml = docText;
+                    wordDoc.MainDocumentPart.Document.Save();
+                }
+
+                //string generatedFile = "E:\\Dokumentai\\Mokslai\\DevAcadamy2020\\Animal_shelter_app\\chalturcikai\\AnimalShelterAPI\\AnimalShelterAPI\\Report_templates\\sugeneruotas_gyvuno_priimimo_aktas.docx";
+                //using (FileStream file = new FileStream(generatedFile, FileMode.CreateNew))
+                //    stream.WriteTo(file);
+
+                result.Content = new ByteArrayContent(stream.ToArray());
+                result.Content.Headers.ContentLength = stream.Length;
+            }
+
+            result.Content.Headers.ContentDisposition = new ContentDispositionHeaderValue("attachment")
+            {
+                FileName = "generated_report.docx"
+            };
+            result.Content.Headers.ContentType = new MediaTypeHeaderValue("application/octet-stream");
+
+            return result;
+        }
     }
 }

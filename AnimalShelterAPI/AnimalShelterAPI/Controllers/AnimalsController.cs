@@ -93,11 +93,18 @@ namespace AnimalShelterAPI.Controllers
             return NoContent();
         }
 
-        [HttpGet("Report/{id}")]
-        public async Task<HttpResponseMessage> GetAdmissionAct(int id)
-        {
-            var response = await _reportService.GenerateAdmissionAct(id);
-            return response;
-        }
+        //[HttpGet("Act/{id}")]
+        //public async Task<HttpResponseMessage> GetAdmissionAct(int id)
+        //{
+        //    var response = await _reportService.GenerateAdmissionAct(id);
+        //    return response;
+        //}
+
+        //[HttpGet("Report/{id}")]
+        //public async Task<HttpResponseMessage> GetAnimalReport(int AnimalType, int Year)
+        //{
+        //    var response = await _reportService.GenerateYearReport(AnimalType, Year);
+        //    return response;
+        //}
     }
 }
