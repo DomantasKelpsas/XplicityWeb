@@ -20,6 +20,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatChipsModule} from '@angular/material/chips';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimalListComponent } from './components/animal-list/animal-list.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
     AnimalRegisterComponent,
     RegistrationComponent,
     LoginComponent,
-    AnimalListComponent
+    AnimalListComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
