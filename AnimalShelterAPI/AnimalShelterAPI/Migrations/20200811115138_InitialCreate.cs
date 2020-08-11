@@ -169,11 +169,12 @@ namespace AnimalShelterAPI.Migrations
                 name: "Animals",
                 columns: table => new
                 {
-                    ID = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     AdmissionDate = table.Column<DateTime>(nullable: false),
                     MicrochipIntegrationDate = table.Column<DateTime>(nullable: true),
                     VaccinationDate = table.Column<DateTime>(nullable: true),
+                    SpecialID = table.Column<string>(nullable: true),
                     AdmissionCity = table.Column<string>(nullable: true),
                     AdmissionRegion = table.Column<string>(nullable: true),
                     AnimalType = table.Column<int>(nullable: false),
@@ -188,7 +189,7 @@ namespace AnimalShelterAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Animals", x => x.ID);
+                    table.PrimaryKey("PK_Animals", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Animals_Statuses_StatusID",
                         column: x => x.StatusID,
