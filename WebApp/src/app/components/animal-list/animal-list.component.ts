@@ -1,6 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
+import {UserService} from '@app/services/user.service';
+import {User} from '@app/models/user';
+import {Animal} from '@app/models/animal';
+import {AnimalService} from '@app/services/animal.service';
 
 export interface PeriodicElement {
   admissionDate: string;
@@ -49,17 +53,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./animal-list.component.scss']
 })
 export class AnimalListComponent implements OnInit {
-  displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
 
-  constructor() {
+
+  constructor(private animalService: AnimalService) {
   }
+
+  animal = new Animal();
+  animals: Animal[];
+  err: string;
+
+  displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
   @ViewChild(MatSort) sort: MatSort;
 
+  dataSource = new MatTableDataSource(this.animals);
+
 
   ngOnInit(): void {
-    this.dataSource.sort = this.sort;
+    this.animalService.getAnimals().subscribe(animals => {
+      this.animals = animals;
+      console.log(animals);
+    }, error => this.err = error);
+
+
   }
 
   applyFilter(event: Event) {

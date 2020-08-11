@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {NgForm} from '@angular/forms';
-import {NewAnimal} from '../../models/new-animal';
+import {Animal} from '../../models/animal';
 
 @Component({
   selector: 'app-animal-register',
@@ -10,8 +10,8 @@ import {NewAnimal} from '../../models/new-animal';
 export class AnimalRegisterComponent implements OnInit {
 
   @Output()
-  addButtonClick = new EventEmitter<NewAnimal>();
-  animal = new NewAnimal();
+  addButtonClick = new EventEmitter<Animal>();
+  animal = new Animal();
 
   selectedValue: string;
   constructor() { }
