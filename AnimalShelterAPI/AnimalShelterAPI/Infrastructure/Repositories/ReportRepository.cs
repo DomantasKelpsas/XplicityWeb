@@ -22,9 +22,9 @@ namespace AnimalShelterAPI.Infrastructure.Repositories
             return new ReportDto
             {
                 AdmittedCount = animals.Where(x => x.AdmissionDate.Year == Year).Count(),
-                GiftedCount = animals.Where(x => x.Status.Name == "Atiduotas" && x.StatusDate != null /*check date*/ ).Count(),
-                DeadCount = animals.Where(x => x.Status.Name == "Miręs").Count(),
-                LivingNowCount = animals.Where(x => x.Status.Name == "Gyvena prieglaudoje").Count()
+                GiftedCount = animals.Where(x => x.Status.Name == "Atiduotas" && x.StatusDate != null && x.StatusDate.Value.Year == Year).Count(),
+                DeadCount = animals.Where(x => x.Status.Name == "Miręs" && x.StatusDate != null && x.StatusDate.Value.Year == Year).Count(),
+                LivingNowCount = animals.Where(x => x.Status.Name == "Gyvena prieglaudoje" && x.StatusDate == null).Count()
             };
         }
     }
