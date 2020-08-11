@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   loginButtonClick = new EventEmitter<User>();
 
   errorMessage: string;
-  user = new User();
+  user = new User('', '');
 
   constructor(private userService: UserService) { }
 
