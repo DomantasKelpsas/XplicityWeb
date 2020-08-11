@@ -21,6 +21,14 @@ namespace AnimalShelterAPI.Services
             { 1, "kačių"}
         };
 
+        private readonly Dictionary<int, string> FurToSpelling = new Dictionary<int, string>()
+        {
+            { 0, "Trumpakailis"},
+            { 1, "Šiurkšičplaukis"},
+            { 2, "Vidutinio ilgio"},
+            { 3, "Ilgaplaukis" }
+        };
+
         public ReportService(IRepository<Animal> repository, IReportRepository reportRepository)
         {
             _repository = repository;
@@ -47,10 +55,10 @@ namespace AnimalShelterAPI.Services
                 docText = new Regex("{tipas}").Replace(docText, animal.AnimalType.ToString());
                 docText = new Regex("{lytis}").Replace(docText, animal.Gender.ToString());
                 docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : (DateTime.Today - animal.Birthday.Value).ToString());
-                docText = new Regex("{kailis}").Replace(docText, animal.FurType.ToString());
+                docText = new Regex("{kailis}").Replace(docText, FurToSpelling[(int)animal.FurType]);
                 docText = new Regex("{zyme}").Replace(docText, animal.SpecialTags);
                 docText = new Regex("{sveikata}").Replace(docText, animal.HealthCondition);
-                //docText = new Regex("{specialID}").Replace(docText, animal.);
+                docText = new Regex("{specialID}").Replace(docText, animal.SpecialID);
                 docText = new Regex("{mikroschemos_data}").Replace(docText, animal.MicrochipIntegrationDate == null ? "-" : animal.MicrochipIntegrationDate.ToString().Substring(0, 10));
                 docText = new Regex("{skiepo_data}").Replace(docText, animal.VaccinationDate == null ? "-" : animal.VaccinationDate.ToString().Substring(0, 10));
                 docText = new Regex("{priimancioKontaktai}").Replace(docText, animal.AdmissionOrganisationContacts);
