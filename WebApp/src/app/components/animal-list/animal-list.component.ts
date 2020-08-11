@@ -14,29 +14,29 @@ const ELEMENT_DATA: PeriodicElement[] = [
   {
     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
     admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
+    animalType: 'Katė',
+    gender: 'Vyriška',
     status: 'Gyvas'
   },
   {
     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
     admissionCity: 'Vilnius',
-    animalType: 'Kate',
-    gender: 'Vyriska',
+    animalType: 'Katė',
+    gender: 'Vyriška',
     status: 'Gyvas'
   },
   {
     admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
     admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
+    animalType: 'Katė',
+    gender: 'Vyriška',
     status: 'Gyvas'
   },
   {
     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
     admissionCity: 'Kaunas',
-    animalType: 'Kate',
-    gender: 'Vyriska',
+    animalType: 'Katė',
+    gender: 'Vyriška',
     status: 'Gyvas'
   }
 
