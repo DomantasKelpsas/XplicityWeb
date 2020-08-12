@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+using AutoMapper;
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Infrastructure.Repositories;
 using Microsoft.AspNetCore.JsonPatch;

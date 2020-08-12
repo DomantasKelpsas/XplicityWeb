@@ -25,7 +25,8 @@ namespace AnimalShelterAPI.Configurations
         public static IServiceCollection AddApplicationDependencies(this IServiceCollection service)
         {
             return service
-                .AddScoped<IAnimalService, AnimalService>();
+                .AddScoped<IAnimalService, AnimalService>()
+                .AddScoped<IReportService, ReportService>();
         }
     }
 }
