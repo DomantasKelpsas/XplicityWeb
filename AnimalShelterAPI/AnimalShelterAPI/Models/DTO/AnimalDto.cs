@@ -18,5 +18,7 @@ namespace AnimalShelterAPI.Models.DTO
         public string AdmissionOrganisationContacts { get; set; }
         public Status Status { get; set; }
         public DateTime? StatusDate { get; set; }
+        public string AnimalAgeCounter { get; set; }
+        public string AnimalTimeInShelterCounter { get; set; }
     }
 }

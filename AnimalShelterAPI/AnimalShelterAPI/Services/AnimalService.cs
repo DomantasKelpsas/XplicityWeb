@@ -23,10 +23,18 @@ namespace AnimalShelterAPI.Services
             _mapper = mapper;
         }
 
-        public async Task<AnimalListItemDto> GetById(int id)
+        public async Task<AnimalDto> GetById(int id)
         {
             var animal = await _repository.GetById(id);
-            var animalDto = _mapper.Map<AnimalListItemDto>(animal);
+            var animalDto = _mapper.Map<AnimalDto>(animal);
+
+            if(animal.Status.Name != "Miręs")
+            {
+                //animalDto.AnimalAgeCounter = animal.Birthday == null ? (DateTime.Now - animal.AdmissionDate) : (DateTime.Now - animal.Birthday.Value);
+                //animalDto.AnimalAgeCounter = String.
+                //animalDto.AnimalTimeInShelterCounter = DateTime.Today - animal.AdmissionDate;
+            }
+
             return animalDto;
         }
 
