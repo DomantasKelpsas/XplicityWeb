@@ -25,13 +25,20 @@ namespace AnimalShelterAPI.Services
         public async Task<AnimalListItemDto> GetById(int id)
         {
             var animal = await _repository.GetById(id);
-            var animalDto = _mapper.Map<AnimalDto>(animal);
+            var animalDto = _mapper.Map<AnimalListItemDto>(animal);
 
-            animalDto.AnimalTimeInShelterCounter = FormatAnimalAge((DateTime.Today - animal.AdmissionDate).TotalDays);
-            if (animal.Status.Name != "Miręs")
-            {
-                animalDto.AnimalAgeCounter = animal.Birthday == null ? (DateTime.Now - animal.AdmissionDate) : (DateTime.Now - animal.Birthday.Value);
-            }
+            //animalDto.AnimalTimeInShelterCounter = FormatAnimalAge((DateTime.Today - animal.AdmissionDate).TotalDays);
+            //if (animal.Status.Name != "Miręs")
+            //{
+            //    var CalculationDate = animal.Birthday == null ? animal.AdmissionDate : animal.Birthday.Value;
+
+            //    if (animal.Status.Name == "Atiduotas")
+            //        animalDto.AnimalAgeCounter = "Gyvūno amžius, kai jis išvyko iš prieglaudos: " + FormatAnimalAge((animal.StatusDate.Value - CalculationDate).TotalDays);
+            //    else
+            //        animalDto.AnimalAgeCounter = FormatAnimalAge((DateTime.Now - CalculationDate).TotalDays));
+            //}
+            //else
+            //    animalDto.AnimalAgeCounter = FormatAnimalAge((DateTime.Now - animal.StatusDate.Value).TotalDays);
 
             return animalDto;
         }
