@@ -3,7 +3,9 @@ header{
   background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url("src/images/catdog2.jpeg");
   background-size: cover;
   background-position: center;
-  height: 90vh;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 h1{
   font-weight: 1;
