@@ -7,45 +7,6 @@ import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
 import {NgForm} from '@angular/forms';
 
-// export interface PeriodicElement {
-//   admissionDate: string;
-//   admissionCity: string;
-//   animalType: string;
-//   gender: string;
-//   status: string;
-// }
-//
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Vilnius',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   }
-//
-// ];
 
 
 @Component({

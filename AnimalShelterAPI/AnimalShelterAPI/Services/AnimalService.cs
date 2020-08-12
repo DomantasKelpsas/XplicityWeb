@@ -1,12 +1,12 @@
-﻿using AutoMapper;
+﻿using AnimalShelterAPI.Infrastructure.Repositories;
 using AnimalShelterAPI.Models;
-using AnimalShelterAPI.Infrastructure.Repositories;
+using AnimalShelterAPI.Models.DTO;
+using AnimalShelterAPI.Services.Interfaces;
+using AutoMapper;
 using Microsoft.AspNetCore.JsonPatch;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using AnimalShelterAPI.Services.Interfaces;
-using AnimalShelterAPI.Models.DTO;
 
 namespace AnimalShelterAPI.Services
 {
