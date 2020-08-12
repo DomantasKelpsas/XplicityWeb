@@ -16,6 +16,8 @@ namespace AnimalShelterAPI.Configuration
             CreateMap<Animal, AnimalDto>();
             CreateMap<AnimalDto, Animal>();
             CreateMap<Animal, AnimalListItemDto>();
+            CreateMap<Animal, NewAnimalDto>();
+            CreateMap<NewAnimalDto, Animal>();
         }
     }
 }
