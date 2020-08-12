@@ -6,6 +6,7 @@ import {User} from '@app/models/user';
 import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
 import {NgForm} from '@angular/forms';
+import {Status} from '@app/models/status';
 
 
 
@@ -18,6 +19,7 @@ export class AnimalListComponent implements OnInit {
 
 
   constructor(private animalService: AnimalService) {
+
   }
 
   animal = new Animal();
@@ -26,6 +28,7 @@ export class AnimalListComponent implements OnInit {
  //    '', '', '', 0, '');
   animals: Animal[];
   err: string;
+  status: typeof Status;
 
   displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
@@ -34,6 +37,9 @@ export class AnimalListComponent implements OnInit {
 
 
   ngOnInit(): void {
+
+    this.status = Status;
+
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
