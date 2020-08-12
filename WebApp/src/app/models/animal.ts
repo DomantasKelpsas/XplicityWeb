@@ -33,7 +33,6 @@ export class Animal {
   admissionCity: string;
   admissionRegion: string;
   animalType: number;
-  birthday: Date;
   months: number;
   fur: Fur;
   specialTags: string;
