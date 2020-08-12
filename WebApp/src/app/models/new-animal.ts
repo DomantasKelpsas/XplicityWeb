@@ -1,7 +1,6 @@
 import {Fur} from '@app/models/fur';
 
-export class Animal {
-  id: number;
+export class NewAnimal {
   specialID: string;
   admissionDate: Date;
   microchipIntegrationDate: Date;
@@ -9,7 +8,8 @@ export class Animal {
   admissionCity: string;
   admissionRegion: string;
   animalType: number;
-  birthday: Date;
+  gender: number;
+  years: number;
   months: number;
   fur: Fur;
   specialTags: string;
