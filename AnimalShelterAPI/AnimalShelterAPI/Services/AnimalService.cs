@@ -13,14 +13,17 @@ namespace AnimalShelterAPI.Services
     public class AnimalService : IAnimalService
     {
         private readonly IRepository<Animal> _repository;
+        private readonly IStatusRepository _statusRepository;
         private readonly IMapper _mapper;
         //private readonly ITimeService _timeService;
 
         public AnimalService(IRepository<Animal> repository,
+            IStatusRepository statusRepository,
             IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
+            _statusRepository = statusRepository;
         }
 
         public async Task<AnimalListItemDto> GetById(int id)
@@ -37,18 +40,18 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
-        public async Task<AnimalDto> Create(AnimalDto newItem)
+        public async Task<AnimalDto> Create(NewAnimalDto newItem)
         {
             if (newItem == null) throw new ArgumentNullException(nameof(newItem));
 
-            var animal = CreateAnimalPoco(newItem);
+            var animal = await CreateAnimalPoco(newItem);
             await _repository.Create(animal);
 
             var animalDto = _mapper.Map<AnimalDto>(animal);
             return animalDto;
         }
 
-        public async Task Update(int id, AnimalDto updateData)
+        public async Task Update(int id, NewAnimalDto updateData)
         {
             if (updateData == null) throw new ArgumentNullException(nameof(updateData));
 
@@ -64,7 +67,7 @@ namespace AnimalShelterAPI.Services
             await _repository.Update(itemToUpdate);
         }
 
-        public async Task<bool> PartialUpdate(int id, JsonPatchDocument<AnimalDto> itemPatch)
+        public async Task<bool> PartialUpdate(int id, JsonPatchDocument<NewAnimalDto> itemPatch)
         {
             if (itemPatch == null) throw new ArgumentNullException(nameof(itemPatch));
 
@@ -76,7 +79,7 @@ namespace AnimalShelterAPI.Services
 
             // this is recomended way from microsoft if you don't have domain model
             //var modificationDate = _timeService.GetCurrentTime();
-            var updateData = _mapper.Map<AnimalDto>(itemToUpdate);
+            var updateData = _mapper.Map<NewAnimalDto>(itemToUpdate);
             itemPatch.ApplyTo(updateData);
             _mapper.Map(updateData, itemToUpdate);
             //itemToUpdate.LastModified = modificationDate;
@@ -96,10 +99,12 @@ namespace AnimalShelterAPI.Services
             return deleted;
         }
 
-        private Animal CreateAnimalPoco(AnimalDto newItem)
+        private async Task<Animal> CreateAnimalPoco(NewAnimalDto newItem)
         {
             //var creationDate = _timeService.GetCurrentTime();
             var animal = _mapper.Map<Animal>(newItem);
+            animal.Status = await _statusRepository.InShelterStatus;
+            animal.StatusDate = DateTime.Now;
             //animal.LastModified = creationDate;
             //animal.Created = creationDate;
             return animal;
