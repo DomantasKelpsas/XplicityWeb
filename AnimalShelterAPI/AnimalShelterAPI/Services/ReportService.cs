@@ -54,7 +54,7 @@ namespace AnimalShelterAPI.Services
                 docText = new Regex("{rajonas}").Replace(docText, animal.AdmissionRegion);
                 docText = new Regex("{tipas}").Replace(docText, animal.AnimalType.ToString());
                 docText = new Regex("{lytis}").Replace(docText, animal.Gender.ToString());
-                docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : (DateTime.Today - animal.Birthday.Value).ToString());
+                docText = new Regex("{amzius}").Replace(docText, animal.Birthday == null ? "-" : FormatAnimalAge((DateTime.Today - animal.Birthday.Value).TotalDays));
                 docText = new Regex("{kailis}").Replace(docText, FurToSpelling[(int)animal.FurType]);
                 docText = new Regex("{zyme}").Replace(docText, animal.SpecialTags);
                 docText = new Regex("{sveikata}").Replace(docText, animal.HealthCondition);
@@ -104,6 +104,14 @@ namespace AnimalShelterAPI.Services
 
             stream.Position = 0;
             return stream;
+        }
+
+        private string FormatAnimalAge(double DayCount)
+        {
+            double years = Math.Truncate(DayCount / 365);
+            double months = Math.Truncate((DayCount % 365) / 30);
+            double days = Math.Truncate((DayCount % 365) % 30);
+            return string.Format("{0} metų {1} mėnesių {2} dienų", years, months, days);
         }
     }
 }
