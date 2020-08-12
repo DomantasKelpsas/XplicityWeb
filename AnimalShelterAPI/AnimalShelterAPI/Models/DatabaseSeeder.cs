@@ -33,6 +33,7 @@ namespace AnimalShelterAPI.Database
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         SpecialID = "a1s6a1s",
@@ -46,11 +47,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = DateTime.Parse("2020-08-05")
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2017-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         SpecialID = "a1s6a1ssa",
@@ -64,11 +67,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Fluffy, loud",
                         HealthCondition = "Sveika",
                         AdmissionOrganisationContacts = "Klinikų g. 1, Buivydiškės",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2019-01-02"),
                         MicrochipIntegrationDate = null,
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         SpecialID = "a1s64529s",
@@ -82,11 +87,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2015-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
                         SpecialID = "a1saassd",
@@ -100,11 +107,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Chubby, sweet",
                         HealthCondition = "Sveika",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = DateTime.Parse("2020-08-05")
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2016-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1s6asd26",
@@ -118,11 +127,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2014-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1s6515a",
@@ -136,11 +147,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Fluffy, loud",
                         HealthCondition = "Sveika",
                         AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = DateTime.Parse("2020-08-05")
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2013-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1s6a266as1s",
@@ -154,11 +167,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Overall just great",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     }, 
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1165s6a1s",
@@ -172,11 +187,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     }, 
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1a5ss6a1s",
@@ -190,11 +207,13 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Goofy, big",
                         HealthCondition = "Sveika",
                         AdmissionOrganisationContacts = "Tvenkinio g., Sausinės k., Kauno raj.",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = DateTime.Parse("2020-08-05")
                     },
                     new Animal
                     {
                         AdmissionDate = DateTime.Parse("2020-08-03"),
+                        Birthday = DateTime.Parse("2014-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
                         SpecialID = "a1s6a5s15a1s",
@@ -208,6 +227,7 @@ namespace AnimalShelterAPI.Database
                         SpecialTags = "Cute, small",
                         HealthCondition = "Sveikas",
                         AdmissionOrganisationContacts = "Antakalnio g. 38, Vilnius",
+                        TransferOrganisationContacts = "Vardenis Pavardenis, +866216815",
                         StatusDate = null
                     }
                 );
