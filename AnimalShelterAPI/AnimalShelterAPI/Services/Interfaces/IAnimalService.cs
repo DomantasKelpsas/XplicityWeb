@@ -9,9 +9,9 @@ namespace AnimalShelterAPI.Services.Interfaces
     {
         Task<AnimalListItemDto> GetById(int id);
         Task<ICollection<AnimalListItemDto>> GetAll();
-        Task<AnimalDto> Create(AnimalDto newItem);
-        Task Update(int id, AnimalDto updateData);
-        Task<bool> PartialUpdate(int id, JsonPatchDocument<AnimalDto> itemPatch);
+        Task<AnimalDto> Create(NewAnimalDto newItem);
+        Task Update(int id, NewAnimalDto updateData);
+        Task<bool> PartialUpdate(int id, JsonPatchDocument<NewAnimalDto> itemPatch);
         Task<bool> Delete(int id);
     }
 }

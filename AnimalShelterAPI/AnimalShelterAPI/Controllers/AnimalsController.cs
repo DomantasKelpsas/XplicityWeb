@@ -50,7 +50,7 @@ namespace AnimalShelterAPI.Controllers
 
         // POST api/Animals
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AnimalDto newAnimal)
+        public async Task<IActionResult> Post([FromBody] NewAnimalDto newAnimal)
         {
             AnimalDto createdAnimal = await _animalService.Create(newAnimal);
             var animalUri = CreateResourceUri(createdAnimal.Id);
@@ -66,7 +66,7 @@ namespace AnimalShelterAPI.Controllers
 
         // PUT api/Animals/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] AnimalDto newAnimal)
+        public async Task<IActionResult> Put(int id, [FromBody] NewAnimalDto newAnimal)
         {
             await _animalService.Update(id, newAnimal);
 
@@ -74,7 +74,7 @@ namespace AnimalShelterAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<AnimalDto> patch)
+        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<NewAnimalDto> patch)
         {
             await _animalService.PartialUpdate(id, patch);
 
