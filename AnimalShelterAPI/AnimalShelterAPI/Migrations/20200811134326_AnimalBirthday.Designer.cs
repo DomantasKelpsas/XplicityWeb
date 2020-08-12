@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AnimalShelterAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    [Migration("20200807115753_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20200811134326_AnimalBirthday")]
+    partial class AnimalBirthday
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,7 +23,7 @@ namespace AnimalShelterAPI.Migrations
 
             modelBuilder.Entity("AnimalShelterAPI.Models.Animal", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -43,6 +43,9 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<int>("AnimalType")
                         .HasColumnType("int");
 
+                    b.Property<DateTime?>("Birthday")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("FurColor")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,6 +61,9 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<DateTime?>("MicrochipIntegrationDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("SpecialID")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("SpecialTags")
                         .HasColumnType("nvarchar(max)");
 
@@ -67,10 +73,13 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<int?>("StatusID")
                         .HasColumnType("int");
 
+                    b.Property<string>("TransferOrganisationContacts")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("VaccinationDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
                     b.HasIndex("StatusID");
 

@@ -1,11 +1,12 @@
-using System;
-using System.Threading.Tasks;
 using AnimalShelterAPI.Constants;
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Models.DTO;
 using AnimalShelterAPI.Services.Interfaces;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -13,14 +14,20 @@ namespace AnimalShelterAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+<<<<<<< HEAD
     // [AuthorizeAttr]
+=======
+    //[AuthorizeAttr]
+>>>>>>> 8bbecaa3d5a5abb6dddb769aa2f3a96ffc939514
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
+        private readonly IReportService _reportService;
 
-        public AnimalsController(IAnimalService animalService)
+        public AnimalsController(IAnimalService animalService, IReportService reportService)
         {
             _animalService = animalService;
+            _reportService = reportService;
         }
 
         // GET: api/Animals
@@ -47,7 +54,7 @@ namespace AnimalShelterAPI.Controllers
 
         // POST api/Animals
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] AnimalDto newAnimal)
+        public async Task<IActionResult> Post([FromBody] NewAnimalDto newAnimal)
         {
             AnimalDto createdAnimal = await _animalService.Create(newAnimal);
             var animalUri = CreateResourceUri(createdAnimal.Id);
@@ -63,7 +70,7 @@ namespace AnimalShelterAPI.Controllers
 
         // PUT api/Animals/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] AnimalDto newAnimal)
+        public async Task<IActionResult> Put(int id, [FromBody] NewAnimalDto newAnimal)
         {
             await _animalService.Update(id, newAnimal);
 
@@ -71,7 +78,7 @@ namespace AnimalShelterAPI.Controllers
         }
 
         [HttpPatch("{id}")]
-        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<AnimalDto> patch)
+        public async Task<IActionResult> Patch(int id, [FromBody] JsonPatchDocument<NewAnimalDto> patch)
         {
             await _animalService.PartialUpdate(id, patch);
 
@@ -85,6 +92,28 @@ namespace AnimalShelterAPI.Controllers
             await _animalService.Delete(id);
 
             return NoContent();
+        }
+
+        [HttpGet("Act/{id}")]
+        public async Task<IActionResult> GetAdmissionAct(int id)
+        {
+            Stream act = await _reportService.GenerateAdmissionAct(id);
+
+            if (act == null)
+                return NotFound();
+
+            return File(act, "application/octet-stream", "generated_act.docx");
+        }
+
+        [HttpGet("Report")]
+        public async Task<IActionResult> GetAnimalReport([FromBody] ReportRequestDto request)
+        {
+            Stream report = await _reportService.GenerateYearReport(request.AnimalType, request.Year);
+
+            if (report == null)
+                return NotFound();
+
+            return File(report, "application/octet-stream", "generated_report.docx");
         }
     }
 }

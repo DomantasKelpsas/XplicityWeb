@@ -7,45 +7,6 @@ import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
 import {NgForm} from '@angular/forms';
 
-// export interface PeriodicElement {
-//   admissionDate: string;
-//   admissionCity: string;
-//   animalType: string;
-//   gender: string;
-//   status: string;
-// }
-//
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Vilnius',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2018, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   },
-//   {
-//     admissionDate: new Date(2017, 4, 4).toLocaleDateString(),
-//     admissionCity: 'Kaunas',
-//     animalType: 'Kate',
-//     gender: 'Vyriska',
-//     status: 'Gyvas'
-//   }
-//
-// ];
 
 
 @Component({
@@ -59,10 +20,10 @@ export class AnimalListComponent implements OnInit {
   constructor(private animalService: AnimalService) {
   }
 
- // animal = new Animal();
-  animal: Animal = new Animal('', '', '', '',
-    '', '', '', '', 0, 0, '', '',
-    '', '', '', 0, '');
+  animal = new Animal();
+ //  animal: Animal = new Animal('', '', '', '',
+ //    '', '', '', '', 0, 0, '', '',
+ //    '', '', '', 0, '');
   animals: Animal[];
   err: string;
 

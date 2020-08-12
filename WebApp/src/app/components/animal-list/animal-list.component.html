@@ -6,8 +6,8 @@
     <div class="container">
       <mat-form-field appearance="fill" >
         <mat-label>Data nuo</mat-label>
-        <input matInput [(ngModel)]="animal.dateAccepted" name="dateReportFrom" placeholder=""
-               #dateAcceptedInput="ngModel" [matDatepicker]="pickerFrom">
+        <input matInput  name="dateReportFrom" placeholder=""
+                [matDatepicker]="pickerFrom">
         <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
         <mat-datepicker #pickerFrom></mat-datepicker>
       </mat-form-field>
@@ -15,8 +15,8 @@
     <div class="container">
       <mat-form-field appearance="fill" >
         <mat-label>Data iki</mat-label>
-        <input matInput [(ngModel)]="animal.dateAccepted" name="dateReportTo" placeholder=""
-               #dateAcceptedInput="ngModel" [matDatepicker]="pickerTo">
+        <input matInput  name="dateReportTo" placeholder=""
+               [matDatepicker]="pickerTo">
         <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
         <mat-datepicker #pickerTo></mat-datepicker>
       </mat-form-field>
