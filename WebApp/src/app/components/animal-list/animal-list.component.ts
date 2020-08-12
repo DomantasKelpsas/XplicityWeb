@@ -59,7 +59,10 @@ export class AnimalListComponent implements OnInit {
   constructor(private animalService: AnimalService) {
   }
 
-  animal = new Animal();
+ // animal = new Animal();
+  animal: Animal = new Animal('', '', '', '',
+    '', '', '', '', 0, 0, '', '',
+    '', '', '', 0, '');
   animals: Animal[];
   err: string;
 

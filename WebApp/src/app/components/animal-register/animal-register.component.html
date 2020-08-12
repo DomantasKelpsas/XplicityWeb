@@ -5,10 +5,9 @@
   </mat-card-title>
 
   <mat-card-content>
-    <form [formGroup]="form" #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
+    <form  #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
       <div class="container">
         <mat-form-field appearance="outline">
-          <mat-label>Gyvūno ID</mat-label>
           <input matInput [(ngModel)]="animal.animalID" type="text" name="animalID" placeholder="" required
                  #idInput="ngModel">
           <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
@@ -116,6 +115,7 @@
                  #ageYearInput="ngModel" required>
           <mat-error *ngIf="ageYearInput.invalid && (ageYearInput.dirty || ageYearInput.touched)" class="error">
             <p *ngIf="ageYearInput.errors.required">Metai laukas negali būti tuščias</p>
+            <p *ngIf="ageYearInput.value > 12 || ageYearInput.value < 0">metai tarp 0 ir 12</p>
           </mat-error>
 
         </mat-form-field>
@@ -183,10 +183,10 @@
         </mat-form-field>
       </div>
 
-<div class="left">
-  <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Registruoti
-  </button>
-</div>
+      <div class="left">
+        <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Registruoti
+        </button>
+      </div>
 
     </form>
   </mat-card-content>

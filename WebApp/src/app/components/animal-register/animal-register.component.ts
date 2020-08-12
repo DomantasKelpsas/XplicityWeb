@@ -13,37 +13,19 @@ import {AnimalService} from '@app/services/animal.service';
 })
 export class AnimalRegisterComponent implements OnInit {
 
+
   @Output()
   addButtonClick = new EventEmitter<Animal>();
-
+  animal: Animal = new Animal('', '', '', '',
+    '', '', '', '', 0, 0, '', '',
+    '', '', '', 0, '');
 
   selectedValue: string;
 
-  form: FormGroup;
-  loading = false;
-  submitted = false;
-  animal: Animal = new Animal('', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-
-  constructor(
-    private animalService: AnimalService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router) {
+  constructor(private animalService: AnimalService) {
   }
 
   ngOnInit(): void {
-
-    this.form = this.formBuilder.group({
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
-      confirmPassword: ''
-    });
-  }
-
-  get f() {
-    return this.form.controls;
   }
 
   onAddButtonClick(): void {
@@ -51,23 +33,16 @@ export class AnimalRegisterComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-
-    this.submitted = true;
-    // stop here if form is invalid
-    if (this.form.invalid) {
-      return;
-    }
-    this.loading = true;
-    this.animal = new Animal(form.value.animalID,);
-    // communicate with the api to register the user
+    // form.resetForm();
+    console.log(this.animal);
     this.animalService.addAnimal(this.animal).subscribe(
       res => {
-        console.log('Register works!');
+        console.log('animal register works!');
       },
       error => {
         console.log(error);
       });
-    console.log(form.value);
   }
+
 
 }
