@@ -16,14 +16,13 @@ namespace AnimalShelterAPI.Services
         private readonly IMapper _mapper;
         //private readonly ITimeService _timeService;
 
-        public AnimalService(IRepository<Animal> repository,
-            IMapper mapper)
+        public AnimalService(IRepository<Animal> repository, IMapper mapper)
         {
             _repository = repository;
             _mapper = mapper;
         }
 
-        public async Task<AnimalDto> GetById(int id)
+        public async Task<AnimalListItemDto> GetById(int id)
         {
             var animal = await _repository.GetById(id);
             var animalDto = _mapper.Map<AnimalDto>(animal);
