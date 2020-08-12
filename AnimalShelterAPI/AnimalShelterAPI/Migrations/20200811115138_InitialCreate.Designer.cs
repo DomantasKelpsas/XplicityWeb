@@ -4,14 +4,16 @@ using AnimalShelterAPI.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace AnimalShelterAPI.Migrations
 {
     [DbContext(typeof(ApiContext))]
-    partial class ApiContextModelSnapshot : ModelSnapshot
+    [Migration("20200811115138_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -41,9 +43,6 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<int>("AnimalType")
                         .HasColumnType("int");
 
-                    b.Property<DateTime?>("Birthday")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("FurColor")
                         .HasColumnType("nvarchar(max)");
 
@@ -70,9 +69,6 @@ namespace AnimalShelterAPI.Migrations
 
                     b.Property<int?>("StatusID")
                         .HasColumnType("int");
-
-                    b.Property<string>("TransferOrganisationContacts")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("VaccinationDate")
                         .HasColumnType("datetime2");

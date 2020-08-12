@@ -6,14 +6,19 @@ import {UserService} from '@app/services/user.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit{
-  constructor(public userService: UserService) {}
+export class HeaderComponent implements OnInit {
 
-  ngOnInit() {
-    this.userService.isLoggedIn();
+  constructor(private userService: UserService) {
   }
 
-  onLogout() {
+
+  ngOnInit(): void {
+  }
+  onLogout(): void {
     this.userService.logout();
   }
+  checkLogin(): boolean {
+    return this.userService.isLoggedIn();
+  }
+
 }

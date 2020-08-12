@@ -1,42 +1,28 @@
-/* You can add global styles to this file, and also import other style files */
-
-.mat-toolbar{
-  text-align: center;
+.topnav {
+  overflow: hidden;
   background-color: #534741;
 }
 
-.main-nav li {
-  display: inline-table;
-  margin-left: 40px;
-  margin-top: 10px;
-}
-
-.main-nav li a:link,
-.main-nav li a:visited {
-  padding: 8px 0;
-  color: white;
+.topnav a {
+  float: left;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
   text-decoration: none;
-  text-transform: uppercase;
-  font-size: 90%;
-  border-bottom: 2px solid transparent;
-  transition: border-bottom 0.5s;
+  font-size: 17px;
 }
 
-.main-nav li a:hover,
-.main-nav li a:active {
-  border-bottom: 2px solid #f39c12;
-
+.topnav a:hover {
+  background-color: #ec9736;
+  color: #312a27;
 }
 
-nav {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 8px 16px;
-
+.topnav a.active {
+  background-color: #e87e04;
+  color: white;
 }
-.main-nav {
+
+.topnav-right {
   float: right;
-  list-style: none;
 }
 

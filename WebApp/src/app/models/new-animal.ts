@@ -1,19 +1,18 @@
+import {Fur} from '@app/models/fur';
+
 export class NewAnimal {
-  animalID: string;
-  dateAccepted: Date;
-  dateChiped: Date;
-  dateVaccine: Date;
-  city: string;
-  region: string;
-  type: string;
-  gender: string;
-  ageYear: number;
-  ageMonth: number;
-  furColor: string;
-  furLength: string;
-  specialMarks: string;
-  health: string;
-  contactInfo: string;
-  status: number;
-  statusDate: Date;
+  specialID: string;
+  admissionDate: Date;
+  microchipIntegrationDate: Date;
+  vaccinationDate: Date;
+  admissionCity: string;
+  admissionRegion: string;
+  animalType: number;
+  gender: number;
+  years: number;
+  months: number;
+  fur: Fur;
+  specialTags: string;
+  healthCondition: string;
+  admissionOrganisationContacts: string;
 }

@@ -23,6 +23,8 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
 import { JwtInterceptor } from '@app/services/token-interceptor.service';
 import { ErrorInterceptorService } from '@app/services/error-interceptor.service';
 import {LandingPageComponent} from '@app/components/landing-page/landing-page.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
     RegistrationComponent,
     LoginComponent,
     AnimalListComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -56,7 +60,7 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
