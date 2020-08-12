@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {HeaderComponent} from '@app/components/header/header.component';
+import { UserService } from '@app/services/user.service';
 
 @Component({
   selector: 'app-landing-page',
@@ -7,7 +7,7 @@ import {HeaderComponent} from '@app/components/header/header.component';
   styleUrls: ['./landing-page.component.scss']
 })
 export class LandingPageComponent implements OnInit {
-  constructor() {
+  constructor(public userService: UserService) {
   }
 
   ngOnInit(): void {

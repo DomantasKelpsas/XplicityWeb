@@ -1,7 +1,7 @@
 <header>
   <div class="content">
     <h1>Lesė Gyvūnų valdymo sistema</h1>
-    <a class="btn btn-full" routerLink="/login">Prisijungti</a>
-    <a class="btn btn-full" routerLink="/registration">Registruotis</a>
+    <a *ngIf="userService.isLoggedIn() == false" class="btn btn-full" routerLink="/login">Prisijungti</a>
+    <a *ngIf="userService.isLoggedIn() == false" class="btn btn-full" routerLink="/registration">Registruotis</a>
   </div>
 </header>
