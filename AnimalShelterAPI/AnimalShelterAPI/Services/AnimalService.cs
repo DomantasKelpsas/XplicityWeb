@@ -28,11 +28,10 @@ namespace AnimalShelterAPI.Services
             var animal = await _repository.GetById(id);
             var animalDto = _mapper.Map<AnimalDto>(animal);
 
-            if(animal.Status.Name != "Miręs")
+            animalDto.AnimalTimeInShelterCounter = FormatAnimalAge((DateTime.Today - animal.AdmissionDate).TotalDays);
+            if (animal.Status.Name != "Miręs")
             {
-                //animalDto.AnimalAgeCounter = animal.Birthday == null ? (DateTime.Now - animal.AdmissionDate) : (DateTime.Now - animal.Birthday.Value);
-                //animalDto.AnimalAgeCounter = String.
-                //animalDto.AnimalTimeInShelterCounter = DateTime.Today - animal.AdmissionDate;
+                animalDto.AnimalAgeCounter = animal.Birthday == null ? (DateTime.Now - animal.AdmissionDate) : (DateTime.Now - animal.Birthday.Value);
             }
 
             return animalDto;
@@ -111,6 +110,14 @@ namespace AnimalShelterAPI.Services
             //animal.LastModified = creationDate;
             //animal.Created = creationDate;
             return animal;
+        }
+
+        private string FormatAnimalAge(double DayCount)
+        {
+            double years = Math.Truncate(DayCount / 365);
+            double months = Math.Truncate((DayCount % 365) / 30);
+            double days = Math.Truncate((DayCount % 365) % 30);
+            return string.Format("{0} metų {1} mėnesių {2} dienų", years, months, days);
         }
     }
 }
