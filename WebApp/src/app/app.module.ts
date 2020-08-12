@@ -23,6 +23,8 @@ import { AnimalListComponent } from './components/animal-list/animal-list.compon
 import { JwtInterceptor } from '@app/services/token-interceptor.service';
 import { ErrorInterceptorService } from '@app/services/error-interceptor.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -31,7 +33,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AnimalRegisterComponent,
     RegistrationComponent,
     LoginComponent,
-    AnimalListComponent
+    AnimalListComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
