@@ -53,7 +53,7 @@ namespace AnimalShelterAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] NewAnimalDto newAnimal)
         {
-            AnimalDto createdAnimal = await _animalService.Create(newAnimal);
+            AnimalListItemDto createdAnimal = await _animalService.Create(newAnimal);
             var animalUri = CreateResourceUri(createdAnimal.Id);
             return Created(animalUri, createdAnimal);
         }

@@ -6,7 +6,7 @@ namespace AnimalShelterAPI.Hubs
 {
     public class AnimalHub : Hub
     {
-        public async Task SendAnimalProduct(AnimalDto animal)
+        public async Task SendCreatedAnimal(AnimalListItemDto animal)
         {
             await Clients.Others.SendAsync("ReceiveCreatedAnimal", animal);
         }
