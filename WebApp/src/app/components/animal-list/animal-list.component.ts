@@ -5,6 +5,8 @@ import {UserService} from '@app/services/user.service';
 import {User} from '@app/models/user';
 import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
+import {NgForm} from '@angular/forms';
+import {Status} from '@app/models/status';
 
 export interface PeriodicElement {
   admissionDate: string;
@@ -54,6 +56,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class AnimalListComponent implements OnInit {
 
+  public StatusEnum = Status;
 
   constructor(private animalService: AnimalService) {
   }

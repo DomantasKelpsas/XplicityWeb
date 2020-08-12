@@ -33,7 +33,7 @@
   <!-- Symbol Column -->
   <ng-container matColumnDef="status">
     <mat-header-cell *matHeaderCellDef> statusas</mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.status}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{StatusEnum[element.statusID]}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
