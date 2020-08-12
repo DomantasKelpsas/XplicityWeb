@@ -115,7 +115,7 @@
                  #ageYearInput="ngModel" required>
           <mat-error *ngIf="ageYearInput.invalid && (ageYearInput.dirty || ageYearInput.touched)" class="error">
             <p *ngIf="ageYearInput.errors.required">Metai laukas negali būti tuščias</p>
-            <p *ngIf="ageYearInput.value > 12 || ageYearInput.value < 0">metai tarp 0 ir 12</p>
+            <p *ngIf="ageYearInput.value">metai tarp 0 ir 12</p>
           </mat-error>
 
         </mat-form-field>
