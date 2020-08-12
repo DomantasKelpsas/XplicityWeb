@@ -9,6 +9,7 @@ namespace AnimalShelterAPI.Database
     {
         public static void Initialize(ApiContext context)
         {
+            context.Database.EnsureCreated();
             if (!context.Statuses.Any())
                 context.Statuses.AddRange(
                     new Status
