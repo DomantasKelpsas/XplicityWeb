@@ -8,7 +8,7 @@ import {Status} from '@app/models/status';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import {DatePipe} from '@angular/common';
+import { Router } from '@angular/router';
 
 
 
@@ -21,7 +21,11 @@ export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
+  constructor(private animalService: AnimalService,
+              private animalHub: AnimalHubService,
+              private snackBar: MatSnackBar,
+              private userService: UserService,
+              private router: Router) {
   }
 
   animal = new Animal();
@@ -45,7 +49,10 @@ export class AnimalListComponent implements OnInit {
   get toDate() { return this.filterForm.get('toDate').value; }
 
   ngOnInit(): void {
-    this.pipe = new DatePipe('en');
+    if (!this.userService.isLoggedIn())
+    {
+      this.router.navigate(['/login'])
+    }
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
