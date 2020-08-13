@@ -10,7 +10,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Gyvūno ID</mat-label>
           <input matInput [(ngModel)]="animal.specialID" type="text" name="animalID" placeholder=""
-                 #idInput="ngModel">
+                 #idInput="ngModel" required>
           <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
             <p *ngIf="idInput.errors.required">Gyvūno ID laukas negali būti tuščias</p>
           </mat-error>
@@ -21,7 +21,7 @@
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Miestas</mat-label>
           <mat-select [(ngModel)]="animal.admissionCity" type="text" name="city" placeholder=""
-                      #cityInput="ngModel">
+                      #cityInput="ngModel" required>
             <mat-option *ngFor="let city of cities;" [value]="city['city']">{{city['city']}}</mat-option>
 
 
@@ -35,7 +35,7 @@
           <mat-label>Rajonas</mat-label>
 
           <mat-select [(ngModel)]="animal.admissionRegion" type="text" name="region" placeholder=""
-                      #regionInput="ngModel">
+                      #regionInput="ngModel" required>
             <ng-container *ngFor="let city of cities;">
               <ng-container *ngIf="city['city'] == cityInput.value">
                 <mat-option  *ngFor="let region of city['region']" [value]="region">{{region}}</mat-option>
@@ -52,7 +52,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Priėmimo data</mat-label>
           <input matInput [(ngModel)]="animal.admissionDate" name="dateAccepted" placeholder=""
-                 #dateAcceptedInput="ngModel" [matDatepicker]="picker1">
+                 #dateAcceptedInput="ngModel" required [matDatepicker]="picker1">
           <mat-error *ngIf="dateAcceptedInput.invalid && (dateAcceptedInput.dirty || dateAcceptedInput.touched)"
                      class="error">
             <p *ngIf="dateAcceptedInput.errors.required">Priėmimo data laukas negali būti tuščias</p>
@@ -66,7 +66,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Mikroschemos įterpimo data</mat-label>
           <input matInput [(ngModel)]="animal.microchipIntegrationDate" name="dateChiped" placeholder=""
-                 #dateChipedInput="ngModel" [matDatepicker]="picker2">
+                 #dateChipedInput="ngModel" required [matDatepicker]="picker2">
           <mat-error *ngIf="dateChipedInput.invalid && (dateChipedInput.dirty || dateChipedInput.touched)"
                      class="error">
             <p *ngIf="dateChipedInput.errors.required">Mikroschemos įterpimo data laukas negali būti tuščias</p>
@@ -80,7 +80,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Skiepo data</mat-label>
           <input matInput [(ngModel)]="animal.vaccinationDate" name="dateVaccine" placeholder=""
-                 #dateVaccineInput="ngModel" [matDatepicker]="picker3">
+                 #dateVaccineInput="ngModel" required [matDatepicker]="picker3">
           <mat-error *ngIf="dateVaccineInput.invalid && (dateVaccineInput.dirty || dateVaccineInput.touched)"
                      class="error">
             <p *ngIf="dateVaccineInput.errors.required">Skiepo datos laukas negali būti tuščias</p>
@@ -94,7 +94,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Gyvūno rūšis</mat-label>
           <mat-select [(ngModel)]="animal.animalType" type="text" name="type" placeholder=""
-                      #typeInput="ngModel">
+                      #typeInput="ngModel" required>
 
             <mat-option [value]="0">Šuo</mat-option>
             <mat-option [value]="1">Katė</mat-option>
@@ -110,7 +110,7 @@
         <mat-form-field appearance="outline">
           <mat-label>Gyvūno Lytis</mat-label>
           <mat-select [(ngModel)]="animal.gender" type="text" name="gender" placeholder=""
-                      #genderInput="ngModel">
+                      #genderInput="ngModel" required>
 
             <mat-option [value]="0">Vyriška</mat-option>
             <mat-option [value]="1">Moteriška</mat-option>
@@ -126,7 +126,7 @@
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Metai</mat-label>
           <input matInput [(ngModel)]="animal.years" type="number" name="ageYear" placeholder="" pattern="^[0-9]\d*$"
-                 #ageYearInput="ngModel">
+                 #ageYearInput="ngModel" required>
           <mat-error *ngIf="ageYearInput.invalid && (ageYearInput.dirty || ageYearInput.touched)" class="error">
             <p *ngIf="ageYearInput.errors.required">Metai laukas negali būti tuščias</p>
             <p *ngIf="ageYearInput.errors.pattern">Metai negali būti mažiau nei 0</p>
@@ -138,7 +138,7 @@
           <mat-label>Mėnesiai</mat-label>
           <input matInput [(ngModel)]="animal.months" type="number" name="ageMonth" placeholder=""
                  pattern="^([0-9]|[0-1][0-2])$"
-                 #ageMonthInput="ngModel">
+                 #ageMonthInput="ngModel" required>
           <mat-error *ngIf="ageMonthInput.invalid && (ageMonthInput.dirty || ageMonthInput.touched)" class="error">
             <p *ngIf="ageMonthInput.errors.required">Mėnesiai laukas negali būti tuščias</p>
             <p *ngIf="ageMonthInput.errors.pattern">Mėnesiai turi būti tarp 0 ir 12</p>
@@ -150,9 +150,9 @@
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Kailio ilgis</mat-label>
           <mat-select [(ngModel)]="animal.furType" type="text" name="furLength" placeholder=""
-                      #furLengthInput="ngModel">
-            <mat-option [value]="'Ilgas'">Ilgas</mat-option>
-            <mat-option [value]="'Trumpas'">Trumpas</mat-option>
+                      #furLengthInput="ngModel" required>
+            <mat-option *ngFor="let num of [0,1,2,3]" [value]="num">{{FurTypeEnum[num]}}</mat-option>
+
           </mat-select>
           <mat-error *ngIf="furLengthInput.invalid && (furLengthInput.dirty || furLengthInput.touched)" class="error">
             <p *ngIf="furLengthInput.errors.required">Kailio ilgis laukas negali būti tuščias</p>
@@ -162,7 +162,7 @@
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Kailio spalva</mat-label>
           <input matInput [(ngModel)]="animal.furColor" type="text" name="furColor" placeholder=""
-                 #furColorInput="ngModel">
+                 #furColorInput="ngModel" required>
 
           <mat-error *ngIf="furColorInput.invalid && (furColorInput.dirty || furColorInput.touched)" class="error">
             <p *ngIf="furColorInput.errors.required">Kailio spalva laukas negali būti tuščias</p>
@@ -185,7 +185,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Sveikatos būklė</mat-label>
           <textarea matInput [(ngModel)]="animal.healthCondition" type="text" name="health" placeholder=""
-                    #healthInput="ngModel"></textarea>
+                    #healthInput="ngModel" required></textarea>
           <mat-error *ngIf="healthInput.invalid && (healthInput.dirty || healthInput.touched)" class="error">
             <p *ngIf="healthInput.errors.required">Sveikatos būklė laukas negali būti tuščias</p>
           </mat-error>
@@ -197,7 +197,7 @@
           <mat-label>Kontaktiniai duomenys</mat-label>
           <textarea matInput [(ngModel)]="animal.admissionOrganisationContacts" type="text" name="contactInfo"
                     placeholder=""
-                    #contactInput="ngModel"></textarea>
+                    #contactInput="ngModel" required></textarea>
           <mat-error *ngIf="contactInput.invalid && (contactInput.dirty || contactInput.touched)" class="error">
             <p *ngIf="contactInput.errors.required">Kontaktiniai duomenys laukas negali būti tuščias</p>
           </mat-error>

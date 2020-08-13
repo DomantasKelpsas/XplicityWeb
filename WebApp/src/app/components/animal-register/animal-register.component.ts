@@ -12,6 +12,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import citiesJson from '@app/models/cities.json' ;
+import {FurType} from '@app/models/fyrType';
 
 
 @Component({
@@ -22,6 +23,8 @@ import citiesJson from '@app/models/cities.json' ;
 
 
 export class AnimalRegisterComponent implements OnInit {
+
+  public FurTypeEnum = FurType;
 
   @Output()
   addButtonClick = new EventEmitter<NewAnimal>();
@@ -52,9 +55,7 @@ export class AnimalRegisterComponent implements OnInit {
         });
   }
 
-  // populateRegions($event){
-  //   console.log($event);
-  // }
+
 
   onSubmit(form: NgForm) {
     // // form.resetForm();
