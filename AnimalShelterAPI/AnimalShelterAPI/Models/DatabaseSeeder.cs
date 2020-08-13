@@ -32,7 +32,7 @@ namespace AnimalShelterAPI.Database
                 context.Animals.AddRange(
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2019-06-03"),
                         Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
@@ -52,7 +52,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2018-01-03"),
                         Birthday = DateTime.Parse("2017-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
@@ -72,7 +72,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2020-10-03"),
                         Birthday = DateTime.Parse("2019-01-02"),
                         MicrochipIntegrationDate = null,
                         VaccinationDate = DateTime.Parse("2020-08-04"),
@@ -92,7 +92,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2019-12-03"),
                         Birthday = DateTime.Parse("2015-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = DateTime.Parse("2020-08-04"),
@@ -112,7 +112,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2016-02-03"),
                         Birthday = DateTime.Parse("2016-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
@@ -152,7 +152,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2017-08-03"),
                         Birthday = DateTime.Parse("2013-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
@@ -172,7 +172,7 @@ namespace AnimalShelterAPI.Database
                     }, 
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2016-07-03"),
                         Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
@@ -192,7 +192,7 @@ namespace AnimalShelterAPI.Database
                     }, 
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2020-03-03"),
                         Birthday = DateTime.Parse("2018-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,
@@ -212,7 +212,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-08-03"),
+                        AdmissionDate = DateTime.Parse("2018-11-03"),
                         Birthday = DateTime.Parse("2014-01-02"),
                         MicrochipIntegrationDate = DateTime.Parse("2020-08-05"),
                         VaccinationDate = null,

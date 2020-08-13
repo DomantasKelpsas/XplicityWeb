@@ -14,4 +14,5 @@ export class Animal {
   specialTags: string;
   healthCondition: string;
   admissionOrganisationContacts: string;
+  statusID: number;
 }
