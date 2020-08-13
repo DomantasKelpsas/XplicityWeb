@@ -24,6 +24,7 @@ import { JwtInterceptor } from '@app/services/token-interceptor.service';
 import { ErrorInterceptorService } from '@app/services/error-interceptor.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AnimalViewComponent } from './components/animal-view/animal-view.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { HeaderComponent } from './components/header/header.component';
     LoginComponent,
     AnimalListComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AnimalViewComponent
   ],
   imports: [
     BrowserModule,
