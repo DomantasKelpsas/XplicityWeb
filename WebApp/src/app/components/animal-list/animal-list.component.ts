@@ -13,7 +13,6 @@ import {AnimalHubService} from '@app/services/animal-hub.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
-
 @Component({
   selector: 'app-animal-list',
   templateUrl: './animal-list.component.html',
@@ -23,8 +22,8 @@ export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
-  }
+  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar)
+  { }
 
   animal = new Animal();
   animals: Animal[];
@@ -45,13 +44,13 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
-      animal => 
+      animal =>
       {
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
-      }, 
-      error => 
+      },
+      error =>
       {
         console.error(error);
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
