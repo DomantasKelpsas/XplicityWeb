@@ -32,7 +32,7 @@
 
 <div class="list-container">
   <div class="filter-bar">
-    <button mat-raised-button color="primary">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
+    <button mat-raised-button color="primary" routerLink="/animal/register">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
     </button>
     <mat-form-field class="filter" floatLabel="never">
 
@@ -40,7 +40,7 @@
     </mat-form-field>
   </div>
 
-  <table mat-table [dataSource]="dataSource" matSort>
+  <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
     <ng-container matColumnDef="admissionDate">
       <mat-header-cell *matHeaderCellDef> Priėmimo data</mat-header-cell>
@@ -66,7 +66,7 @@
     <!-- Symbol Column -->
     <ng-container matColumnDef="status">
       <mat-header-cell *matHeaderCellDef> statusas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.statusID}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{StatusEnum[element.statusID]}} </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

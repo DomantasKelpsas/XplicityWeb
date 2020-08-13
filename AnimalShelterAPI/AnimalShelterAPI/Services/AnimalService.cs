@@ -40,14 +40,14 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
-        public async Task<AnimalDto> Create(NewAnimalDto newItem)
+        public async Task<AnimalListItemDto> Create(NewAnimalDto newItem)
         {
             if (newItem == null) throw new ArgumentNullException(nameof(newItem));
 
             var animal = await CreateAnimalPoco(newItem);
             await _repository.Create(animal);
 
-            var animalDto = _mapper.Map<AnimalDto>(animal);
+            var animalDto = _mapper.Map<AnimalListItemDto>(animal);
             return animalDto;
         }
 

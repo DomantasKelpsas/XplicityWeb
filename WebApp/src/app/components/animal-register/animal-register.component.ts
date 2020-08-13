@@ -7,6 +7,8 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {AnimalService} from '@app/services/animal.service';
 import {NewAnimal} from '@app/models/new-animal';
 import {Fur} from '@app/models/fur';
+import {AnimalHubService} from '@app/services/animal-hub.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-animal-register',
@@ -18,14 +20,11 @@ export class AnimalRegisterComponent implements OnInit {
 
   @Output()
   addButtonClick = new EventEmitter<NewAnimal>();
-  // animal: Animal = new Animal('', '', '', '',
-  //   '', '', '', '', 0, 0, '', '',
-  //   '', '', '', 0, '');
   animal: NewAnimal = new NewAnimal();
   fur: Fur = new Fur();
   selectedValue: string;
 
-  constructor(private animalService: AnimalService) {
+  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
   }
 
   ngOnInit(): void {
@@ -34,6 +33,18 @@ export class AnimalRegisterComponent implements OnInit {
 
   onAddButtonClick(): void {
      this.addButtonClick.emit(this.animal);
+
+    this.animalService.addAnimal(this.animal)
+      .subscribe(savedAnimal => 
+      {
+        console.log(savedAnimal);
+        this.animalHub.sendAnimal(savedAnimal);
+      }, 
+      error => 
+      {
+        this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
+        console.log(error);
+      });
   }
 
   onSubmit(form: NgForm) {
