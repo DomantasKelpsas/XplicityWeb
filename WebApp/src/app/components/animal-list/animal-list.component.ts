@@ -10,10 +10,9 @@ import {Status} from '@app/models/status';
 import {NewAnimal} from '@app/models/new-animal';
 import {Subscription} from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
-import {AnimalType} from '@app/models/animalType';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
-
+import {AnimalType} from '@app/models/animalType';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-animal-list',
@@ -24,7 +23,6 @@ export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
   public AnimalTypeEnum = AnimalType;
-
 
   constructor(private animalService: AnimalService,
               private animalHub: AnimalHubService,
@@ -57,7 +55,6 @@ export class AnimalListComponent implements OnInit {
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
       animal => {
-
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});

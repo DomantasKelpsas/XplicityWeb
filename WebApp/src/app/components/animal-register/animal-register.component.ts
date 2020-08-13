@@ -43,12 +43,17 @@ export class AnimalRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.cities);
+
     this.animalHub.startConnection();
   }
 
   ngOnDestroy(): void {
     this.animalHub.disconnect();
+
+
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
 
     if (!this.userService.isLoggedIn()) {
       this.router.navigate(['/login']);
@@ -60,7 +65,6 @@ export class AnimalRegisterComponent implements OnInit {
     console.log(this.animal);
 
     this.animalService.addAnimal(this.animal)
-
       .subscribe(savedAnimal => {
           console.log(savedAnimal);
           this.animalHub.sendAnimal(savedAnimal);
@@ -71,7 +75,6 @@ export class AnimalRegisterComponent implements OnInit {
           this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
           console.log(error);
         });
-
   }
 
   onSubmit(form: NgForm) {
