@@ -200,7 +200,7 @@
         </mat-form-field>
       </div>
       <div class="container">
-        <mat-form-field appearance="outline">
+        <mat-form-field appearance="outline" class="one-half">
           <mat-label>Gyvūno statusas</mat-label>
           <mat-select [(ngModel)]="animal.statusID" type="number" name="status" #typeInput="ngModel">
 
@@ -209,7 +209,7 @@
             <mat-option [value]="3">Gyvena prieglaudoje</mat-option>
           </mat-select>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="one-half">
           <mat-label>Statuso data</mat-label>
           <input matInput [(ngModel)]="animal.statusDate" name="statusDate" placeholder=""
                  #statusDate="ngModel" [matDatepicker]="picker4">
