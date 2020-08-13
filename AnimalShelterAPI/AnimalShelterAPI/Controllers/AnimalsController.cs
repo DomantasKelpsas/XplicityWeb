@@ -1,4 +1,5 @@
 using AnimalShelterAPI.Constants;
+using AnimalShelterAPI.Infrastructure.Repositories;
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Models.DTO;
 using AnimalShelterAPI.Services.Interfaces;
@@ -19,11 +20,13 @@ namespace AnimalShelterAPI.Controllers
     {
         private readonly IAnimalService _animalService;
         private readonly IReportService _reportService;
+        private readonly IFilterService _filterService;
 
-        public AnimalsController(IAnimalService animalService, IReportService reportService)
+        public AnimalsController(IAnimalService animalService, IReportService reportService, IFilterService filterService)
         {
             _animalService = animalService;
             _reportService = reportService;
+            _filterService = filterService;
         }
 
         // GET: api/Animals
@@ -31,6 +34,14 @@ namespace AnimalShelterAPI.Controllers
         public async Task<IActionResult> Get()
         {
             var animals = await _animalService.GetAll();
+            return Ok(animals);
+        }
+
+        // GET: api/Animals
+        [HttpGet("filter")]
+        public async Task<IActionResult> Get(string fromDate, string toDate)
+        {
+            var animals = await _filterService.GetAllFiltered(DateTime.Parse(fromDate), DateTime.Parse(toDate));
             return Ok(animals);
         }
 

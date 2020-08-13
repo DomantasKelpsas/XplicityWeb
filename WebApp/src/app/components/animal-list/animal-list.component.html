@@ -29,31 +29,34 @@
 
   </form>
 </mat-card-content>
-
+<hr>
 <div class="list-container">
-  <form class="date-block" [formGroup]="filterForm">
-    <div class="date-block__list container-date">
-      <mat-form-field>
-        <input matInput [matDatepicker]="fromDate" placeholder="Nuo data" formControlName="fromDate">
-        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
-        <mat-datepicker #fromDate></mat-datepicker>
-      </mat-form-field>
+  <div class="flex-container">
+    <div class="flex-container-item">
+      <form class="date-block" [formGroup]="filterForm">
+        <div>
+          <mat-form-field>
+            <input matInput [matDatepicker]="fromDate" placeholder="Nuo data" formControlName="fromDate">
+            <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+            <mat-datepicker #fromDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <div class="date-block__list container-date">
+          <mat-form-field>
+            <input matInput [matDatepicker]="toDate" placeholder="Iki data" formControlName="toDate">
+            <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+            <mat-datepicker #toDate></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <button class="button-height button-margin" mat-raised-button color="warn" (click)="filterAnimals()">Filtruoti</button>
+        <button class="button-height" mat-stroked-button color="basic" (click)="resetAnimalList()">Išvalyti</button>
+      </form>
     </div>
-    <div class="date-block__list container-date">
-      <mat-form-field>
-        <input matInput [matDatepicker]="toDate" placeholder="Iki data" formControlName="toDate">
-        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
-        <mat-datepicker #toDate></mat-datepicker>
-      </mat-form-field>
+    <div class="flex-container-item">
+      <button class="button-height" mat-raised-button color="primary" routerLink="/animal/register">
+        Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
+      </button>
     </div>
-    <button mat-raised-button color="warn" (click)="applyFilter()">Filtruoti</button>
-  </form>
-</div>
-
-<div class="list-container">
-  <div class="filter-bar">
-    <button mat-raised-button color="primary" routerLink="/animal/register">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
-    </button>
   </div>
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>

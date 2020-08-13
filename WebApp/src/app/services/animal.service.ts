@@ -25,6 +25,15 @@ export class AnimalService {
     return this.http.get<Animal[]>(this.AnimalListUrl);
   }
 
+  getFilteredAnimals(fromDate: Date, toDate: Date): Observable<Animal[]> {
+    return this.http.get<Animal[]>(`${this.AnimalListUrl}/filter`, {
+      params: {
+        fromDate: fromDate.toDateString(),
+        toDate: toDate.toDateString()
+      }
+    });
+  }
+
   getAnimal(AnimalId: string): Observable<Animal> {
     return this.http.get<Animal>(`${this.AnimalListUrl}/${AnimalId}`);
   }

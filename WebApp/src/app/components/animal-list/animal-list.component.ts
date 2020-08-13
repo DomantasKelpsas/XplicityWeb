@@ -1,13 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatTable} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import {UserService} from '@app/services/user.service';
-import {User} from '@app/models/user';
 import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
 import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
-import { NewAnimal } from '@app/models/new-animal';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -49,7 +46,6 @@ export class AnimalListComponent implements OnInit {
 
   ngOnInit(): void {
     this.pipe = new DatePipe('en');
-    this.dataSource.filterPredicate = (data: Animal, filter: string) => this.filterPeriod(data, filter);
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
@@ -71,6 +67,7 @@ export class AnimalListComponent implements OnInit {
     );
 
     this.subscription.add(animalHubSubscription);
+    // this.dataSource.filterPredicate = (data: Animal, filter: string) => this.filterPeriod(data, filter);
   }
 
   ngOnDestroy(): void {
@@ -78,17 +75,31 @@ export class AnimalListComponent implements OnInit {
     this.animalHub.disconnect();
   }
 
-  applyFilter() {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   onSubmit(form: NgForm) {
     // form.resetForm();
     console.log(form.value);
   }
 
-  filterPeriod(data: Animal, filter: string): boolean {
+  filterAnimals(): void {
+    if (this.fromDate && this.toDate) {
+      this.animalService.getFilteredAnimals(this.fromDate, this.toDate).subscribe(animals => {
+        this.animals = animals;
+        this.dataSource.data = this.animals;
+        console.log(animals);
+      }, error => this.err = error);
+    }
+  }
+
+  resetAnimalList(): void {
+    this.filterForm.reset();
+    this.animalService.getAnimals().subscribe(animals => {
+      this.animals = animals;
+      this.dataSource.data = this.animals;
+      console.log(animals);
+    }, error => this.err = error);
+  }
+
+  filterPeriod(data: Animal): boolean {
     if (this.fromDate && this.toDate) {
       return data.admissionDate >= this.fromDate && data.admissionDate <= this.toDate;
     }
