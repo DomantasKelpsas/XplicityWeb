@@ -21,5 +21,6 @@ namespace AnimalShelterAPI.Models
         public string TransferOrganisationContacts { get; set; }
         public Status Status { get; set; }
         public DateTime? StatusDate { get; set; }
+        public DateTime LastReminder { get; set; }
     }
 }
