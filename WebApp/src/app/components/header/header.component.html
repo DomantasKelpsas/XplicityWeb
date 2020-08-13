@@ -10,10 +10,10 @@
     </button>
     <mat-menu #menu="matMenu">
       <button mat-menu-item>
-        <span (click)="onLogout()" >Atsijungti</span>
+        <span routerLink="/profile">Profilis</span>
       </button>
       <button mat-menu-item>
-        <span routerLink="/profile">Profilis</span>
+        <span (click)="onLogout()" >Atsijungti</span>
       </button>
     </mat-menu>
   </div>

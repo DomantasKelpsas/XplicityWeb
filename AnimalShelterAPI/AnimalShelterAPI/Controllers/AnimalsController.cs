@@ -77,7 +77,7 @@ namespace AnimalShelterAPI.Controllers
 
         // PUT api/Animals/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody] NewAnimalDto newAnimal)
+        public async Task<IActionResult> Put(int id, [FromBody] EditAnimalDto newAnimal)
         {
             await _animalService.Update(id, newAnimal);
 

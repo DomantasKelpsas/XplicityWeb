@@ -8,8 +8,10 @@ import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
+import {Router} from '@angular/router';
+import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -20,6 +22,7 @@ import { Router } from '@angular/router';
 export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
+  public AnimalTypeEnum = AnimalType;
 
   constructor(private animalService: AnimalService,
               private animalHub: AnimalHubService,
@@ -32,7 +35,7 @@ export class AnimalListComponent implements OnInit {
   animals: Animal[];
   err: string;
 
-  displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
+  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('animalTable') animalTable: MatTable<Animal>;
@@ -48,10 +51,13 @@ export class AnimalListComponent implements OnInit {
   get toDate() { return this.filterForm.get('toDate').value; }
 
   ngOnInit(): void {
+
+
     if (!this.userService.isLoggedIn())
     {
       this.router.navigate(['/login']);
     }
+
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
@@ -59,14 +65,12 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
-      animal =>
-      {
+      animal => {
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
       },
-      error =>
-      {
+      error => {
         console.error(error);
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
       }
@@ -103,5 +107,9 @@ export class AnimalListComponent implements OnInit {
       this.dataSource.data = this.animals;
       console.log(animals);
     }, error => this.err = error);
+  }
+
+  navigateTo(animal): void {
+    this.router.navigate(['animal/' + animal.id]);
   }
 }
