@@ -35,7 +35,7 @@ export class AnimalListComponent implements OnInit {
   animals: Animal[];
   err: string;
 
-  displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
+  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('animalTable') animalTable: MatTable<Animal>;
