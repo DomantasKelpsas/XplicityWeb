@@ -1,4 +1,4 @@
-﻿using AnimalShelterAPI.Infrastructure.Repositories;
+using AnimalShelterAPI.Infrastructure.Repositories;
 using AnimalShelterAPI.Models;
 using AnimalShelterAPI.Models.DTO;
 using AnimalShelterAPI.Services.Interfaces;
@@ -26,10 +26,24 @@ namespace AnimalShelterAPI.Services
             _statusRepository = statusRepository;
         }
 
-        public async Task<AnimalListItemDto> GetById(int id)
+        public async Task<EditAnimalDto> GetById(int id)
         {
             var animal = await _repository.GetById(id);
-            var animalDto = _mapper.Map<AnimalListItemDto>(animal);
+            var animalDto = _mapper.Map<EditAnimalDto>(animal);
+
+            animalDto.AnimalTimeInShelterCounter = FormatAnimalAge((DateTime.Today - animal.AdmissionDate).TotalDays);
+            if (animal.Status.Name != "Miręs")
+            {
+                var CalculationDate = animal.Birthday == null ? animal.AdmissionDate : animal.Birthday.Value;
+
+                if (animal.Status.Name == "Atiduotas")
+                    animalDto.AnimalAgeCounter = FormatAnimalAge((animal.StatusDate.Value - CalculationDate).TotalDays);
+                else
+                    animalDto.AnimalAgeCounter = FormatAnimalAge((DateTime.Now - CalculationDate).TotalDays);
+            }
+            else
+                animalDto.AnimalAgeCounter = FormatAnimalAge((DateTime.Now - animal.StatusDate.Value).TotalDays);
+
             return animalDto;
         }
 
@@ -108,6 +122,14 @@ namespace AnimalShelterAPI.Services
             //animal.LastModified = creationDate;
             //animal.Created = creationDate;
             return animal;
+        }
+
+        private string FormatAnimalAge(double DayCount)
+        {
+            double years = Math.Truncate(DayCount / 365);
+            double months = Math.Truncate((DayCount % 365) / 30);
+            double days = Math.Truncate((DayCount % 365) % 30);
+            return string.Format("{0} metai {1} mėnesių {2} dienų", years, months, days);
         }
     }
 }

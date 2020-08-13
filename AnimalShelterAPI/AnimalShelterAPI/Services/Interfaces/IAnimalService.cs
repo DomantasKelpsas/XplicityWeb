@@ -7,7 +7,7 @@ namespace AnimalShelterAPI.Services.Interfaces
 {
     public interface IAnimalService
     {
-        Task<AnimalListItemDto> GetById(int id);
+        Task<EditAnimalDto> GetById(int id);
         Task<ICollection<AnimalListItemDto>> GetAll();
         Task<AnimalListItemDto> Create(NewAnimalDto newItem);
         Task Update(int id, NewAnimalDto updateData);
