@@ -18,22 +18,23 @@
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Miestas</mat-label>
-          <mat-select [(ngModel)]="animal.admissionCity" type="text" name="city" placeholder="" required #cityInput="ngModel">
-            <mat-option [value]="'Kaunas'">Kaunas</mat-option>
-            <mat-option [value]="'Vilnius'">Vilnius</mat-option>
-
+          <mat-select [(ngModel)]="animal.admissionCity" type="text" name="city" placeholder="" required
+                      #cityInput="ngModel">
+            <mat-option *ngFor="let city of cities;" [value]="city['city']">{{city['city']}}</mat-option>
           </mat-select>
           <mat-error *ngIf="cityInput.invalid && (cityInput.dirty || cityInput.touched)" class="error">
             <p *ngIf="cityInput.errors.required">Miestas negali būti tuščias</p>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Rajonas</mat-label>
           <mat-select [(ngModel)]="animal.admissionRegion" type="text" name="region" placeholder="" required
                       #regionInput="ngModel">
-            <mat-option [value]="'Kauno'">Kauno</mat-option>
-            <mat-option [value]="'Vilniaus'">Vilniaus</mat-option>
+            <ng-container *ngFor="let city of cities;">
+              <ng-container *ngIf="city['city'] == cityInput.value">
+                <mat-option  *ngFor="let region of city['region']" [value]="region">{{region}}</mat-option>
+              </ng-container>
+            </ng-container>
           </mat-select>
           <mat-error *ngIf="regionInput.invalid && (regionInput.dirty || regionInput.touched)" class="error">
             <p *ngIf="regionInput.errors.required">Rajonas negali būti tuščias</p>

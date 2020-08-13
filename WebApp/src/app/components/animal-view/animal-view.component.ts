@@ -1,11 +1,10 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EditAnimal} from '@app/models/edit-animal';
-import {Fur} from '@app/models/fur';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {AnimalService} from '@app/services/animal.service';
 import {switchMap} from 'rxjs/operators';
 import {NgForm} from '@angular/forms';
-
+import citiesJson from '@app/models/cities.json';
 @Component({
   selector: 'app-animal-view',
   templateUrl: './animal-view.component.html',
@@ -16,6 +15,7 @@ export class AnimalViewComponent implements OnInit {
   @Output()
   saveButtonClick = new EventEmitter<EditAnimal>();
   animal: EditAnimal = new EditAnimal();
+  cities = JSON.parse(JSON.stringify(citiesJson));
   constructor(private route: ActivatedRoute, private router: Router,
               private animalService: AnimalService) {}
 
