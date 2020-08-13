@@ -1,44 +1,64 @@
-<mat-card-content>
-  <form #animalReportForm="ngForm" class="" (ngSubmit)="onSubmit(animalReportForm)">
+<div class="background-color">
+  <mat-card-content>
+    <form #animalReportForm="ngForm" class="" (ngSubmit)="onSubmit(animalReportForm)">
 
-    <div class="container"><h1>Generuoti ataskaitą</h1></div>
+      <div class="container"><h1>Generuoti ataskaitą</h1></div>
 
-    <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data nuo</mat-label>
-        <input matInput  name="dateReportFrom" placeholder=""
-                [matDatepicker]="pickerFrom">
-        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-        <mat-datepicker #pickerFrom></mat-datepicker>
-      </mat-form-field>
+      <div class="container">
+        <mat-form-field appearance="fill" >
+          <mat-label>Data nuo</mat-label>
+          <input matInput  name="dateReportFrom" placeholder=""
+                 [matDatepicker]="pickerFrom">
+          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
+          <mat-datepicker #pickerFrom></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <mat-form-field appearance="fill" >
+          <mat-label>Data iki</mat-label>
+          <input matInput  name="dateReportTo" placeholder=""
+                 [matDatepicker]="pickerTo">
+          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
+          <mat-datepicker #pickerTo></mat-datepicker>
+        </mat-form-field>
+      </div>
+
+      <div class="container">
+        <button mat-raised-button color="warn">Generuoti</button>
+      </div>
+
+
+    </form>
+  </mat-card-content>
+  <hr>
+  <div class="list-container">
+    <div class="flex-container">
+      <div class="flex-container-item">
+        <form class="date-block" [formGroup]="filterForm">
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="fromDate" placeholder="Nuo data" formControlName="fromDate">
+              <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+              <mat-datepicker #fromDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="date-block__list container-date">
+            <mat-form-field>
+              <input matInput [matDatepicker]="toDate" placeholder="Iki data" formControlName="toDate">
+              <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+              <mat-datepicker #toDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <button class="button-height button-margin" mat-raised-button color="warn" (click)="filterAnimals()">Filtruoti</button>
+          <button class="button-height" mat-stroked-button color="basic" (click)="resetAnimalList()">Išvalyti</button>
+        </form>
+      </div>
+      <div class="flex-container-item">
+        <button class="button-height" mat-raised-button color="primary" routerLink="/animal/register">
+          Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
+        </button>
+      </div>
     </div>
-    <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data iki</mat-label>
-        <input matInput  name="dateReportTo" placeholder=""
-               [matDatepicker]="pickerTo">
-        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-        <mat-datepicker #pickerTo></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="container">
-      <button mat-raised-button color="warn">Generuoti</button>
-    </div>
-
-
-  </form>
-</mat-card-content>
-
-<div class="list-container">
-  <div class="filter-bar">
-    <button mat-raised-button color="primary" routerLink="/animal/register">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
-    </button>
-    <mat-form-field class="filter" floatLabel="never">
-
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filtruoti.." #input>
-    </mat-form-field>
-  </div>
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
@@ -74,8 +94,10 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row)"></mat-row>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter </td>
+      </tr>
+    </table>
+  </div>
 </div>
+
