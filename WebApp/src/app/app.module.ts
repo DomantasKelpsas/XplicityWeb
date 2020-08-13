@@ -26,6 +26,8 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { AnimalViewComponent } from './components/animal-view/animal-view.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -37,7 +39,8 @@ import { HeaderComponent } from './components/header/header.component';
     AnimalListComponent,
     LandingPageComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    AnimalViewComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +65,8 @@ import { HeaderComponent } from './components/header/header.component';
     ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
