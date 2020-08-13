@@ -10,8 +10,9 @@ const routes: Routes = [
   {path: 'animal/register', component: AnimalRegisterComponent},
   {path: 'login', component: LoginComponent},
   {path: 'animal/list', component: AnimalListComponent},
+  {path: 'animal/list/edit', component: LandingPageComponent},
   {path: 'register', component: RegistrationComponent},
-  {path: '', component: LandingPageComponent}
+  {path: '', component: LandingPageComponent},
 ];
 
 @NgModule({
