@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatTable} from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
 import {Animal} from '@app/models/animal';
+import {UserService} from "@app/services/user.service";
 import {AnimalService} from '@app/services/animal.service';
 import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
