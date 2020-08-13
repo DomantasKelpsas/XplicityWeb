@@ -23,6 +23,10 @@ export class AnimalHubService {
     return from(this.connection.start());
   }
 
+  startConnection() {
+    this.connection.start();
+  }
+
   receiveAnimals(): Observable<Animal> {
     const animalSubject = new Subject<Animal>();
     // subscribe to 'ReceiveCreatedAnimal' method's messages

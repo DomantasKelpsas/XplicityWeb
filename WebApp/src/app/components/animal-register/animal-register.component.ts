@@ -38,6 +38,11 @@ export class AnimalRegisterComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.cities);
+    this.animalHub.startConnection();
+  }
+
+  ngOnDestroy(): void {
+    this.animalHub.disconnect();
   }
 
   onAddButtonClick(): void {
