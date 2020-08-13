@@ -47,6 +47,7 @@ export class AnimalViewComponent implements OnInit {
       res => {
         console.log('Animal updated');
         console.log(this.animal);
+        this.router.navigateByUrl('animal/list');
       },
       error =>
       {
