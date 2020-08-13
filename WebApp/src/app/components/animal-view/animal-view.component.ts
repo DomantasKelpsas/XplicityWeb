@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {EditAnimal} from '@app/models/edit-animal';
 import {Fur} from '@app/models/fur';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
@@ -13,6 +13,8 @@ import {NgForm} from '@angular/forms';
 })
 export class AnimalViewComponent implements OnInit {
 
+  @Output()
+  saveButtonClick = new EventEmitter<EditAnimal>();
   animal: EditAnimal = new EditAnimal();
   fur: Fur = new Fur();
   constructor(private route: ActivatedRoute, private router: Router,
@@ -30,6 +32,9 @@ export class AnimalViewComponent implements OnInit {
       this.animal = animal;
       console.log(this.animal);
     });
+  }
+  onSaveButtonClick(): void {
+    this.saveButtonClick.emit(this.animal);
   }
 
   onSubmit(newAnimalForm: NgForm) {

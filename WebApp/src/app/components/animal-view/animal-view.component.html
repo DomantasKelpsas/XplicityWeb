@@ -6,16 +6,6 @@
 
   <mat-card-content>
     <form  #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
-      <div class="container">
-        <mat-form-field appearance="outline">
-          <mat-label>Gyvūno ID</mat-label>
-          <input matInput [(ngModel)]="animal.specialID" type="text" name="animalID" placeholder="" required
-                 #idInput="ngModel">
-          <mat-error *ngIf="idInput.invalid && (idInput.dirty || idInput.touched)" class="error">
-            <p *ngIf="idInput.errors.required">Gyvūno ID laukas negali būti tuščias</p>
-          </mat-error>
-        </mat-form-field>
-      </div>
 
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
@@ -168,8 +158,28 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <div class="container">
+        <mat-form-field appearance="outline">
+          <mat-label>Gyvūno statusas</mat-label>
+          <mat-select [(ngModel)]="animal.statusID" type="number" name="status" #typeInput="ngModel">
 
-
+            <mat-option [value]="1">Atiduotas</mat-option>
+            <mat-option [value]="2">Miręs</mat-option>
+            <mat-option [value]="3">Gyvena prieglaudoje</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Statuso data</mat-label>
+          <input matInput [(ngModel)]="animal.statusDate" name="statusDate" placeholder=""
+                 #statusDate="ngModel" [matDatepicker]="picker4">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="left">
+        <button mat-raised-button (click)="onSaveButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Išsaugoti
+        </button>
+      </div>
 
     </form>
   </mat-card-content>
