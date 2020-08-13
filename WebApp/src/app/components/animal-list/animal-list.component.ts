@@ -10,6 +10,8 @@ import {Status} from '@app/models/status';
 import { NewAnimal } from '@app/models/new-animal';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
+import {Router} from '@angular/router';
+import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 
@@ -21,9 +23,14 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
+  public AnimalTypeEnum = AnimalType;
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar)
-  { }
+  constructor(private animalService: AnimalService,
+              private animalHub: AnimalHubService,
+              private snackBar: MatSnackBar,
+              private userService: UserService,
+              private router: Router) {
+  }
 
   animal = new Animal();
   animals: Animal[];
@@ -37,6 +44,13 @@ export class AnimalListComponent implements OnInit {
   private subscription = new Subscription();
 
   ngOnInit(): void {
+
+
+    if (!this.userService.isLoggedIn())
+    {
+      this.router.navigate(['/login']);
+    }
+
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
@@ -44,14 +58,12 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
-      animal =>
-      {
+      animal => {
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
       },
-      error =>
-      {
+      error => {
         console.error(error);
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
       }

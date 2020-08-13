@@ -56,6 +56,9 @@ namespace AnimalShelterAPI.Migrations
                     b.Property<string>("HealthCondition")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("LastReminder")
+                        .HasColumnType("datetime2");
+
                     b.Property<DateTime?>("MicrochipIntegrationDate")
                         .HasColumnType("datetime2");
 
