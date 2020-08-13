@@ -5,7 +5,17 @@
   <a *ngIf="!checkLogin()"  routerLink="/login" routerLinkActive="active">Prisijungti</a>
   <a *ngIf="!checkLogin()"  routerLink="/register" routerLinkActive="active">Registruotis</a>
   <div class="topnav-right">
-    <a *ngIf="checkLogin()" (click)="onLogout()" >Atsijungti</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu" *ngIf="checkLogin()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <span (click)="onLogout()" >Atsijungti</span>
+      </button>
+      <button mat-menu-item>
+        <span routerLink="/profile">Profilis</span>
+      </button>
+    </mat-menu>
   </div>
 </div>
 
