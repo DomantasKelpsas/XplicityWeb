@@ -6,7 +6,15 @@
 
   <mat-card-content>
     <form  #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
-
+      <div class="container">
+          <mat-label>Gyvūno unikalus ID: {{animal.specialID}}</mat-label>
+      </div>
+      <div class="container">
+        <mat-label>Gyvūnas prieglaudoje gyvena: {{animal.animalTimeInShelterCounter}}</mat-label>
+      </div>
+      <div class="container">
+        <mat-label>Gyvūno amžius: {{animal.animalAgeCounter}}</mat-label>
+      </div>
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Miestas</mat-label>

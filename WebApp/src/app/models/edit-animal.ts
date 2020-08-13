@@ -18,4 +18,6 @@ export class EditAnimal {
   admissionOrganisationContacts: string;
   statusID: number;
   statusDate: Date;
+  animalAgeCounter: string;
+  animalTimeInShelterCounter: string;
 }

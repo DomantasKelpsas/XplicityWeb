@@ -36,6 +36,8 @@ export class AnimalViewComponent implements OnInit {
   }
 
   onSubmit(newAnimalForm: NgForm) {
+    // call the api and patch the data
+    console.log('saugomas gyvunas');
     console.log(this.animal);
   }
 }
