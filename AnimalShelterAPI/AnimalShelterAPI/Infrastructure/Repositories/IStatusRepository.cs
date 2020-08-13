@@ -8,5 +8,6 @@ namespace AnimalShelterAPI.Infrastructure.Repositories
         public Task<Status> InShelterStatus { get; }
         public Task<Status> DeadStatus { get; }
         public Task<Status> GivenAwayStatus { get; }
+        public Task<Status> GetById(int id);
     }
 }

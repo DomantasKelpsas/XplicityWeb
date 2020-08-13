@@ -27,6 +27,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RemindPasswordComponent } from './components/remind-password/remind-password.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { RemindPasswordComponent } from './components/remind-password/remind-pas
     ReactiveFormsModule,
     HttpClientModule,
     MatIconModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatMenuModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
