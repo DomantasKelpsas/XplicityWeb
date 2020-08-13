@@ -35,16 +35,26 @@ export class AnimalRegisterComponent implements OnInit {
   cities = JSON.parse(JSON.stringify(citiesJson));
 
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
+  constructor(private animalService: AnimalService,
+              private animalHub: AnimalHubService,
+              private snackBar: MatSnackBar,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
-    console.log(this.cities);
+    
     this.animalHub.startConnection();
   }
 
   ngOnDestroy(): void {
     this.animalHub.disconnect();
+
+    if (!this.userService.isLoggedIn())
+    {
+      this.router.navigate(['/login'])
+    }
+    this.animal.fur = this.fur;
   }
 
   onAddButtonClick(): void {
@@ -60,20 +70,13 @@ export class AnimalRegisterComponent implements OnInit {
           this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
           console.log(error);
         });
+
   }
 
 
 
   onSubmit(form: NgForm) {
-    // // form.resetForm();
-    // console.log(this.animal);
-    // this.animalService.addAnimal(this.animal).subscribe(
-    //   res => {
-    //     console.log('animal register works!');
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   });
+   
   }
 
 
