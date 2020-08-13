@@ -10,7 +10,8 @@ export class Animal {
   admissionRegion: string;
   animalType: number;
   months: number;
-  fur: Fur;
+  furType: number;
+  furColor: string;
   specialTags: string;
   healthCondition: string;
   admissionOrganisationContacts: string;
