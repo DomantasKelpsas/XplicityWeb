@@ -13,10 +13,6 @@ import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import citiesJson from '@app/models/cities.json' ;
 
-interface MyRootObj {
-  city: string;
-  regions: string[];
-}
 
 @Component({
   selector: 'app-animal-register',
