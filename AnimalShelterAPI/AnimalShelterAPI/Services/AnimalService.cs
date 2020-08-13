@@ -26,10 +26,10 @@ namespace AnimalShelterAPI.Services
             _statusRepository = statusRepository;
         }
 
-        public async Task<NewAnimalDto> GetById(int id)
+        public async Task<EditAnimalDto> GetById(int id)
         {
             var animal = await _repository.GetById(id);
-            var animalDto = _mapper.Map<NewAnimalDto>(animal);
+            var animalDto = _mapper.Map<EditAnimalDto>(animal);
 
             animalDto.AnimalTimeInShelterCounter = FormatAnimalAge((DateTime.Today - animal.AdmissionDate).TotalDays);
             if (animal.Status.Name != "Miręs")
