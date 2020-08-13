@@ -30,9 +30,6 @@ export class AnimalRegisterComponent implements OnInit {
   cities = JSON.parse(JSON.stringify(citiesJson));
 
 
-
-  // const citiesJson: any[] = Array.of(Cities);
-
   constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
   }
 
@@ -42,6 +39,7 @@ export class AnimalRegisterComponent implements OnInit {
 
   onAddButtonClick(): void {
     this.addButtonClick.emit(this.animal);
+    console.log(this.animal);
 
     this.animalService.addAnimal(this.animal)
       .subscribe(savedAnimal => {
@@ -59,15 +57,15 @@ export class AnimalRegisterComponent implements OnInit {
   // }
 
   onSubmit(form: NgForm) {
-    // form.resetForm();
-    console.log(this.animal);
-    this.animalService.addAnimal(this.animal).subscribe(
-      res => {
-        console.log('animal register works!');
-      },
-      error => {
-        console.log(error);
-      });
+    // // form.resetForm();
+    // console.log(this.animal);
+    // this.animalService.addAnimal(this.animal).subscribe(
+    //   res => {
+    //     console.log('animal register works!');
+    //   },
+    //   error => {
+    //     console.log(error);
+    //   });
   }
 
 
