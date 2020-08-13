@@ -1,6 +1,13 @@
 .topnav {
   overflow: hidden;
   background-color: #534741;
+  width: 100%;
+  //background-color: #eee;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
 }
 
 .topnav a {
