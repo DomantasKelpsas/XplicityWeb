@@ -37,7 +37,8 @@ export class ReportFormComponent implements OnInit {
     settings.AnimalType = +this.generationForm.get('type').value;
     console.log(settings);
     this.animalService.getAnimalYearReport(settings).subscribe((data) => {
-      this.blob = new Blob([data], {type: 'application/octet-stream'});
+      this.blob = new Blob([data.blob()],
+        {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
       const downloadURL = window.URL.createObjectURL(data);
       console.log(downloadURL);
       this.router.navigate([downloadURL]);
