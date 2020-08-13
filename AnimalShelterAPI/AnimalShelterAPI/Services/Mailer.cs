@@ -22,20 +22,11 @@ namespace AnimalShelterAPI.Services
             _configuration = configuration;
         }
 
-        public async Task SendEmailAsync(string email, string subject, string body)
+        private async Task Send(MimeMessage message)
         {
             try
             {
-                var message = new MimeMessage();
-                message.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
-                message.To.Add(new MailboxAddress("AnimalShelter", email));
-                message.Subject = subject;
-                message.Body = new TextPart("html")
-                {
-                    Text = body
-                };
-
-                using(var client = new SmtpClient())
+                using (var client = new SmtpClient())
                 {
                     client.ServerCertificateValidationCallback = (s, c, h, e) => true;
 
@@ -50,6 +41,38 @@ namespace AnimalShelterAPI.Services
             {
                 throw new InvalidCastException(e.Message);
             }
+        }
+
+        public async Task SendEmailAsync(string email, string subject, string body)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
+            message.To.Add(new MailboxAddress("AnimalShelter", email));
+            message.Subject = subject;
+            message.Body = new TextPart("html")
+            {
+                Text = body
+            };
+
+            await Send(message);
+        }
+
+        public async Task SendMassEmailAsync(List<string> recipients, string subject, string body)
+        {
+            var message = new MimeMessage();
+            message.From.Add(new MailboxAddress(_smtpSettings.SenderName, _smtpSettings.SenderEmail));
+            foreach (string email in recipients)
+            {
+                message.To.Add(new MailboxAddress("AnimalShelter", email));
+            }
+            
+            message.Subject = subject;
+            message.Body = new TextPart("html")
+            {
+                Text = body
+            };
+
+            await Send(message);
         }
     }
 }
