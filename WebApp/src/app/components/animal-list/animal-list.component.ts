@@ -13,7 +13,7 @@ import {AnimalHubService} from '@app/services/animal-hub.service';
 import {Router} from '@angular/router';
 import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+
 
 
 
@@ -46,9 +46,6 @@ export class AnimalListComponent implements OnInit {
   private subscription = new Subscription();
 
   ngOnInit(): void {
-
-
-    this.status = Status;
 
 
     if (!this.userService.isLoggedIn())
