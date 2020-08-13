@@ -1,26 +1,26 @@
 <mat-card-content>
   <div class="container">
-    <h1 style="text-align: center">Generuoti ataskaitą</h1>
+    <h1 class="title">Generuoti ataskaitą</h1>
   </div>
-  <form [formGroup]="generationForm" class="date-block" (ngSubmit)="onSubmit()">
+  <form [formGroup]="generationForm"  (ngSubmit)="onSubmit()">
+
     <div class="container">
       <mat-form-field>
         <mat-label>Metai</mat-label>
-        <select matNativeControl formControlName="year" required>
-          <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
-        </select>
+        <mat-select matNativeControl formControlName="year" required>
+          <mat-option *ngFor="let year of years" value="{{year}}">{{year}}</mat-option>
+        </mat-select>
       </mat-form-field>
-    </div>
-    <div class="container">
       <mat-form-field>
         <mat-label>Gyvūno tipas</mat-label>
-        <select matNativeControl formControlName="type" required>
-          <option value="0">Šuo</option>
-          <option value="1">Katė</option>
-          <option value="2">Kitas</option>
-        </select>
+        <mat-select matNativeControl formControlName="type" required>
+          <mat-option value="0">Šuo</mat-option>
+          <mat-option value="1">Katė</mat-option>
+          <mat-option value="2">Kitas</mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
+
 
     <div class="container">
       <button mat-raised-button color="warn">Generuoti</button>

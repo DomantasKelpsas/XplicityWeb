@@ -39,8 +39,13 @@ export class AnimalService {
     return this.http.get<Animal>(`${this.AnimalListUrl}/Act/${AnimalId}`);
   }
 
-  getAnimalYearReport(ReportSettings: ReportRequestDto): Observable<Blob> {
-    return this.http.post<Blob>(`${this.AnimalListUrl}/Report`, ReportSettings, {headers});
+  getAnimalYearReport(ReportSettings: ReportRequestDto): any {
+    return this.http.get<any>(`${this.AnimalListUrl}/Report`, {
+      params: {
+        Year: ReportSettings.Year.toString(),
+        Type: ReportSettings.AnimalType.toString()
+      }
+    });
   }
 
   putAnimal(AnimalId: string, animal: EditAnimal): Observable<EditAnimal>{

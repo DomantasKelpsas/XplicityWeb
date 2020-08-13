@@ -10,7 +10,7 @@
     <!-- Position Column -->
     <ng-container matColumnDef="admissionDate">
       <mat-header-cell *matHeaderCellDef> Priėmimo data</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.admissionDate.split('T').join(' ')}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.admissionDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
