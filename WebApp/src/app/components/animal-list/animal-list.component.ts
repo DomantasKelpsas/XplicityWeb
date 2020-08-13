@@ -7,12 +7,15 @@ import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
 import {NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
-import {NewAnimal} from '@app/models/new-animal';
-import {Subscription} from 'rxjs';
+import { NewAnimal } from '@app/models/new-animal';
+import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import {Router} from '@angular/router';
 import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
+
 
 @Component({
   selector: 'app-animal-list',
@@ -29,7 +32,6 @@ export class AnimalListComponent implements OnInit {
               private snackBar: MatSnackBar,
               private userService: UserService,
               private router: Router) {
-
   }
 
   animal = new Animal();
@@ -44,9 +46,16 @@ export class AnimalListComponent implements OnInit {
   private subscription = new Subscription();
 
   ngOnInit(): void {
-    if (!this.userService.isLoggedIn()) {
+
+
+    this.status = Status;
+
+
+    if (!this.userService.isLoggedIn())
+    {
       this.router.navigate(['/login']);
     }
+
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);

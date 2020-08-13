@@ -4,6 +4,7 @@ import {AnimalRegisterComponent} from './components/animal-register/animal-regis
 import {RegistrationComponent} from './components/registration/registration.component';
 import {LoginComponent} from './components/login/login.component';
 import {AnimalListComponent} from './components/animal-list/animal-list.component';
+import {AnimalViewComponent} from '@app/components/animal-view/animal-view.component';
 import {LandingPageComponent} from '@app/components/landing-page/landing-page.component';
 
 const routes: Routes = [
@@ -11,7 +12,9 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'animal/list', component: AnimalListComponent},
   {path: 'register', component: RegistrationComponent},
+  {path: 'animal/:id', component: AnimalViewComponent},
   {path: '', component: LandingPageComponent}
+
 ];
 
 @NgModule({
