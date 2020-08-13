@@ -26,6 +26,7 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { RemindPasswordComponent } from './components/remind-password/remind-password.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { HeaderComponent } from './components/header/header.component';
     AnimalListComponent,
     LandingPageComponent,
     FooterComponent,
-    HeaderComponent
+    HeaderComponent,
+    RemindPasswordComponent
   ],
   imports: [
     BrowserModule,
