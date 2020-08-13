@@ -33,6 +33,9 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.form.controls;
   }
+  checkLogin(): boolean {
+    return this.userService.isLoggedIn();
+  }
 
   onSubmit(): void {
     // connect with back-end, validate and re-route?

@@ -19,6 +19,7 @@
           <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
             <p *ngIf="passInput.errors.required">Neįvestas slaptažodis.</p></mat-error>
         </mat-form-field>
+        <p *ngIf="submitted && !checkLogin()" class="error">Neteisingi prisijungimo duomenys</p>
         <div>
           <button mat-raised-button color="primary" (click)="onLoginButtonClick()">Prisijungti</button>
           <p>
