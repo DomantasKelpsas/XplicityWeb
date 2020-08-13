@@ -22,6 +22,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AnimalListComponent } from './components/animal-list/animal-list.component';
 import { JwtInterceptor } from '@app/services/token-interceptor.service';
 import { ErrorInterceptorService } from '@app/services/error-interceptor.service';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 
 @NgModule({
@@ -30,7 +32,9 @@ import { ErrorInterceptorService } from '@app/services/error-interceptor.service
     AnimalRegisterComponent,
     RegistrationComponent,
     LoginComponent,
-    AnimalListComponent
+    AnimalListComponent,
+    FooterComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

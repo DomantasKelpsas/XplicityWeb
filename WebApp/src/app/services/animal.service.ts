@@ -4,6 +4,7 @@ import {User} from '@app/models/user';
 import {Observable} from 'rxjs';
 import {Token} from '@app/models/token';
 import {Animal} from '@app/models/animal';
+import {NewAnimal} from '@app/models/new-animal';
 
 const headers = new HttpHeaders({
   'Content-Type': 'application/json',
@@ -28,7 +29,7 @@ export class AnimalService {
     return this.http.get<Animal>(`${this.AnimalListUrl}/${AnimalId}`);
   }
 
-  addAnimal(animal: Animal): Observable<Animal> {
-    return this.http.post<Animal>(this.AnimalListUrl, animal, {headers});
+  addAnimal(animal: NewAnimal): Observable<NewAnimal> {
+    return this.http.post<NewAnimal>(this.AnimalListUrl, animal, {headers});
   }
 }

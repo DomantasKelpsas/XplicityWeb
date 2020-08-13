@@ -1,0 +1,11 @@
+<div class="topnav">
+  <a routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" routerLink="/" id="lese">LESĖ</a>
+  <a *ngIf="checkLogin()" routerLink="/register/animal" routerLinkActive="active">Registruoti gyvūną</a>
+  <a *ngIf="checkLogin()" routerLink="/animal/list" routerLinkActive="active">Gyvūnų sąrašas</a>
+  <a *ngIf="!checkLogin()"  routerLink="/login" routerLinkActive="active">Prisijungti</a>
+  <a *ngIf="!checkLogin()"  routerLink="/register" routerLinkActive="active">Registruotis</a>
+  <div class="topnav-right">
+    <a *ngIf="checkLogin()" (click)="onLogout()" >Atsijungti</a>
+  </div>
+</div>
+

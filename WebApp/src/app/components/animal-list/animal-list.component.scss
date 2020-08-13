@@ -16,7 +16,27 @@ table {
 .right{
   text-align: right;
 }
-.container{
-  display: flex;
-  justify-content: space-around;
+.container-report-date{
+
+  //display: flex;
+  //justify-content: center;
+  //align-content: center;
+  min-width: 50%;
+
 }
+
+.report-date-field{
+  padding: 20px 40px;
+}
+
+.list-container{
+  margin-top: 20vh;
+}
+.container{
+  padding: 20px 40px;
+}
+
+form{
+  text-align: center;
+}
+
