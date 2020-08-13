@@ -11,6 +11,7 @@ import { NewAnimal } from '@app/models/new-animal';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import {DatePipe} from '@angular/common';
 
 
 
@@ -29,6 +30,7 @@ export class AnimalListComponent implements OnInit {
   animal = new Animal();
   animals: Animal[];
   err: string;
+  pipe: DatePipe;
 
   displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
@@ -46,6 +48,8 @@ export class AnimalListComponent implements OnInit {
   get toDate() { return this.filterForm.get('toDate').value; }
 
   ngOnInit(): void {
+    this.pipe = new DatePipe('en');
+    this.dataSource.filterPredicate = (data: Animal, filter: string) => this.filterPeriod(data, filter);
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
@@ -73,7 +77,6 @@ export class AnimalListComponent implements OnInit {
     this.subscription.unsubscribe();
     this.animalHub.disconnect();
   }
-
 
   applyFilter() {
     const filterValue = (event.target as HTMLInputElement).value;
