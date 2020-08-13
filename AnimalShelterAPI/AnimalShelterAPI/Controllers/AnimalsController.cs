@@ -15,7 +15,6 @@ namespace AnimalShelterAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     [AuthorizeAttr]
-
     public class AnimalsController : ControllerBase
     {
         private readonly IAnimalService _animalService;
