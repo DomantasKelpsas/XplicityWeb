@@ -34,6 +34,7 @@ export class AnimalListComponent implements OnInit {
   animal = new Animal();
   animals: Animal[];
   err: string;
+  status: typeof Status;
 
   displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
@@ -43,10 +44,16 @@ export class AnimalListComponent implements OnInit {
   private subscription = new Subscription();
 
   ngOnInit(): void {
+
+
+    this.status = Status;
+
+
     if (!this.userService.isLoggedIn())
     {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
+
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);

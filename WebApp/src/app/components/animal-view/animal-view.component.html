@@ -1,11 +1,17 @@
 <mat-card id="card" style="text-align: center;">
 
   <mat-card-title>
-    Gyvūno Registracija
+    Gyvūno redagavimas
   </mat-card-title>
 
   <mat-card-content>
     <form  #newAnimalForm="ngForm" class="animal-register-form" (ngSubmit)="onSubmit(newAnimalForm)">
+      <div class="container">
+        <mat-label>Gyvūnas prieglaudoje gyvena: {{animal.animalTimeInShelterCounter}}</mat-label>
+      </div>
+      <div class="container">
+        <mat-label>Gyvūno amžius: {{animal.animalAgeCounter}}</mat-label>
+      </div>
       <div class="container">
         <mat-form-field appearance="outline">
           <mat-label>Gyvūno ID</mat-label>
@@ -16,26 +22,26 @@
           </mat-error>
         </mat-form-field>
       </div>
-
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Miestas</mat-label>
-          <mat-select [(ngModel)]="animal.admissionCity" type="text" name="city" placeholder="" required #cityInput="ngModel">
-            <mat-option [value]="'Kaunas'">Kaunas</mat-option>
-            <mat-option [value]="'Vilnius'">Vilnius</mat-option>
-
+          <mat-select [(ngModel)]="animal.admissionCity" type="text" name="city" placeholder="" required
+                      #cityInput="ngModel">
+            <mat-option *ngFor="let city of cities;" [value]="city['city']">{{city['city']}}</mat-option>
           </mat-select>
           <mat-error *ngIf="cityInput.invalid && (cityInput.dirty || cityInput.touched)" class="error">
             <p *ngIf="cityInput.errors.required">Miestas negali būti tuščias</p>
           </mat-error>
         </mat-form-field>
-
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Rajonas</mat-label>
           <mat-select [(ngModel)]="animal.admissionRegion" type="text" name="region" placeholder="" required
                       #regionInput="ngModel">
-            <mat-option [value]="'Kauno'">Kauno</mat-option>
-            <mat-option [value]="'Vilniaus'">Vilniaus</mat-option>
+            <ng-container *ngFor="let city of cities;">
+              <ng-container *ngIf="city['city'] == cityInput.value">
+                <mat-option  *ngFor="let region of city['region']" [value]="region">{{region}}</mat-option>
+              </ng-container>
+            </ng-container>
           </mat-select>
           <mat-error *ngIf="regionInput.invalid && (regionInput.dirty || regionInput.touched)" class="error">
             <p *ngIf="regionInput.errors.required">Rajonas negali būti tuščias</p>
@@ -116,7 +122,7 @@
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Metai</mat-label>
-          <input matInput [(ngModel)]="animal.gender" type="number" name="ageYear" placeholder="" pattern="^[0-9]\d*$"
+          <input matInput [(ngModel)]="animal.years" type="number" name="ageYear" placeholder="" pattern="^[0-9]\d*$"
                  #ageYearInput="ngModel"  required>
           <mat-error *ngIf="ageYearInput.invalid && (ageYearInput.dirty || ageYearInput.touched)" class="error">
             <p *ngIf="ageYearInput.errors.required">Metai laukas negali būti tuščias</p>
@@ -135,14 +141,15 @@
           </mat-error>
         </mat-form-field>
       </div>
-
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Kailio ilgis</mat-label>
-          <mat-select [(ngModel)]="animal.fur.furType" type="text" name="furLength" placeholder="" required
+          <mat-select [(ngModel)]="animal.furType" type="text" name="furLength" placeholder="" required
                       #furLengthInput="ngModel">
-            <mat-option [value]="'Ilgas'">Ilgas</mat-option>
-            <mat-option [value]="'Trumpas'">Trumpas</mat-option>
+            <mat-option [value]="0">Trumpakailis</mat-option>
+            <mat-option [value]="1">Šiurkčiaplaukis</mat-option>
+            <mat-option [value]="2">Vidutinio ilgio</mat-option>
+            <mat-option [value]="3">Ilgaplaukis</mat-option>
           </mat-select>
           <mat-error *ngIf="furLengthInput.invalid && (furLengthInput.dirty || furLengthInput.touched)" class="error">
             <p *ngIf="furLengthInput.errors.required">Kailio ilgis laukas negali būti tuščias</p>
@@ -151,7 +158,7 @@
 
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Kailio spalva</mat-label>
-          <input matInput [(ngModel)]="animal.fur.color" type="text" name="furColor" placeholder=""
+          <input matInput [(ngModel)]="animal.furColor" type="text" name="furColor" placeholder=""
                  #furColorInput="ngModel" required>
 
           <mat-error *ngIf="furColorInput.invalid && (furColorInput.dirty || furColorInput.touched)" class="error">
@@ -159,6 +166,7 @@
           </mat-error>
         </mat-form-field>
       </div>
+
       <div class="container">
         <mat-form-field appearance="fill">
           <mat-label>Ypatingos žymės</mat-label>
@@ -191,9 +199,26 @@
           </mat-error>
         </mat-form-field>
       </div>
+      <div class="container">
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Gyvūno statusas</mat-label>
+          <mat-select [(ngModel)]="animal.statusID" type="number" name="status" #typeInput="ngModel">
 
+            <mat-option [value]="1">Atiduotas</mat-option>
+            <mat-option [value]="2">Miręs</mat-option>
+            <mat-option [value]="3">Gyvena prieglaudoje</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill" class="one-half">
+          <mat-label>Statuso data</mat-label>
+          <input matInput [(ngModel)]="animal.statusDate" name="statusDate" placeholder=""
+                 #statusDate="ngModel" [matDatepicker]="picker4">
+          <mat-datepicker-toggle matSuffix [for]="picker4"></mat-datepicker-toggle>
+          <mat-datepicker #picker4></mat-datepicker>
+        </mat-form-field>
+      </div>
       <div class="left">
-        <button mat-raised-button (click)="onAddButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Registruoti
+        <button mat-raised-button (click)="onSaveButtonClick()" [disabled]="newAnimalForm.invalid" color="primary">Išsaugoti
         </button>
       </div>
 
