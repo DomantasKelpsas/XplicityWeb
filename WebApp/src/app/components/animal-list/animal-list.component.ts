@@ -11,6 +11,7 @@ import {NewAnimal} from '@app/models/new-animal';
 import {Subscription} from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {AnimalType} from '@app/models/animalType';
 
 
 @Component({
@@ -21,6 +22,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
+  public AnimalTypeEnum = AnimalType;
 
 
   constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {

@@ -12,7 +12,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import citiesJson from '@app/models/cities.json' ;
-import {FurType} from '@app/models/fyrType';
+import {FurType} from '@app/models/furType';
+import {AnimalType} from '@app/models/animalType';
 
 
 @Component({
@@ -25,6 +26,7 @@ import {FurType} from '@app/models/fyrType';
 export class AnimalRegisterComponent implements OnInit {
 
   public FurTypeEnum = FurType;
+  public AnimalTypeEnum = AnimalType;
 
   @Output()
   addButtonClick = new EventEmitter<NewAnimal>();
