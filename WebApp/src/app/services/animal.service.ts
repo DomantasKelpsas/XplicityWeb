@@ -33,4 +33,7 @@ export class AnimalService {
   addAnimal(animal: NewAnimal): Observable<Animal> {
     return this.http.post<Animal>(this.AnimalListUrl, animal, {headers});
   }
+  putAnimal(AnimalId: string, animal: EditAnimal): Observable<EditAnimal>{
+    return this.http.put<EditAnimal>(`${this.AnimalListUrl}/${AnimalId}`, animal, {headers});
+  }
 }

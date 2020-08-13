@@ -37,7 +37,20 @@ export class AnimalViewComponent implements OnInit {
 
   onSubmit(newAnimalForm: NgForm) {
     // call the api and patch the data
-    console.log('saugomas gyvunas');
-    console.log(this.animal);
+    this.route.paramMap.pipe( // combines observable functions
+      switchMap((params: ParamMap) => { // cancels previous requests
+          // emits Product observable when parameter map changes
+          const id = params.get('id'); // gets id parameter from route parameter array
+          return this.animalService.putAnimal(id, this.animal); // returns Observable<Product>
+        }
+      )).subscribe(
+      res => {
+        console.log('Animal updated');
+        console.log(this.animal);
+      },
+      error =>
+      {
+        console.log(error);
+      });
   }
 }

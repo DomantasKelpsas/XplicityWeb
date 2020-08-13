@@ -65,7 +65,7 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
-        public async Task Update(int id, NewAnimalDto updateData)
+        public async Task Update(int id, EditAnimalDto updateData)
         {
             if (updateData == null) throw new ArgumentNullException(nameof(updateData));
 
