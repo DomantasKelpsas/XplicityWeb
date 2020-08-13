@@ -1,24 +1,24 @@
 <mat-card-content>
-  <form #animalReportForm="ngForm" class="" (ngSubmit)="onSubmit(animalReportForm)">
-
-    <div class="container"><h1>Generuoti ataskaitą</h1></div>
-
+  <div class="container">
+    <h1 style="text-align: center">Generuoti ataskaitą</h1>
+  </div>
+  <form [formGroup]="generationForm" class="date-block" (ngSubmit)="onSubmit()">
     <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data nuo</mat-label>
-        <input matInput  name="dateReportFrom" placeholder=""
-               [matDatepicker]="pickerFrom">
-        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-        <mat-datepicker #pickerFrom></mat-datepicker>
+      <mat-form-field>
+        <mat-label>Metai</mat-label>
+        <select matNativeControl formControlName="year" required>
+          <option *ngFor="let year of years" value="{{year}}">{{year}}</option>
+        </select>
       </mat-form-field>
     </div>
     <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data iki</mat-label>
-        <input matInput  name="dateReportTo" placeholder=""
-               [matDatepicker]="pickerTo">
-        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-        <mat-datepicker #pickerTo></mat-datepicker>
+      <mat-form-field>
+        <mat-label>Gyvūno tipas</mat-label>
+        <select matNativeControl formControlName="type" required>
+          <option value="0">Šuo</option>
+          <option value="1">Katė</option>
+          <option value="2">Kitas</option>
+        </select>
       </mat-form-field>
     </div>
 

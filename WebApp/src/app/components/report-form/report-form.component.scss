@@ -1,0 +1,66 @@
+table {
+  width: 100%;
+  padding: 20px 40px;
+
+}
+
+.filter{
+  margin-left: 20px;
+  width: 50%;
+}
+
+.filter-bar{
+  padding: 20px 40px;
+}
+
+.right{
+  text-align: right;
+}
+.container-report-date{
+
+  //display: flex;
+  //justify-content: center;
+  //align-content: center;
+  min-width: 50%;
+
+}
+
+.report-date-field{
+  padding: 20px 40px;
+}
+
+.list-container{
+  margin-top: 20vh;
+}
+.container{
+  padding: 20px 40px;
+}
+
+form{
+  text-align: center;
+}
+
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+form{
+  padding-bottom: 30px;
+}
+.primary{
+  background: orange;
+  color: white;
+}
+
+.date-block{
+  display: flex;
+}
+.date-block__list{
+  flex-basis: 150px;
+  margin-right: 15px;
+}
+.container-date{
+  margin-left: 20px;
+}

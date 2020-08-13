@@ -101,7 +101,7 @@ namespace AnimalShelterAPI.Controllers
             return File(act, "application/octet-stream", "generated_act.docx");
         }
 
-        [HttpGet("Report")]
+        [HttpPost("Report")]
         public async Task<IActionResult> GetAnimalReport([FromBody] ReportRequestDto request)
         {
             Stream report = await _reportService.GenerateYearReport(request.AnimalType, request.Year);
