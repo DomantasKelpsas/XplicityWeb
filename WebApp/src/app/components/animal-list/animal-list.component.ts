@@ -38,7 +38,7 @@ export class AnimalListComponent implements OnInit {
   animals: Animal[];
   err: string;
 
-  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate'];
+  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate', 'icons'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('animalTable') animalTable: MatTable<Animal>;
@@ -90,7 +90,24 @@ export class AnimalListComponent implements OnInit {
     console.log(form.value);
   }
 
-  navigateTo(animal){
+  navigateToEdit(animal){
     this.router.navigate(['animal/' + animal.id]);
+  }
+
+  generateAct(animal){
+    console.log(Date.now());
+    console.log(animal);
+  }
+
+  needVaccine(animal): boolean{
+    if (animal.vaccinationDate !== null) {
+      const dt2 = new Date();
+      const dt1 = new Date(animal.vaccinationDate.toString());
+      const diffInTime = dt2.getTime() - dt1.getTime();
+      const diffInDays = diffInTime / (1000 * 3600 * 24);
+      return diffInDays >= 30;
+    } else {
+      return false;
+    }
   }
 }
