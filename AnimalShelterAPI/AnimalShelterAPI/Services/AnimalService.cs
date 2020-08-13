@@ -37,7 +37,7 @@ namespace AnimalShelterAPI.Services
                 var CalculationDate = animal.Birthday == null ? animal.AdmissionDate : animal.Birthday.Value;
 
                 if (animal.Status.Name == "Atiduotas")
-                    animalDto.AnimalAgeCounter = "Gyvūno amžius, kai jis išvyko iš prieglaudos: " + FormatAnimalAge((animal.StatusDate.Value - CalculationDate).TotalDays);
+                    animalDto.AnimalAgeCounter = FormatAnimalAge((animal.StatusDate.Value - CalculationDate).TotalDays);
                 else
                     animalDto.AnimalAgeCounter = FormatAnimalAge((DateTime.Now - CalculationDate).TotalDays);
             }
