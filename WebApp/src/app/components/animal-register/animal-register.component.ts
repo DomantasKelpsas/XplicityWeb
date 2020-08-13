@@ -24,10 +24,18 @@ export class AnimalRegisterComponent implements OnInit {
   fur: Fur = new Fur();
   selectedValue: string;
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
+  constructor(private animalService: AnimalService,
+              private animalHub: AnimalHubService,
+              private snackBar: MatSnackBar,
+              private userService: UserService,
+              private router: Router) {
   }
 
   ngOnInit(): void {
+    if (!this.userService.isLoggedIn())
+    {
+      this.router.navigate(['/login'])
+    }
     this.animal.fur = this.fur;
   }
 
@@ -35,12 +43,12 @@ export class AnimalRegisterComponent implements OnInit {
      this.addButtonClick.emit(this.animal);
 
     this.animalService.addAnimal(this.animal)
-      .subscribe(savedAnimal => 
+      .subscribe(savedAnimal =>
       {
         console.log(savedAnimal);
         this.animalHub.sendAnimal(savedAnimal);
-      }, 
-      error => 
+      },
+      error =>
       {
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
         console.log(error);

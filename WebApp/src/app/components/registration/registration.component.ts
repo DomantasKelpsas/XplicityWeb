@@ -49,6 +49,8 @@ export class RegistrationComponent implements OnInit {
     this.userService.registerUser(this.user).subscribe(
       res => {
         console.log('Register works!');
+        this.userService.loginUser(this.user);
+        this.router.navigate(['/'])
       },
       error =>
       {
