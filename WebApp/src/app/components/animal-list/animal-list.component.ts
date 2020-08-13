@@ -51,7 +51,7 @@ export class AnimalListComponent implements OnInit {
 
     if (!this.userService.isLoggedIn())
     {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
     }
 
     this.animalService.getAnimals().subscribe(animals => {
