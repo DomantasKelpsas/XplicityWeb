@@ -89,4 +89,8 @@ export class AnimalListComponent implements OnInit {
     // form.resetForm();
     console.log(form.value);
   }
+
+  navigateTo(animal){
+    this.router.navigate(['animal/' + animal.id]);
+  }
 }

@@ -72,7 +72,7 @@
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" routerLink="edit"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row)"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
