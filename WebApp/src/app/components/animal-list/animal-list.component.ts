@@ -5,7 +5,7 @@ import {UserService} from '@app/services/user.service';
 import {User} from '@app/models/user';
 import {Animal} from '@app/models/animal';
 import {AnimalService} from '@app/services/animal.service';
-import {NgForm} from '@angular/forms';
+import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
 import { NewAnimal } from '@app/models/new-animal';
 import { Subscription } from 'rxjs';
@@ -37,6 +37,14 @@ export class AnimalListComponent implements OnInit {
   dataSource: MatTableDataSource<Animal>;
   private subscription = new Subscription();
 
+  filterForm = new FormGroup({
+    fromDate: new FormControl(),
+    toDate: new FormControl(),
+  });
+
+  get fromDate() { return this.filterForm.get('fromDate').value; }
+  get toDate() { return this.filterForm.get('toDate').value; }
+
   ngOnInit(): void {
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
@@ -45,13 +53,13 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
-      animal => 
+      animal =>
       {
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
-      }, 
-      error => 
+      },
+      error =>
       {
         console.error(error);
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
@@ -67,7 +75,7 @@ export class AnimalListComponent implements OnInit {
   }
 
 
-  applyFilter(event: Event) {
+  applyFilter() {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
@@ -76,4 +84,12 @@ export class AnimalListComponent implements OnInit {
     // form.resetForm();
     console.log(form.value);
   }
+
+  filterPeriod(data: Animal, filter: string): boolean {
+    if (this.fromDate && this.toDate) {
+      return data.admissionDate >= this.fromDate && data.admissionDate <= this.toDate;
+    }
+    return true;
+  }
+
 }

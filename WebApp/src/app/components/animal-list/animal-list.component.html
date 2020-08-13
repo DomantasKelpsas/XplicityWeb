@@ -31,13 +31,29 @@
 </mat-card-content>
 
 <div class="list-container">
+  <form class="date-block" [formGroup]="filterForm">
+    <div class="date-block__list container-date">
+      <mat-form-field>
+        <input matInput [matDatepicker]="fromDate" placeholder="Nuo data" formControlName="fromDate">
+        <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+        <mat-datepicker #fromDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="date-block__list container-date">
+      <mat-form-field>
+        <input matInput [matDatepicker]="toDate" placeholder="Iki data" formControlName="toDate">
+        <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+        <mat-datepicker #toDate></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="warn" (click)="applyFilter()">Filtruoti</button>
+  </form>
+</div>
+
+<div class="list-container">
   <div class="filter-bar">
     <button mat-raised-button color="primary" routerLink="/animal/register">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
     </button>
-    <mat-form-field class="filter" floatLabel="never">
-
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filtruoti.." #input>
-    </mat-form-field>
   </div>
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
@@ -73,7 +89,7 @@
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+      <td class="mat-cell" colspan="4">No data matching the filter </td>
     </tr>
   </table>
 </div>
