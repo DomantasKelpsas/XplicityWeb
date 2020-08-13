@@ -65,7 +65,7 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
-        public async Task Update(int id, NewAnimalDto updateData)
+        public async Task Update(int id, EditAnimalDto updateData)
         {
             if (updateData == null) throw new ArgumentNullException(nameof(updateData));
 
@@ -76,6 +76,11 @@ namespace AnimalShelterAPI.Services
             }
 
             //var modificationDate = _timeService.GetCurrentTime();
+            itemToUpdate.Status = await _statusRepository.GetById(updateData.StatusID);
+            if (itemToUpdate.Status == null)
+            {
+                throw new InvalidOperationException($"Status {updateData.StatusID} was not found");
+            }
             _mapper.Map(updateData, itemToUpdate);
             //itemToUpdate.LastModified = modificationDate;
             await _repository.Update(itemToUpdate);

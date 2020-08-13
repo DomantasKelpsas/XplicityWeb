@@ -10,8 +10,9 @@ import {Status} from '@app/models/status';
 import {NewAnimal} from '@app/models/new-animal';
 import {Subscription} from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
-import {MatSnackBar} from '@angular/material/snack-bar';
 import {AnimalType} from '@app/models/animalType';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -25,7 +26,11 @@ export class AnimalListComponent implements OnInit {
   public AnimalTypeEnum = AnimalType;
 
 
-  constructor(private animalService: AnimalService, private animalHub: AnimalHubService, private snackBar: MatSnackBar) {
+  constructor(private animalService: AnimalService,
+              private animalHub: AnimalHubService,
+              private snackBar: MatSnackBar,
+              private userService: UserService,
+              private router: Router) {
 
   }
 
@@ -41,6 +46,9 @@ export class AnimalListComponent implements OnInit {
   private subscription = new Subscription();
 
   ngOnInit(): void {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(['/login']);
+    }
     this.animalService.getAnimals().subscribe(animals => {
       this.animals = animals;
       this.dataSource = new MatTableDataSource(this.animals);
@@ -49,6 +57,7 @@ export class AnimalListComponent implements OnInit {
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
       animal => {
+
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
