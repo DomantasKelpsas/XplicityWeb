@@ -15,6 +15,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using AnimalShelterAPI.Auth;
 using AnimalShelterAPI.Configurations;
+using AnimalShelterAPI.Hubs;
 
 namespace AnimalShelterAPI
 {
@@ -83,6 +84,7 @@ namespace AnimalShelterAPI
 
             services.AddControllers();
 			services.AddCors();
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,6 +109,7 @@ namespace AnimalShelterAPI
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+                endpoints.MapHub<AnimalHub>("/animalHub");
             });
         }
     }
