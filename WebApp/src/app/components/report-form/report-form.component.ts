@@ -32,18 +32,22 @@ export class ReportFormComponent implements OnInit {
   }
 
   onSubmit() {
-    // form.resetForm();
-    console.log(this.generationForm.get('year').value);
     const settings = new ReportRequestDto();
-    settings.Year = this.generationForm.get('year').value;
-    settings.AnimalType = this.generationForm.get('type').value;
+    settings.Year = +this.generationForm.get('year').value;
+    settings.AnimalType = +this.generationForm.get('type').value;
     console.log(settings);
     this.animalService.getAnimalYearReport(settings).subscribe((data) => {
-
-      this.blob = new Blob([data], {type: 'application/pdf'});
-
-      var downloadURL = window.URL.createObjectURL(data);
+      this.blob = new Blob([data], {type: 'application/octet-stream'});
+      const downloadURL = window.URL.createObjectURL(data);
+      console.log(downloadURL);
       this.router.navigate([downloadURL]);
-    }, error => console.log(error));
+      const a = document.createElement('a')
+      a.href = downloadURL;
+      a.download = 'generated_report.docx';
+      a.click();
+      URL.revokeObjectURL(downloadURL);
+    },
+      error => console.log(error)
+    );
   }
 }

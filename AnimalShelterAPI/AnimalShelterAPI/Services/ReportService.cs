@@ -18,7 +18,8 @@ namespace AnimalShelterAPI.Services
         private readonly Dictionary<int, string> TypeToSpelling = new Dictionary<int, string>()
         {
             { 0, "šunų"},
-            { 1, "kačių"}
+            { 1, "kačių"},
+            { 2, "kitų"}
         };
 
         private readonly Dictionary<int, string> FurToSpelling = new Dictionary<int, string>()
