@@ -11,7 +11,8 @@ export class EditAnimal {
   gender: number;
   years: number;
   months: number;
-  fur: Fur;
+  furType: number;
+  furColor: string;
   specialTags: string;
   healthCondition: string;
   admissionOrganisationContacts: string;

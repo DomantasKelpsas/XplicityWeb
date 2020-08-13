@@ -106,7 +106,7 @@
       <div class="container">
         <mat-form-field appearance="outline" class="one-half">
           <mat-label>Metai</mat-label>
-          <input matInput [(ngModel)]="animal.gender" type="number" name="ageYear" placeholder="" pattern="^[0-9]\d*$"
+          <input matInput [(ngModel)]="animal.years" type="number" name="ageYear" placeholder="" pattern="^[0-9]\d*$"
                  #ageYearInput="ngModel"  required>
           <mat-error *ngIf="ageYearInput.invalid && (ageYearInput.dirty || ageYearInput.touched)" class="error">
             <p *ngIf="ageYearInput.errors.required">Metai laukas negali būti tuščias</p>
@@ -122,6 +122,31 @@
           <mat-error *ngIf="ageMonthInput.invalid && (ageMonthInput.dirty || ageMonthInput.touched)"  class="error">
             <p *ngIf="ageMonthInput.errors.required">Mėnesiai laukas negali būti tuščias</p>
             <p *ngIf="ageMonthInput.errors.pattern">Mėnesiai turi būti tarp 0 ir 12</p>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="container">
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Kailio ilgis</mat-label>
+          <mat-select [(ngModel)]="animal.furType" type="text" name="furLength" placeholder="" required
+                      #furLengthInput="ngModel">
+            <mat-option [value]="0">Trumpakailis</mat-option>
+            <mat-option [value]="1">Šiurkčiaplaukis</mat-option>
+            <mat-option [value]="2">Vidutinio ilgio</mat-option>
+            <mat-option [value]="3">Ilgaplaukis</mat-option>
+          </mat-select>
+          <mat-error *ngIf="furLengthInput.invalid && (furLengthInput.dirty || furLengthInput.touched)" class="error">
+            <p *ngIf="furLengthInput.errors.required">Kailio ilgis laukas negali būti tuščias</p>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="one-half">
+          <mat-label>Kailio spalva</mat-label>
+          <input matInput [(ngModel)]="animal.furColor" type="text" name="furColor" placeholder=""
+                 #furColorInput="ngModel" required>
+
+          <mat-error *ngIf="furColorInput.invalid && (furColorInput.dirty || furColorInput.touched)" class="error">
+            <p *ngIf="furColorInput.errors.required">Kailio spalva laukas negali būti tuščias</p>
           </mat-error>
         </mat-form-field>
       </div>

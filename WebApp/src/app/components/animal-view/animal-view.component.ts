@@ -16,12 +16,10 @@ export class AnimalViewComponent implements OnInit {
   @Output()
   saveButtonClick = new EventEmitter<EditAnimal>();
   animal: EditAnimal = new EditAnimal();
-  fur: Fur = new Fur();
   constructor(private route: ActivatedRoute, private router: Router,
               private animalService: AnimalService) {}
 
   ngOnInit(): void {
-     this.animal.fur = this.fur;
      this.route.paramMap.pipe( // combines observable functions
       switchMap((params: ParamMap) => { // cancels previous requests
           // emits Product observable when parameter map changes
