@@ -10,6 +10,8 @@ import {Status} from '@app/models/status';
 import { NewAnimal } from '@app/models/new-animal';
 import { Subscription } from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
+import {Router} from '@angular/router';
+import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
@@ -23,6 +25,7 @@ import { Router } from '@angular/router';
 export class AnimalListComponent implements OnInit {
 
   public StatusEnum = Status;
+  public AnimalTypeEnum = AnimalType;
 
   constructor(private animalService: AnimalService,
               private animalHub: AnimalHubService,
@@ -34,7 +37,6 @@ export class AnimalListComponent implements OnInit {
   animal = new Animal();
   animals: Animal[];
   err: string;
-  status: typeof Status;
 
   displayedColumns: string[] = ['admissionDate', 'admissionCity', 'animalType', 'gender', 'status'];
 
@@ -61,14 +63,12 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
 
     const animalHubSubscription = this.animalHub.receiveAnimals().subscribe(
-      animal =>
-      {
+      animal => {
         this.animals.push(animal);
         this.animalTable.renderRows(); // refresh table
         this.snackBar.open(`Pridetas naujas gyvūnas "${animal.specialID}"!`, 'Info', {duration: 3000});
       },
-      error =>
-      {
+      error => {
         console.error(error);
         this.snackBar.open(`${error.message}`, 'Error', {duration: 5000});
       }

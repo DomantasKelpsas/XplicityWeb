@@ -56,12 +56,12 @@
     <!-- Weight Column -->
     <ng-container matColumnDef="animalType">
       <mat-header-cell *matHeaderCellDef> Tipas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.animalType == 0 ? 'Šuo' : 'Katė'}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{AnimalTypeEnum[element.animalType]}} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="gender">
       <mat-header-cell *matHeaderCellDef> Lytis</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.gender == 0 ? 'Vyriška' : 'Moteriška'}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.gender == 0 ? 'Vyriška' : element.gender == 1 ? 'Moteriška' : 'Nenustatoma'}} </mat-cell>
     </ng-container>
     <!-- Symbol Column -->
     <ng-container matColumnDef="status">

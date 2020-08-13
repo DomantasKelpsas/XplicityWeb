@@ -19,8 +19,12 @@ export class AnimalHubService {
       .build();
   }
 
-  private newConnectionObservable(): Observable<void> {
+  private newConnectionObservable(): Observable<any> {
     return from(this.connection.start());
+  }
+
+  startConnection() {
+    this.connection.start();
   }
 
   receiveAnimals(): Observable<Animal> {
