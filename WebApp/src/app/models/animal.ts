@@ -16,4 +16,5 @@ export class Animal {
   healthCondition: string;
   admissionOrganisationContacts: string;
   statusID: number;
+  statusDate: Date;
 }

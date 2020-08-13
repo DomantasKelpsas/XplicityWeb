@@ -42,35 +42,37 @@
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
-    <ng-container matColumnDef="admissionDate">
-      <mat-header-cell *matHeaderCellDef> Priėmimo data</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.admissionDate.split('T').join(' ')}} </mat-cell>
+    <ng-container matColumnDef="specialID">
+      <mat-header-cell *matHeaderCellDef> Gyvūno ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.specialID}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="admissionCity">
-      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Miestas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.admissionCity}} </mat-cell>
+    <ng-container matColumnDef="admissionDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Priėmimo data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.admissionDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="animalType">
-      <mat-header-cell *matHeaderCellDef> Tipas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{AnimalTypeEnum[element.animalType]}} </mat-cell>
+    <!-- Name Column -->
+    <ng-container matColumnDef="vaccinationDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Skiepo data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.vaccinationDate == undefined ? '-' : element.vaccinationDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="gender">
-      <mat-header-cell *matHeaderCellDef> Lytis</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.gender == 0 ? 'Vyriška' : element.gender == 1 ? 'Moteriška' : 'Nenustatoma'}} </mat-cell>
-    </ng-container>
     <!-- Symbol Column -->
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> statusas</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Statusas </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{StatusEnum[element.statusID]}} </mat-cell>
     </ng-container>
 
+    <!-- Weight Column -->
+    <ng-container matColumnDef="statusDate">
+      <mat-header-cell *matHeaderCellDef> Statuso data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.statusDate == undefined ? '-' : element.statusDate.toString().substring(0, 10)}} </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row)"></mat-row>
 
     <tr class="mat-row" *matNoDataRow>
       <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
