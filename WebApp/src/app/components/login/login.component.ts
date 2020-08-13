@@ -2,6 +2,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {User} from '../../models/user';
 import {FormBuilder, FormGroup, NgForm, Validators} from '@angular/forms';
 import {UserService} from '../../services/user.service';
+import { Router } from '@angular/router';
 
 
 
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   user = new User('', '');
 
   constructor(private userService: UserService,
-              private formBuilder: FormBuilder) {
+              private formBuilder: FormBuilder,
+              private router: Router) {
   }
 
   onLoginButtonClick(): void {
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit {
     this.userService.loginUser(this.user).subscribe(
       res => {
         console.log('Logged in!');
+        this.router.navigate(['/'])
       },
       error => {
         console.log(error);
