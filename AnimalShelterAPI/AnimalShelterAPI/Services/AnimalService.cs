@@ -20,11 +20,12 @@ namespace AnimalShelterAPI.Services
 
         public AnimalService(IRepository<Animal> repository,
             IStatusRepository statusRepository,
-            IMapper mapper)
+            IMapper mapper, IFilterRepository filterRepository)
         {
             _repository = repository;
             _mapper = mapper;
             _statusRepository = statusRepository;
+            _filterRepository = filterRepository;
         }
 
         public async Task<EditAnimalDto> GetById(int id)
