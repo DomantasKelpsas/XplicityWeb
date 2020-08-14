@@ -65,7 +65,7 @@
       <div class="container">
         <mat-form-field appearance="fill">
           <mat-label>Mikroschemos įterpimo data</mat-label>
-          <input matInput [(ngModel)]="animal.microchipIntegrationDate" name="dateChiped" placeholder="" required
+          <input matInput [(ngModel)]="animal.microchipIntegrationDate" name="dateChiped" placeholder=""
                  #dateChipedInput="ngModel" [matDatepicker]="picker2">
           <mat-error *ngIf="dateChipedInput.invalid && (dateChipedInput.dirty || dateChipedInput.touched)" class="error">
             <p *ngIf="dateChipedInput.errors.required">Mikroschemos įterpimo datos laukas negali būti tuščias</p>
@@ -78,7 +78,7 @@
       <div class="container">
         <mat-form-field appearance="fill">
           <mat-label>Skiepo data</mat-label>
-          <input matInput [(ngModel)]="animal.vaccinationDate" name="dateVaccine" placeholder="" required
+          <input matInput [(ngModel)]="animal.vaccinationDate" name="dateVaccine" placeholder=""
                  #dateVaccineInput="ngModel" [matDatepicker]="picker3">
           <mat-error *ngIf="dateVaccineInput.invalid && (dateVaccineInput.dirty || dateVaccineInput.touched)" class="error">
             <p *ngIf="dateVaccineInput.errors.required">Skiepo datos laukas negali būti tuščias</p>
