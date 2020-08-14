@@ -11,6 +11,7 @@ import {AnimalHubService} from '@app/services/animal-hub.service';
 import {Router} from '@angular/router';
 import {AnimalType} from '@app/models/animalType';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { saveAs } from "file-saver";
 
 
 @Component({
@@ -34,7 +35,7 @@ export class AnimalListComponent implements OnInit {
   animals: Animal[];
   err: string;
 
-  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate'];
+  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate', 'icons'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('animalTable') animalTable: MatTable<Animal>;
@@ -107,7 +108,28 @@ export class AnimalListComponent implements OnInit {
     }, error => this.err = error);
   }
 
-  navigateTo(animal): void {
+  navigateToEdit(animal): void {
     this.router.navigate(['animal/' + animal.id]);
+  }
+
+  generateAct(id: number){
+    this.animalService.getAnimalAct(id).subscribe((data) => {
+        let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+        saveAs(blob, "gyvuno_aktas.docx");
+      },
+      error => console.log(error)
+    );
+  }
+
+  needVaccine(animal): boolean{
+    if (animal.vaccinationDate !== null) {
+      const dt2 = new Date();
+      const dt1 = new Date(animal.vaccinationDate.toString());
+      const diffInTime = dt2.getTime() - dt1.getTime();
+      const diffInDays = diffInTime / (1000 * 3600 * 24);
+      return diffInDays >= 30;
+    } else {
+      return false;
+    }
   }
 }

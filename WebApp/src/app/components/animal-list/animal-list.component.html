@@ -47,7 +47,19 @@
     <!-- Name Column -->
     <ng-container matColumnDef="vaccinationDate">
       <mat-header-cell *matHeaderCellDef mat-sort-header=""> Skiepo data </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.vaccinationDate == undefined ? '-' : element.vaccinationDate.toString().substring(0, 10)}} </mat-cell>
+        <mat-cell *matCellDef="let element">
+          <div *ngIf="needVaccine(element); then content else other_content"></div>
+          <ng-template #content>
+            <div style="color:red;">
+              {{element.vaccinationDate == undefined ? '-' : element.vaccinationDate.toString().substring(0, 10)}}
+            </div>
+          </ng-template>
+          <ng-template #other_content>
+            <div>
+              {{element.vaccinationDate == undefined ? '-' : element.vaccinationDate.toString().substring(0, 10)}}
+            </div>
+          </ng-template>
+        </mat-cell>
     </ng-container>
 
     <!-- Symbol Column -->
@@ -62,8 +74,19 @@
       <mat-cell *matCellDef="let element"> {{element.statusDate == undefined ? '-' : element.statusDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
+    <ng-container matColumnDef="icons">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <span (click)="generateAct(element.id)" class="material-icons icon">get_app</span>
+        <span (click)="navigateToEdit(element)" class="material-icons icon">edit</span>
+        <div *ngIf="needVaccine(element)">
+          <span style="color: red;" class="material-icons">warning</span>
+        </div>
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row)"></mat-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell" colspan="4">No data matching the filter </td>

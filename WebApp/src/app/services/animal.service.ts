@@ -44,10 +44,6 @@ export class AnimalService {
     return this.http.post<Animal>(this.AnimalListUrl, animal, {headers});
   }
 
-  getAnimalAct(AnimalId: string): Observable<Animal> {
-    return this.http.get<Animal>(`${this.AnimalListUrl}/Act/${AnimalId}`);
-  }
-
   getAnimalYearReport(ReportSettings: ReportRequestDto): Observable<any> {
     return this.http.get<any>(`${this.AnimalListUrl}/Report`,{
       responseType: 'arraybuffer' as 'json',
@@ -56,6 +52,13 @@ export class AnimalService {
         Year: ReportSettings.Year.toString(),
         Type: ReportSettings.AnimalType.toString()
       }
+    });
+  }
+
+  getAnimalAct(Id: number): Observable<any> {
+    return this.http.get<any>(`${this.AnimalListUrl}/Act/${Id}`,{
+      responseType: 'arraybuffer' as 'json',
+      headers: headers,
     });
   }
 

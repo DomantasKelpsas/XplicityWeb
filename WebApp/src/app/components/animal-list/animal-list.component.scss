@@ -40,6 +40,15 @@ form{
   text-align: center;
 }
 
+.icon {
+  margin-right: 10px;
+
+}
+
+span.icon:hover {
+  cursor: pointer;
+}
+
 .mat-form-field {
   font-size: 14px;
   width: 100%;
@@ -74,4 +83,3 @@ form{
 .container-date{
   margin-left: 20px;
 }
-
