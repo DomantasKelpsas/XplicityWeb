@@ -7,37 +7,47 @@ table {
   background-color: #ebebeb;
 }
 
-.flex-container{
+.flex-container {
   display: flex;
   justify-content: space-between;
   padding: 10px 20px;
 }
 
-.flex-container-item{
+.flex-container-item {
   margin: 5px;
   padding: 10px;
 }
 
-.container-report-date{
+.container-report-date {
   //display: flex;
   //justify-content: center;
   //align-content: center;
   min-width: 50%;
 }
 
-.report-date-field{
+.report-date-field {
   padding: 20px 40px;
 }
 
-.list-container{
+.list-container {
   margin-top: 5vh;
 }
-.container{
+
+.container {
   padding: 20px 40px;
 }
 
-form{
+form {
   text-align: center;
+}
+
+.icon {
+  margin-right: 10px;
+
+}
+
+span.icon:hover {
+  cursor: pointer;
 }
 
 .mat-form-field {
@@ -45,33 +55,45 @@ form{
   width: 100%;
 }
 
-form{
+form {
   padding-bottom: 10px;
 }
 
-.primary{
+.primary {
   background: orange;
   color: white;
 }
 
-.date-block{
+.date-block {
   display: flex;
 }
 
-.button-height{
+.button-height {
   height: 50px;
 }
 
-.button-margin{
+.button-margin {
   margin-right: 20px;
 }
 
-.date-block__list{
+.date-block__list {
   flex-basis: 150px;
   margin-right: 15px;
 }
 
-.container-date{
+.container-date {
   margin-left: 20px;
 }
 
+.mat-row:hover {
+  background-color: #ebebeb;
+}
+
+.icon {
+  transition: all .2s ease-in-out;
+}
+
+.icon:hover {
+  transform: scale(1.3);
+  color: #f06d06;
+}
