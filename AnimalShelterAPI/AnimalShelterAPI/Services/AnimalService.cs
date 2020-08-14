@@ -14,16 +14,18 @@ namespace AnimalShelterAPI.Services
     {
         private readonly IRepository<Animal> _repository;
         private readonly IStatusRepository _statusRepository;
+        private readonly IFilterRepository _filterRepository;
         private readonly IMapper _mapper;
         //private readonly ITimeService _timeService;
 
         public AnimalService(IRepository<Animal> repository,
             IStatusRepository statusRepository,
-            IMapper mapper)
+            IMapper mapper, IFilterRepository filterRepository)
         {
             _repository = repository;
             _mapper = mapper;
             _statusRepository = statusRepository;
+            _filterRepository = filterRepository;
         }
 
         public async Task<EditAnimalDto> GetById(int id)
@@ -54,6 +56,13 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
+        public async Task<ICollection<AnimalListItemDto>> GetFilteredAnimals(DateTime fromDate, DateTime toDate)
+        {
+            var animals = await _filterRepository.GetFilteredAll(fromDate, toDate);
+            var animalDto = _mapper.Map<AnimalListItemDto[]>(animals);
+            return animalDto;
+        }
+
         public async Task<AnimalListItemDto> Create(NewAnimalDto newItem)
         {
             if (newItem == null) throw new ArgumentNullException(nameof(newItem));
@@ -65,7 +74,7 @@ namespace AnimalShelterAPI.Services
             return animalDto;
         }
 
-        public async Task Update(int id, NewAnimalDto updateData)
+        public async Task Update(int id, EditAnimalDto updateData)
         {
             if (updateData == null) throw new ArgumentNullException(nameof(updateData));
 
@@ -76,6 +85,11 @@ namespace AnimalShelterAPI.Services
             }
 
             //var modificationDate = _timeService.GetCurrentTime();
+            itemToUpdate.Status = await _statusRepository.GetById(updateData.StatusID);
+            if (itemToUpdate.Status == null)
+            {
+                throw new InvalidOperationException($"Status {updateData.StatusID} was not found");
+            }
             _mapper.Map(updateData, itemToUpdate);
             //itemToUpdate.LastModified = modificationDate;
             await _repository.Update(itemToUpdate);

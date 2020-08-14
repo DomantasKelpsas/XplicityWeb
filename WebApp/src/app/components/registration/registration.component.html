@@ -4,7 +4,8 @@
     <mat-card-title>Registracija</mat-card-title>
     <mat-card-content>
       <form [formGroup]="form" (ngSubmit)="onSubmit()">
-        <mat-form-field class="full-width-input" appearance="legacy">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>account_box</mat-icon>
           <input matInput type="text" placeholder="Vardas" formControlName="firstName" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
@@ -12,7 +13,8 @@
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field class="full-width-input" appearance="legacy">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>account_box</mat-icon>
           <input matInput type="text" placeholder="Pavardė" formControlName="lastName" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
@@ -20,7 +22,9 @@
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field class="full-width-input" appearance="legacy">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>email</mat-icon>
+
           <input matInput type="email" placeholder="El. paštas" formControlName="email" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }"/>
           <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
@@ -29,7 +33,9 @@
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field class="full-width-input" appearance="legacy">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>vpn_key</mat-icon>
+
           <input matInput type="password" placeholder="Slaptažodis" formControlName="password" class="form-control"
                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }"/>
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
@@ -38,7 +44,9 @@
           </div>
         </mat-form-field>
         <br>
-        <mat-form-field class="full-width-input" appearance="legacy">
+        <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>vpn_key</mat-icon>
+
           <input matInput type="password" placeholder="Pakartokite slaptąžodį" formControlName="confirmPassword"
                  class="form-control" [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"/>
           <div *ngIf="submitted && f.confirmPassword.errors" class="invalid-feedback">

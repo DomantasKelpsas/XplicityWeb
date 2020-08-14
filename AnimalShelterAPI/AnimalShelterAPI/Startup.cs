@@ -16,6 +16,8 @@ using Microsoft.AspNetCore.Identity;
 using AnimalShelterAPI.Auth;
 using AnimalShelterAPI.Configurations;
 using AnimalShelterAPI.Hubs;
+using AnimalShelterAPI.Services;
+using AnimalShelterAPI.Services.Interfaces;
 
 namespace AnimalShelterAPI
 {
@@ -79,7 +81,11 @@ namespace AnimalShelterAPI
                 options.SlidingExpiration = true;
             });
 
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.AddSingleton<IMailer, Mailer>();
+
             services.SetUpAutoMapper();
+            services.SetUpCronJobs();
             services.AddAllDependencies();
 
             services.AddControllers();
