@@ -1,6 +1,7 @@
 ﻿using AnimalShelterAPI.Infrastructure.Repositories;
 using AnimalShelterAPI.Models.DTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace AnimalShelterAPI.Controllers
@@ -18,9 +19,10 @@ namespace AnimalShelterAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ReportDto> Get([FromBody] ReportRequestDto request)
+        public async Task<IActionResult> Get([FromBody] ReportRequestDto request)
         {
-            return await _reportRepository.GetAnimalReport(request.AnimalType, request.Year);
+            var res = await _reportRepository.GetAnimalReport(request.AnimalType, request.Year);
+            return Ok(res);
         }
     }
 }

@@ -26,6 +26,7 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ReportFormComponent } from './components/report-form/report-form.component';
 import { AnimalViewComponent } from './components/animal-view/animal-view.component';
 import {MatMenuModule} from '@angular/material/menu';
 
@@ -40,6 +41,7 @@ import {MatMenuModule} from '@angular/material/menu';
     LandingPageComponent,
     FooterComponent,
     HeaderComponent,
+    ReportFormComponent,
     AnimalViewComponent
   ],
   imports: [

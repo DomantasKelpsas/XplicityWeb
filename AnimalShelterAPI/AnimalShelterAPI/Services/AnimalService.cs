@@ -14,16 +14,18 @@ namespace AnimalShelterAPI.Services
     {
         private readonly IRepository<Animal> _repository;
         private readonly IStatusRepository _statusRepository;
+        private readonly IFilterRepository _filterRepository;
         private readonly IMapper _mapper;
         //private readonly ITimeService _timeService;
 
         public AnimalService(IRepository<Animal> repository,
             IStatusRepository statusRepository,
-            IMapper mapper)
+            IMapper mapper, IFilterRepository filterRepository)
         {
             _repository = repository;
             _mapper = mapper;
             _statusRepository = statusRepository;
+            _filterRepository = filterRepository;
         }
 
         public async Task<EditAnimalDto> GetById(int id)
@@ -50,6 +52,13 @@ namespace AnimalShelterAPI.Services
         public async Task<ICollection<AnimalListItemDto>> GetAll()
         {
             var animals = await _repository.GetAll();
+            var animalDto = _mapper.Map<AnimalListItemDto[]>(animals);
+            return animalDto;
+        }
+
+        public async Task<ICollection<AnimalListItemDto>> GetFilteredAnimals(DateTime fromDate, DateTime toDate)
+        {
+            var animals = await _filterRepository.GetFilteredAll(fromDate, toDate);
             var animalDto = _mapper.Map<AnimalListItemDto[]>(animals);
             return animalDto;
         }

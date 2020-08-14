@@ -21,6 +21,7 @@ namespace AnimalShelterAPI.Configurations
                 .AddScoped<IRepository<Animal>, AnimalRepository>()
                 .AddScoped<IReportRepository, ReportRepository>()
                 .AddScoped<IStatusRepository, StatusRepository>()
+                .AddScoped<IFilterRepository, FilterRepository>()
                 .AddScoped<IAnimalAggregatorRepository, AnimalAggregatorRepository>();
         }
 
@@ -28,7 +29,8 @@ namespace AnimalShelterAPI.Configurations
         {
             return service
                 .AddScoped<IAnimalService, AnimalService>()
-                .AddScoped<IReportService, ReportService>();
+                .AddScoped<IReportService, ReportService>()
+                .AddScoped<IFilterService, FilterService>();
         }
     }
 }
