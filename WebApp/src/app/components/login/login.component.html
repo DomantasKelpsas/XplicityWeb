@@ -8,10 +8,8 @@
           <mat-icon matPrefix>email</mat-icon>
           <mat-label>El. paštas</mat-label>
           <input matInput [(ngModel)]="user.email" name="email" email type="email" required #emailInput="ngModel">
-
-          <mat-error *ngIf="submitted && f.email.errors" class="invalid-feedback">
-            <div *ngIf="errorMessage!=null" class="error">Įveskite tinkamą el. paštą</div>
-          </mat-error>
+          <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
+            <p *ngIf="passInput.errors.required">Netinkamas el. paštas.</p></mat-error>
         </mat-form-field>
         <br>
         <mat-form-field class="full-width-input" appearance="outline">
@@ -21,6 +19,7 @@
           <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
             <p *ngIf="passInput.errors.required">Neįvestas slaptažodis.</p></mat-error>
         </mat-form-field>
+        <p *ngIf="submitted && !checkLogin()" class="error">Neteisingi prisijungimo duomenys</p>
         <div>
           <button mat-raised-button color="primary" (click)="onLoginButtonClick()">Prisijungti</button>
           <p>
