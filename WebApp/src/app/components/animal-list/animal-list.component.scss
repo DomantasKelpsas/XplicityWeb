@@ -7,11 +7,6 @@ table {
   background-color: #ebebeb;
 }
 
-.flex-container {
-  display: flex;
-  justify-content: space-between;
-  padding: 10px 20px;
-}
 
 .flex-container-item {
   margin: 5px;
@@ -57,6 +52,8 @@ span.icon:hover {
 
 form {
   padding-bottom: 10px;
+  padding-left: 45px;
+
 }
 
 .primary {
@@ -68,9 +65,7 @@ form {
   display: flex;
 }
 
-.button-height {
-  height: 50px;
-}
+
 
 .button-margin {
   margin-right: 20px;
@@ -85,15 +80,48 @@ form {
   margin-left: 20px;
 }
 
-.mat-row:hover {
-  background-color: #ebebeb;
+mat-card {
+  max-width: 95%;
+  margin: auto;
+  text-align: center;
+  padding-top: 40px;
 }
 
-.icon {
-  transition: all .2s ease-in-out;
+.mat-raised-button{
+  margin-bottom: 4px;
+  background-color: #f39c12;
+}
+.mat-raised-button:link,
+.mat-raised-button:visited {
+  display: inline-block;
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.5s, border 0.2s, color 0.5s;
+}
+.mat-raised-button:link, .mat-raised-button:visited {
+  background-color: #f39c12;
+  color: white;
+}
+.mat-raised-button:hover, .mat-raised-button:active{
+  background-color: #b87409;
+}
+.mat-raised-button:hover,
+.mat-raised-button:active {
+  background-color: #b87409;
+  color: white;
 }
 
-.icon:hover {
-  transform: scale(1.3);
-  color: #f06d06;
+button{
+  margin-right: 10px;
 }
+
+
+.report{
+  float: right;
+}
+
+mat-card-title{
+  margin-bottom: 30px;
+}
+

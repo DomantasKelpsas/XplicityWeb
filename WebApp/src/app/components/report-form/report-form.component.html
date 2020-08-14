@@ -1,7 +1,3 @@
-<mat-card-content>
-  <div class="container">
-    <h1 class="title">Generuoti ataskaitą</h1>
-  </div>
   <form [formGroup]="generationForm"  (ngSubmit)="onSubmit()">
 
     <div class="container">
@@ -19,11 +15,9 @@
           <mat-option value="2">Kitas</mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
 
 
-    <div class="container">
-      <button mat-raised-button color="warn">Generuoti</button>
+
+      <button mat-raised-button color="warn">Generuoti ataskaitą</button>
     </div>
   </form>
-</mat-card-content>
