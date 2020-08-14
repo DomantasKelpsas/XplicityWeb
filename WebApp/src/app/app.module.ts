@@ -26,7 +26,12 @@ import {LandingPageComponent} from '@app/components/landing-page/landing-page.co
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { FooterComponent } from './components/footer/footer.component';
 import { HeaderComponent } from './components/header/header.component';
+<<<<<<< WebApp/src/app/app.module.ts
 import { RemindPasswordComponent } from './components/remind-password/remind-password.component';
+=======
+import { ReportFormComponent } from './components/report-form/report-form.component';
+import { AnimalViewComponent } from './components/animal-view/animal-view.component';
+>>>>>>> WebApp/src/app/app.module.ts
 import {MatMenuModule} from '@angular/material/menu';
 
 
@@ -40,7 +45,9 @@ import {MatMenuModule} from '@angular/material/menu';
     LandingPageComponent,
     FooterComponent,
     HeaderComponent,
-    RemindPasswordComponent
+    RemindPasswordComponent,
+    ReportFormComponent,
+    AnimalViewComponent
   ],
   imports: [
     BrowserModule,

@@ -85,6 +85,7 @@ namespace AnimalShelterAPI
             services.AddSingleton<IMailer, Mailer>();
 
             services.SetUpAutoMapper();
+            services.SetUpCronJobs();
             services.AddAllDependencies();
 
             services.AddControllers();

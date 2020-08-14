@@ -1,79 +1,73 @@
-<mat-card-content>
-  <form #animalReportForm="ngForm" class="" (ngSubmit)="onSubmit(animalReportForm)">
-
-    <div class="container"><h1>Generuoti ataskaitą</h1></div>
-
-    <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data nuo</mat-label>
-        <input matInput  name="dateReportFrom" placeholder=""
-                [matDatepicker]="pickerFrom">
-        <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-        <mat-datepicker #pickerFrom></mat-datepicker>
-      </mat-form-field>
-    </div>
-    <div class="container">
-      <mat-form-field appearance="fill" >
-        <mat-label>Data iki</mat-label>
-        <input matInput  name="dateReportTo" placeholder=""
-               [matDatepicker]="pickerTo">
-        <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-        <mat-datepicker #pickerTo></mat-datepicker>
-      </mat-form-field>
-    </div>
-
-    <div class="container">
-      <button mat-raised-button color="warn">Generuoti</button>
-    </div>
-
-
-  </form>
-</mat-card-content>
-
+<app-report-form></app-report-form>
 <div class="list-container">
-  <div class="filter-bar">
-    <button mat-raised-button color="primary" routerLink="/animal/register">Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
-    </button>
-    <mat-form-field class="filter" floatLabel="never">
-
-      <input matInput (keyup)="applyFilter($event)" placeholder="Filtruoti.." #input>
-    </mat-form-field>
+  <hr>
+  <div class="list-container">
+    <div class="flex-container">
+      <div class="flex-container-item">
+        <form class="date-block" [formGroup]="filterForm">
+          <div>
+            <mat-form-field>
+              <input matInput [matDatepicker]="fromDate" placeholder="Nuo data" formControlName="fromDate">
+              <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+              <mat-datepicker #fromDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="date-block__list container-date">
+            <mat-form-field>
+              <input matInput [matDatepicker]="toDate" placeholder="Iki data" formControlName="toDate">
+              <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+              <mat-datepicker #toDate></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <button class="button-height button-margin" mat-raised-button color="warn" (click)="filterAnimals()">Filtruoti</button>
+          <button class="button-height" mat-stroked-button color="basic" (click)="resetAnimalList()">Išvalyti</button>
+        </form>
+      </div>
+      <div class="flex-container-item">
+        <button class="button-height" mat-raised-button color="primary" routerLink="/animal/register">
+          Pridėti<span class="material-icons" style="margin-left: 5px">add</span>
+        </button>
+      </div>
+    </div>
   </div>
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
-    <ng-container matColumnDef="admissionDate">
-      <mat-header-cell *matHeaderCellDef> Priėmimo data</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.admissionDate.split('T').join(' ')}} </mat-cell>
+    <ng-container matColumnDef="specialID">
+      <mat-header-cell *matHeaderCellDef> Gyvūno ID </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.specialID}} </mat-cell>
     </ng-container>
 
     <!-- Name Column -->
-    <ng-container matColumnDef="admissionCity">
-      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Miestas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.admissionCity}} </mat-cell>
+    <ng-container matColumnDef="admissionDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Priėmimo data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.admissionDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="animalType">
-      <mat-header-cell *matHeaderCellDef> Tipas</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.animalType == 0 ? 'Šuo' : 'Katė'}} </mat-cell>
+    <!-- Name Column -->
+    <ng-container matColumnDef="vaccinationDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header=""> Skiepo data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.vaccinationDate == undefined ? '-' : element.vaccinationDate.toString().substring(0, 10)}} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="gender">
-      <mat-header-cell *matHeaderCellDef> Lytis</mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.gender == 0 ? 'Vyriška' : 'Moteriška'}} </mat-cell>
-    </ng-container>
     <!-- Symbol Column -->
     <ng-container matColumnDef="status">
-      <mat-header-cell *matHeaderCellDef> statusas</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef> Statusas </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{StatusEnum[element.statusID]}} </mat-cell>
     </ng-container>
 
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="statusDate">
+      <mat-header-cell *matHeaderCellDef> Statuso data </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.statusDate == undefined ? '-' : element.statusDate.toString().substring(0, 10)}} </mat-cell>
+    </ng-container>
 
-    <tr class="mat-row" *matNoDataRow>
-      <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-    </tr>
-  </table>
-</div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row)"></mat-row>
+
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter </td>
+      </tr>
+    </table>
+  </div>
+
