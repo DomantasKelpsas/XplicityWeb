@@ -20,14 +20,17 @@ namespace AnimalShelterAPI.Configurations
             return service
                 .AddScoped<IRepository<Animal>, AnimalRepository>()
                 .AddScoped<IReportRepository, ReportRepository>()
-                .AddScoped<IStatusRepository, StatusRepository>();
+                .AddScoped<IStatusRepository, StatusRepository>()
+                .AddScoped<IFilterRepository, FilterRepository>()
+                .AddScoped<IAnimalAggregatorRepository, AnimalAggregatorRepository>();
         }
 
         public static IServiceCollection AddApplicationDependencies(this IServiceCollection service)
         {
             return service
                 .AddScoped<IAnimalService, AnimalService>()
-                .AddScoped<IReportService, ReportService>();
+                .AddScoped<IReportService, ReportService>()
+                .AddScoped<IFilterService, FilterService>();
         }
     }
 }

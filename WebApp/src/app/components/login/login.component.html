@@ -5,6 +5,7 @@
     <mat-card-content>
       <form #loginForm="ngForm" class="login-form" (ngSubmit)="onSubmit()">
         <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>email</mat-icon>
           <mat-label>El. paštas</mat-label>
           <input matInput [(ngModel)]="user.email" name="email" email type="email" required #emailInput="ngModel">
           <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
@@ -12,6 +13,7 @@
         </mat-form-field>
         <br>
         <mat-form-field class="full-width-input" appearance="outline">
+          <mat-icon matPrefix>vpn_key</mat-icon>
           <mat-label>Slaptažodis</mat-label>
           <input matInput [(ngModel)]="user.password" type="password" name="pass" required #passInput="ngModel">
           <mat-error *ngIf="passInput.invalid && (passInput.dirty || passInput.touched)" class="error">
