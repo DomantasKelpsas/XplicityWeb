@@ -3,6 +3,7 @@ import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {AnimalService} from '@app/services/animal.service';
 import {ReportRequestDto} from '@app/models/ReportRequestDto';
 import {Router} from '@angular/router';
+import { saveAs } from "file-saver";
 
 @Component({
   selector: 'app-report-form',
@@ -37,16 +38,8 @@ export class ReportFormComponent implements OnInit {
     settings.AnimalType = +this.generationForm.get('type').value;
     console.log(settings);
     this.animalService.getAnimalYearReport(settings).subscribe((data) => {
-      this.blob = new Blob([data.blob()],
-        {type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
-      const downloadURL = window.URL.createObjectURL(data);
-      console.log(downloadURL);
-      this.router.navigate([downloadURL]);
-      const a = document.createElement('a')
-      a.href = downloadURL;
-      a.download = 'generated_report.docx';
-      a.click();
-      URL.revokeObjectURL(downloadURL);
+      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      saveAs(blob, "ataskaita.docx");
     },
       error => console.log(error)
     );

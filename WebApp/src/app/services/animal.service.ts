@@ -48,8 +48,10 @@ export class AnimalService {
     return this.http.get<Animal>(`${this.AnimalListUrl}/Act/${AnimalId}`);
   }
 
-  getAnimalYearReport(ReportSettings: ReportRequestDto): any {
-    return this.http.get<any>(`${this.AnimalListUrl}/Report`, {
+  getAnimalYearReport(ReportSettings: ReportRequestDto): Observable<any> {
+    return this.http.get<any>(`${this.AnimalListUrl}/Report`,{
+      responseType: 'arraybuffer' as 'json',
+      headers: headers,
       params: {
         Year: ReportSettings.Year.toString(),
         Type: ReportSettings.AnimalType.toString()
