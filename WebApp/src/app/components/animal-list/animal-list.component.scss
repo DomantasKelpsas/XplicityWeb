@@ -8,31 +8,41 @@ table {
 }
 
 
-.flex-container-item{
+.flex-container-item {
   margin: 5px;
   padding: 10px;
 }
 
-.container-report-date{
+.container-report-date {
   //display: flex;
   //justify-content: center;
   //align-content: center;
   min-width: 50%;
 }
 
-.report-date-field{
+.report-date-field {
   padding: 20px 40px;
 }
 
-.list-container{
+.list-container {
   margin-top: 5vh;
 }
-.container{
+
+.container {
   padding: 20px 40px;
 }
 
-form{
+form {
   text-align: center;
+}
+
+.icon {
+  margin-right: 10px;
+
+}
+
+span.icon:hover {
+  cursor: pointer;
 }
 
 .mat-form-field {
@@ -40,33 +50,33 @@ form{
   width: 100%;
 }
 
-form{
+form {
   padding-bottom: 10px;
   padding-left: 45px;
 
 }
 
-.primary{
+.primary {
   background: orange;
   color: white;
 }
 
-.date-block{
+.date-block {
   display: flex;
 }
 
 
 
-.button-margin{
+.button-margin {
   margin-right: 20px;
 }
 
-.date-block__list{
+.date-block__list {
   flex-basis: 150px;
   margin-right: 15px;
 }
 
-.container-date{
+.container-date {
   margin-left: 20px;
 }
 

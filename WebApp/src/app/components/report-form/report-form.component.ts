@@ -1,9 +1,8 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormControl, FormGroup, NgForm} from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormControl, FormGroup} from '@angular/forms';
 import {AnimalService} from '@app/services/animal.service';
 import {ReportRequestDto} from '@app/models/ReportRequestDto';
-import {Router} from '@angular/router';
-import { saveAs } from "file-saver";
+import {saveAs} from 'file-saver';
 
 @Component({
   selector: 'app-report-form',
@@ -18,7 +17,7 @@ export class ReportFormComponent implements OnInit {
     type: new FormControl()
   });
 
-  constructor(private animalService: AnimalService, private router: Router) { }
+  constructor(private animalService: AnimalService) { }
 
   ngOnInit(): void {
     this.years = this.range(2007, new Date().getFullYear());
@@ -36,10 +35,10 @@ export class ReportFormComponent implements OnInit {
     const settings = new ReportRequestDto();
     settings.Year = +this.generationForm.get('year').value;
     settings.AnimalType = +this.generationForm.get('type').value;
-    console.log(settings);
     this.animalService.getAnimalYearReport(settings).subscribe((data) => {
-      let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-      saveAs(blob, "ataskaita.docx");
+      const blob = new Blob([data],
+        { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
+      saveAs(blob, 'metine-ataskaita.docx');
     },
       error => console.log(error)
     );

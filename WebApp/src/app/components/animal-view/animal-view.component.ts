@@ -5,6 +5,8 @@ import {AnimalService} from '@app/services/animal.service';
 import {switchMap} from 'rxjs/operators';
 import {NgForm} from '@angular/forms';
 import citiesJson from '@app/models/cities.json';
+
+
 @Component({
   selector: 'app-animal-view',
   templateUrl: './animal-view.component.html',
@@ -12,11 +14,12 @@ import citiesJson from '@app/models/cities.json';
 })
 export class AnimalViewComponent implements OnInit {
 
-  @Output()
-  saveButtonClick = new EventEmitter<EditAnimal>();
+  @Output() saveButtonClick = new EventEmitter<EditAnimal>();
   animal: EditAnimal = new EditAnimal();
   cities = JSON.parse(JSON.stringify(citiesJson));
-  constructor(private route: ActivatedRoute, private router: Router,
+
+  constructor(private route: ActivatedRoute,
+              private router: Router,
               private animalService: AnimalService) {}
 
   ngOnInit(): void {
@@ -31,6 +34,7 @@ export class AnimalViewComponent implements OnInit {
       console.log(this.animal);
     });
   }
+
   onSaveButtonClick(): void {
     this.saveButtonClick.emit(this.animal);
   }

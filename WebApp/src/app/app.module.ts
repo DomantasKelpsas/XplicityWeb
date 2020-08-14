@@ -30,6 +30,7 @@ import { RemindPasswordComponent } from './components/remind-password/remind-pas
 import { ReportFormComponent } from './components/report-form/report-form.component';
 import { AnimalViewComponent } from './components/animal-view/animal-view.component';
 import {MatMenuModule} from '@angular/material/menu';
+import { FloatingBtnComponent } from './components/floating-btn/floating-btn.component';
 
 
 @NgModule({
@@ -44,7 +45,8 @@ import {MatMenuModule} from '@angular/material/menu';
     HeaderComponent,
     RemindPasswordComponent,
     ReportFormComponent,
-    AnimalViewComponent
+    AnimalViewComponent,
+    FloatingBtnComponent
   ],
   imports: [
     BrowserModule,
