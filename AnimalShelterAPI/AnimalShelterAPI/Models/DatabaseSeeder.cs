@@ -72,7 +72,7 @@ namespace AnimalShelterAPI.Database
                     },
                     new Animal
                     {
-                        AdmissionDate = DateTime.Parse("2020-10-03"),
+                        AdmissionDate = DateTime.Parse("2020-01-03"),
                         Birthday = DateTime.Parse("2019-01-02"),
                         MicrochipIntegrationDate = null,
                         VaccinationDate = DateTime.Parse("2020-08-04"),
