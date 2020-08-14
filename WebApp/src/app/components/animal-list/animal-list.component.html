@@ -1,35 +1,5 @@
-<div class="background-color">
-  <mat-card-content>
-    <form #animalReportForm="ngForm" class="" (ngSubmit)="onSubmit(animalReportForm)">
-
-      <div class="container"><h1>Generuoti ataskaitą</h1></div>
-
-      <div class="container">
-        <mat-form-field appearance="fill" >
-          <mat-label>Data nuo</mat-label>
-          <input matInput  name="dateReportFrom" placeholder=""
-                 [matDatepicker]="pickerFrom">
-          <mat-datepicker-toggle matSuffix [for]="pickerFrom"></mat-datepicker-toggle>
-          <mat-datepicker #pickerFrom></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <div class="container">
-        <mat-form-field appearance="fill" >
-          <mat-label>Data iki</mat-label>
-          <input matInput  name="dateReportTo" placeholder=""
-                 [matDatepicker]="pickerTo">
-          <mat-datepicker-toggle matSuffix [for]="pickerTo"></mat-datepicker-toggle>
-          <mat-datepicker #pickerTo></mat-datepicker>
-        </mat-form-field>
-      </div>
-
-      <div class="container">
-        <button mat-raised-button color="warn">Generuoti</button>
-      </div>
-
-
-    </form>
-  </mat-card-content>
+<app-report-form></app-report-form>
+<div class="list-container">
   <hr>
   <div class="list-container">
     <div class="flex-container">
@@ -59,6 +29,7 @@
         </button>
       </div>
     </div>
+  </div>
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
@@ -99,5 +70,4 @@
       </tr>
     </table>
   </div>
-</div>
 

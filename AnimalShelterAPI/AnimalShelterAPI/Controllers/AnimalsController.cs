@@ -113,9 +113,9 @@ namespace AnimalShelterAPI.Controllers
         }
 
         [HttpGet("Report")]
-        public async Task<IActionResult> GetAnimalReport([FromBody] ReportRequestDto request)
+        public async Task<IActionResult> GetAnimalReport(string Year, string Type)
         {
-            Stream report = await _reportService.GenerateYearReport(request.AnimalType, request.Year);
+            Stream report = await _reportService.GenerateYearReport(Convert.ToInt32(Type), Convert.ToInt32(Year));
 
             if (report == null)
                 return NotFound();
