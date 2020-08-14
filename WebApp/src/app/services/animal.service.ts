@@ -18,17 +18,17 @@ const headers = new HttpHeaders({
 })
 export class AnimalService {
 
-  private AnimalListUrl = 'https://localhost:5001/api/Animals';
+  private animalListUrl = 'https://localhost:5001/api/Animals';
 
   constructor(private http: HttpClient) {
   }
 
   getAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(this.AnimalListUrl);
+    return this.http.get<Animal[]>(this.animalListUrl);
   }
 
   getFilteredAnimals(fromDate: Date, toDate: Date): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${this.AnimalListUrl}/filter`, {
+    return this.http.get<Animal[]>(`${this.animalListUrl}/filter`, {
       params: {
         fromDate: fromDate.toDateString(),
         toDate: toDate.toDateString()
@@ -37,15 +37,15 @@ export class AnimalService {
   }
 
   getAnimal(AnimalId: string): Observable<EditAnimal> {
-    return this.http.get<EditAnimal>(`${this.AnimalListUrl}/${AnimalId}`);
+    return this.http.get<EditAnimal>(`${this.animalListUrl}/${AnimalId}`);
   }
 
   addAnimal(animal: NewAnimal): Observable<Animal> {
-    return this.http.post<Animal>(this.AnimalListUrl, animal, {headers});
+    return this.http.post<Animal>(this.animalListUrl, animal, {headers});
   }
 
   getAnimalYearReport(ReportSettings: ReportRequestDto): Observable<any> {
-    return this.http.get<any>(`${this.AnimalListUrl}/Report`,{
+    return this.http.get<any>(`${this.animalListUrl}/Report`,{
       responseType: 'arraybuffer' as 'json',
       headers: headers,
       params: {
@@ -56,13 +56,17 @@ export class AnimalService {
   }
 
   getAnimalAct(Id: number): Observable<any> {
-    return this.http.get<any>(`${this.AnimalListUrl}/Act/${Id}`,{
+    return this.http.get<any>(`${this.animalListUrl}/Act/${Id}`,{
       responseType: 'arraybuffer' as 'json',
       headers: headers,
     });
   }
 
   putAnimal(AnimalId: string, animal: EditAnimal): Observable<EditAnimal>{
-    return this.http.put<EditAnimal>(`${this.AnimalListUrl}/${AnimalId}`, animal, {headers});
+    return this.http.put<EditAnimal>(`${this.animalListUrl}/${AnimalId}`, animal, {headers});
+  }
+
+  deleteAnimal(animalId: number): Observable<Animal> {
+    return this.http.delete<Animal>(`${this.animalListUrl}/${animalId}`);
   }
 }

@@ -6,12 +6,12 @@ import {UserService} from '@app/services/user.service';
 import {AnimalService} from '@app/services/animal.service';
 import {FormControl, FormGroup, NgForm} from '@angular/forms';
 import {Status} from '@app/models/status';
-import { Subscription } from 'rxjs';
+import {Subscription} from 'rxjs';
 import {AnimalHubService} from '@app/services/animal-hub.service';
 import {Router} from '@angular/router';
 import {AnimalType} from '@app/models/animalType';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { saveAs } from "file-saver";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {saveAs} from 'file-saver';
 
 
 @Component({
@@ -20,7 +20,7 @@ import { saveAs } from "file-saver";
   styleUrls: ['./animal-list.component.scss']
 })
 export class AnimalListComponent implements OnInit {
-
+  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate', 'icons'];
   public StatusEnum = Status;
   public AnimalTypeEnum = AnimalType;
 
@@ -28,14 +28,11 @@ export class AnimalListComponent implements OnInit {
               private animalHub: AnimalHubService,
               private snackBar: MatSnackBar,
               private userService: UserService,
-              private router: Router) {
-  }
+              private router: Router) { }
 
   animal = new Animal();
   animals: Animal[];
   err: string;
-
-  displayedColumns: string[] = ['specialID', 'admissionDate', 'vaccinationDate', 'status', 'statusDate', 'icons'];
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('animalTable') animalTable: MatTable<Animal>;
@@ -51,7 +48,6 @@ export class AnimalListComponent implements OnInit {
   get toDate() { return this.filterForm.get('toDate').value; }
 
   ngOnInit(): void {
-
     if (!this.userService.isLoggedIn())
     {
       this.router.navigate(['/login']);
@@ -85,7 +81,6 @@ export class AnimalListComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    // form.resetForm();
     console.log(form.value);
   }
 
@@ -115,7 +110,17 @@ export class AnimalListComponent implements OnInit {
   generateAct(id: number){
     this.animalService.getAnimalAct(id).subscribe((data) => {
         let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        saveAs(blob, "gyvuno_aktas.docx");
+        saveAs(blob, 'gyvuno_aktas.docx');
+      },
+      error => console.log(error)
+    );
+  }
+
+  deleteAnimal(id: number){
+    this.animalService.deleteAnimal(id).subscribe(
+      (data) => {
+        console.log('deleted');
+        this.resetAnimalList();
       },
       error => console.log(error)
     );

@@ -79,6 +79,7 @@
       <mat-cell *matCellDef="let element">
         <span (click)="generateAct(element.id)" class="material-icons icon">get_app</span>
         <span (click)="navigateToEdit(element)" class="material-icons icon">edit</span>
+        <span (click)="deleteAnimal(element.id)" class="material-icons icon">delete</span>
         <div *ngIf="needVaccine(element)">
           <span style="color: red;" class="material-icons">warning</span>
         </div>
