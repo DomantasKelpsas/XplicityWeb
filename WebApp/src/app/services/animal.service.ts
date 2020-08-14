@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {User} from '@app/models/user';
 import {Observable} from 'rxjs';
-import {Token} from '@app/models/token';
 import {Animal} from '@app/models/animal';
 import {NewAnimal} from '@app/models/new-animal';
 import {ReportRequestDto} from '@app/models/ReportRequestDto';
@@ -17,18 +15,16 @@ const headers = new HttpHeaders({
   providedIn: 'root'
 })
 export class AnimalService {
+  private animalListUrl = 'https://localhost:5001/api/Animals';
 
-  private AnimalListUrl = 'https://localhost:5001/api/Animals';
-
-  constructor(private http: HttpClient) {
-  }
+  constructor(private http: HttpClient) { }
 
   getAnimals(): Observable<Animal[]> {
-    return this.http.get<Animal[]>(this.AnimalListUrl);
+    return this.http.get<Animal[]>(this.animalListUrl);
   }
 
   getFilteredAnimals(fromDate: Date, toDate: Date): Observable<Animal[]> {
-    return this.http.get<Animal[]>(`${this.AnimalListUrl}/filter`, {
+    return this.http.get<Animal[]>(`${this.animalListUrl}/filter`, {
       params: {
         fromDate: fromDate.toDateString(),
         toDate: toDate.toDateString()
@@ -36,33 +32,37 @@ export class AnimalService {
     });
   }
 
-  getAnimal(AnimalId: string): Observable<EditAnimal> {
-    return this.http.get<EditAnimal>(`${this.AnimalListUrl}/${AnimalId}`);
+  getAnimal(animalId: string): Observable<EditAnimal> {
+    return this.http.get<EditAnimal>(`${this.animalListUrl}/${animalId}`);
   }
 
   addAnimal(animal: NewAnimal): Observable<Animal> {
-    return this.http.post<Animal>(this.AnimalListUrl, animal, {headers});
+    return this.http.post<Animal>(this.animalListUrl, animal, {headers});
   }
 
-  getAnimalYearReport(ReportSettings: ReportRequestDto): Observable<any> {
-    return this.http.get<any>(`${this.AnimalListUrl}/Report`,{
+  getAnimalYearReport(reportSettings: ReportRequestDto): Observable<any> {
+    return this.http.get<any>(`${this.animalListUrl}/Report`,{
       responseType: 'arraybuffer' as 'json',
       headers: headers,
       params: {
-        Year: ReportSettings.Year.toString(),
-        Type: ReportSettings.AnimalType.toString()
+        Year: reportSettings.Year.toString(),
+        Type: reportSettings.AnimalType.toString()
       }
     });
   }
 
-  getAnimalAct(Id: number): Observable<any> {
-    return this.http.get<any>(`${this.AnimalListUrl}/Act/${Id}`,{
+  getAnimalAct(id: number): Observable<any> {
+    return this.http.get<any>(`${this.animalListUrl}/Act/${id}`,{
       responseType: 'arraybuffer' as 'json',
       headers: headers,
     });
   }
 
-  putAnimal(AnimalId: string, animal: EditAnimal): Observable<EditAnimal>{
-    return this.http.put<EditAnimal>(`${this.AnimalListUrl}/${AnimalId}`, animal, {headers});
+  putAnimal(animalId: string, animal: EditAnimal): Observable<EditAnimal>{
+    return this.http.put<EditAnimal>(`${this.animalListUrl}/${animalId}`, animal, {headers});
+  }
+
+  deleteAnimal(animalId: number): Observable<Animal> {
+    return this.http.delete<Animal>(`${this.animalListUrl}/${animalId}`);
   }
 }
