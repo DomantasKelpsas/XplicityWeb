@@ -1,9 +1,7 @@
-<app-report-form></app-report-form>
-<div class="list-container">
-  <hr>
-  <div class="list-container">
-    <div class="flex-container">
-      <div class="flex-container-item">
+<mat-card>
+
+        <mat-card-title>Gyvūnų sąrašas</mat-card-title>
+  <div class="form-container">
         <form class="date-block" [formGroup]="filterForm">
           <div>
             <mat-form-field>
@@ -19,15 +17,14 @@
               <mat-datepicker #toDate></mat-datepicker>
             </mat-form-field>
           </div>
-          <button class="button-height button-margin" mat-raised-button color="warn" (click)="filterAnimals()">Filtruoti</button>
-          <button class="button-height" mat-stroked-button color="basic" (click)="resetAnimalList()">Išvalyti</button>
+          <button mat-raised-button color="warn" (click)="filterAnimals()">Filtruoti</button>
+          <button class="clearbtn" mat-stroked-button color="basic" (click)="resetAnimalList()">Išvalyti</button>
+          <div class="filler" style="width: 15%"></div>
+          <app-report-form></app-report-form>
+
         </form>
-      </div>
-      <div class="flex-container-item">
-      <app-floating-btn></app-floating-btn>
-      </div>
-    </div>
   </div>
+
 
   <table #animalTable mat-table [dataSource]="dataSource" matSort>
     <!-- Position Column -->
@@ -91,5 +88,5 @@
         <td class="mat-cell" colspan="4">No data matching the filter </td>
       </tr>
     </table>
-  </div>
 
+</mat-card>
