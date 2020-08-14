@@ -115,7 +115,7 @@ export class AnimalListComponent implements OnInit {
   generateAct(id: number){
     this.animalService.getAnimalAct(id).subscribe((data) => {
         let blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' });
-        saveAs(blob, "ataskaita.docx");
+        saveAs(blob, "gyvuno_aktas.docx");
       },
       error => console.log(error)
     );
